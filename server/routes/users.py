@@ -14,6 +14,15 @@ class Login(Resource):
             session['user_id'] = user.id
             return user.to_dict(), 200
         else:
-            return {'error': 'Invalid credentials'}, 401
+            return {'error': 'Invalid credentials'}, 422
+
+class Logout(Resource):
+    def delete(self):
+        if session.get('user_id'):
+            del session['user_id']
+            return {}, 204
+        else:
+            return {'error': 'User not logged in'}, 401
         
 api.add_resource(Login, '/api/login')
+api.add_resource(Logout, '/api/logout')
