@@ -1,9 +1,14 @@
 import React from "react"
+import {BrowserRouter, Routes, Route} from 'react-router-dom'
 
 function App() {
 
   return (
-    <h1>Phase 5 Project</h1>
+    <BrowserRouter>
+      <Routes>
+        <Route path='' element=''/>
+      </Routes>
+    </BrowserRouter>
   )
 }
 
