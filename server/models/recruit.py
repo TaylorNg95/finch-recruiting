@@ -19,6 +19,8 @@ class Recruit(db.Model, SerializerMixin):
     user = db.relationship('User', back_populates='recruits')
     touchpoints = db.relationship('Touchpoint', back_populates='recruit')
 
+    serialize_rules = ('-user.recruits', '-touchpoints.recruit')
+
     def __repr__(self):
         return f'<Recruit id={self.id} name={self.name}>'
     

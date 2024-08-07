@@ -9,5 +9,7 @@ class MeetingType(db.Model, SerializerMixin):
 
     touchpoints = db.relationship('Touchpoint', back_populates='meetingType')
 
+    serialize_rules = ('-touchpoints.meetingType',)
+
     def __repr__(self):
         return f'<MeetingType id={self.id} type={self.type}>'

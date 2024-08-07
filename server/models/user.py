@@ -16,6 +16,8 @@ class User(db.Model, SerializerMixin):
 
     recruits = db.relationship('Recruit', back_populates='user')
 
+    serialize_rules = ('-recruits.user',)
+
     def __repr__(self):
         return f'<User id={self.id} name={self.name}>'
 
