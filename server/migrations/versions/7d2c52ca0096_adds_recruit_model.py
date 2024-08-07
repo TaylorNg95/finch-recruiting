@@ -1,8 +1,8 @@
 """adds recruit model
 
-Revision ID: 7a608562b1ad
-Revises: 3890e7931ba8
-Create Date: 2024-08-07 09:25:20.530677
+Revision ID: 7d2c52ca0096
+Revises: 3af43c3bb2f8
+Create Date: 2024-08-07 10:09:30.377942
 
 """
 from alembic import op
@@ -10,8 +10,8 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '7a608562b1ad'
-down_revision = '3890e7931ba8'
+revision = '7d2c52ca0096'
+down_revision = '3af43c3bb2f8'
 branch_labels = None
 depends_on = None
 

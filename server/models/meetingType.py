@@ -1,9 +1,8 @@
 from config import db
 from sqlalchemy_serializer import SerializerMixin
-from sqlalchemy.orm import validates
 
 class meetingType(db.Model, SerializerMixin):
-    __tablename__ = 'meetingTypes'
+    __tablename__ = 'meeting_types'
 
     id = db.Column(db.Integer, primary_key=True)
     type = db.Column(db.String, nullable=False) # will be text, call, video, in-person, other

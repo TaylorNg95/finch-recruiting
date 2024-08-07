@@ -7,6 +7,7 @@ class Recruit(db.Model, SerializerMixin):
     __tablename__ = 'recruits'
 
     id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     name = db.Column(db.String, nullable=False)
     location = db.Column(db.String, nullable=False)
     classYear = db.Column(db.Integer, nullable=False)
