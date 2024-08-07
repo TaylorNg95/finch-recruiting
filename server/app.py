@@ -1,6 +1,9 @@
 from config import app
-from models import user, recruit, meetingType, touchpoint
-from routes import users
+from models.user import User
+from models.recruit import Recruit
+from models.meetingType import MeetingType
+from models.touchpoint import Touchpoint
+from routes.users import *
 
 if __name__ == '__main__':
-    app.run(port=5000, debug=True)
+    app.run(port=5555, debug=True)

@@ -1,16 +1,19 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useContext } from 'react'
 import {UserContext} from '../../context/UserContext'
 
 function NavBar() {
   const {logout, loggedIn} = useContext(UserContext)
 
+  const navigate = useNavigate()
+
   async function handleLogout(){
     await fetch('/api/logout', {
       method: 'DELETE'
     })
     logout()
+    navigate('/')
   }
 
   const routes = (
