@@ -15,3 +15,9 @@ class Touchpoint(db.Model, SerializerMixin):
     def __repr__(self):
         return f'<Touchpoint id={self.id} player_id={self.player_id}>'
 
+    @validates('date')
+    def validate_date(self, key, date):
+        if not re.fullmatch(r'^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$', date):
+            raise ValueError('Date invalid')
+        else:
+            return date
