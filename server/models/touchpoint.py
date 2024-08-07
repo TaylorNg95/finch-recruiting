@@ -12,6 +12,9 @@ class Touchpoint(db.Model, SerializerMixin):
     date = db.Column(db.String, nullable=False)
     notes = db.Column(db.String)
 
+    recruit = db.relationship('Recruit', back_populates='touchpoints')
+    meetingType = db.relationship('MeetingType', back_populates='touchpoints')
+
     def __repr__(self):
         return f'<Touchpoint id={self.id} player_id={self.player_id}>'
 

@@ -16,6 +16,9 @@ class Recruit(db.Model, SerializerMixin):
     archived = db.Column(db.Boolean, default=False)
     # not yet included: nextTouchpoint, topRecruit tag
 
+    user = db.relationship('User', back_populates='recruits')
+    touchpoints = db.relationship('Touchpoint', back_populates='recruit')
+
     def __repr__(self):
         return f'<Recruit id={self.id} name={self.name}>'
     
