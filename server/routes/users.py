@@ -1,7 +1,27 @@
-from config import api
+from config import api, db
 from flask import request, session
 from flask_restful import Resource
 from models.user import User
+from sqlalchemy.exc import IntegrityError
+
+class Signup(Resource):
+    def post(self):
+        data = request.get_json()
+        name = data.get('name')
+        email = data.get('email')
+        username = data.get('username')
+        password = data.get('password')
+        try:
+            user = User(name=name, email=email, username=username)
+            user.password_hash = password
+            db.session.add(user)
+            db.session.commit()
+            session['user_id'] = user.id
+            return user.to_dict(), 201
+        except ValueError as e:
+            return {'error': str(e)}, 422
+        except IntegrityError as e:
+            return {'error': str(e)}, 422
 
 class Login(Resource):
     def post(self):
@@ -34,5 +54,6 @@ class Logout(Resource):
             return {'error': 'User not logged in'}, 401
         
 api.add_resource(Login, '/api/login')
+api.add_resource(Signup, '/api/signup')
 api.add_resource(CheckSession, '/api/check_session')
 api.add_resource(Logout, '/api/logout')

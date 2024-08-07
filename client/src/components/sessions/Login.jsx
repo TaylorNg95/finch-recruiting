@@ -24,6 +24,7 @@ function Login() {
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema: validationSchema,
+    validateOnChange: false,
     onSubmit: async function(values){
         const response = await fetch('/api/login', {
             method: 'POST',
