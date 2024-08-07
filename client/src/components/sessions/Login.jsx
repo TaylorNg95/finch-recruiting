@@ -2,8 +2,11 @@ import React from 'react'
 import * as yup from 'yup'
 import {useFormik} from 'formik'
 import {useNavigate} from 'react-router-dom'
+import { useContext } from 'react'
+import {UserContext} from '../../context/UserContext'
 
 function Login() {
+  const {login, logout} = useContext(UserContext)
 
   const navigate = useNavigate()
 
@@ -30,8 +33,12 @@ function Login() {
             body: JSON.stringify(values)
         })
         if (response.status == 200){
-            navigate('/')
-        } else {console.log('Invalid credentials')}
+            const user = await response.json()
+            login(user)
+            /* navigate('/') */
+        } else {
+            console.log('Invalid credentials')
+        }
     }
     }
   )
