@@ -1,8 +1,12 @@
 import React from 'react'
 import * as yup from 'yup'
 import {useFormik} from 'formik'
+import {useNavigate} from 'react-router-dom'
 
 function Login() {
+
+  const navigate = useNavigate()
+
   const initialValues = {
     username: '',
     password: ''
@@ -16,11 +20,21 @@ function Login() {
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema: validationSchema,
-    onSubmit: (values) => {
-        console.log(values)
-        // handle Submit
+    onSubmit: async function(values){
+        const response = await fetch('/api/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accepts': 'application/json'
+            },
+            body: JSON.stringify(values)
+        })
+        if (response.status == 200){
+            navigate('/')
+        } else {console.log('Invalid credentials')}
     }
-  })
+    }
+  )
   
   return (
     <>
