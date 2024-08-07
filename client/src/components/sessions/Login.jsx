@@ -6,7 +6,7 @@ import { useContext } from 'react'
 import {UserContext} from '../../context/UserContext'
 
 function Login() {
-  const {login, logout} = useContext(UserContext)
+  const {login} = useContext(UserContext)
 
   const navigate = useNavigate()
 
@@ -35,7 +35,7 @@ function Login() {
         if (response.status == 200){
             const user = await response.json()
             login(user)
-            /* navigate('/') */
+            navigate('/')
         } else {
             console.log('Invalid credentials')
         }
