@@ -30,9 +30,7 @@ class User(db.Model, SerializerMixin):
         
     @password_hash.setter
     def password_hash(self, password):
-        breakpoint()
         pw_hash = bcrypt.generate_password_hash(password)
-        breakpoint()
         self._password_hash = pw_hash.decode()
 
     def authenticate(self, password):
