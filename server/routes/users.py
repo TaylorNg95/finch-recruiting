@@ -16,6 +16,13 @@ class Login(Resource):
         else:
             return {'error': 'Invalid credentials'}, 422
 
+class CheckSession(Resource):
+    def get(self):
+        user_id = session.get('user_id')
+        if user:
+            user = User.query.filter(User.id == user_id).first()
+            return user.to_dict(), 200
+
 class Logout(Resource):
     def delete(self):
         if session.get('user_id'):
