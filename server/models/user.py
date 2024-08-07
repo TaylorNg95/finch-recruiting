@@ -10,7 +10,7 @@ class User(db.Model, SerializerMixin):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False)
     email = db.Column(db.String, nullable=False)
-    username = db.Column(db.String, nullable=False)
+    username = db.Column(db.String, nullable=False, unique=True)
     _password_hash = db.Column(db.String, nullable=False)
     notifications = db.Column(db.Boolean, default=True)
 
@@ -20,13 +20,15 @@ class User(db.Model, SerializerMixin):
     @hybrid_property
     def password_hash(self):
         if self._password_hash == '':
-            raise ValueError('Password required')
+            raise ValueError('Password required') # might not need
         else:
             raise AttributeError('Cannot be accessed')
         
     @password_hash.setter
     def password_hash(self, password):
+        breakpoint()
         pw_hash = bcrypt.generate_password_hash(password)
+        breakpoint()
         self._password_hash = pw_hash.decode()
 
     def authenticate(self, password):
