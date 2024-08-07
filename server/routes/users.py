@@ -19,9 +19,11 @@ class Login(Resource):
 class CheckSession(Resource):
     def get(self):
         user_id = session.get('user_id')
-        if user:
+        if user_id:
             user = User.query.filter(User.id == user_id).first()
             return user.to_dict(), 200
+        else:
+            return {'message': 'User not logged in'}, 401
 
 class Logout(Resource):
     def delete(self):
@@ -32,4 +34,5 @@ class Logout(Resource):
             return {'error': 'User not logged in'}, 401
         
 api.add_resource(Login, '/api/login')
+api.add_resource(CheckSession, '/api/check_session')
 api.add_resource(Logout, '/api/logout')
