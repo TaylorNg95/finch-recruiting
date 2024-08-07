@@ -17,3 +17,24 @@ class Recruit(db.Model, SerializerMixin):
 
     def __repr__(self):
         return f'<Recruit id={self.id} name={self.name}>'
+    
+    @validates('name', 'location')
+    def check_inputs(self, key, input):
+        if input == '':
+            raise ValueError('Name and location required')
+        else:
+            return input
+        
+    @validates('email')
+    def check_email(self, key, email):
+        if not re.fullmatch(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$', email):
+            raise ValueError('Email invalid')
+        else:
+            return email
+        
+    @validates('cell')
+    def check_cell(self, key, cell):
+        if not re.fullmatch(r'^(\+\d{1,2}\s?)?1?\-?\.?\s?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$', cell):
+            raise ValueError('Cell number invalid')
+        else:
+            return cell
