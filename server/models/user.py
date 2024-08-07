@@ -4,7 +4,9 @@ from sqlalchemy.ext.hybrid import hybrid_property
 from sqlalchemy.orm import validates
 import re
 
-class User(db.Model, SerializerMixin):
+from flask_login import UserMixin
+
+class User(db.Model, SerializerMixin, UserMixin):
     __tablename__ = 'users'
 
     id = db.Column(db.Integer, primary_key=True)
@@ -24,7 +26,7 @@ class User(db.Model, SerializerMixin):
     @hybrid_property
     def password_hash(self):
         if self._password_hash == '':
-            raise ValueError('Password required') # might not need
+            raise ValueError('Password required')
         else:
             raise AttributeError('Cannot be accessed')
         

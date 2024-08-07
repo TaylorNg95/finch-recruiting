@@ -7,6 +7,8 @@ from flask_restful import Api
 from dotenv import load_dotenv
 import os
 
+from flask_login import LoginManager
+
 load_dotenv()
 
 metadata = MetaData(naming_convention={
@@ -30,3 +32,11 @@ migrate = Migrate(app=app, db=db, render_as_batch=True)
 bcrypt = Bcrypt(app)
 
 api = Api(app)
+
+login_manager = LoginManager()
+login_manager.init_app(app)
+
+@login_manager.user_loader
+def load_user(user_id):
+    from models.user import User
+    return User.query.get(user_id)
