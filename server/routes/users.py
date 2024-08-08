@@ -8,8 +8,8 @@ from sqlalchemy.exc import IntegrityError
 class Signup(Resource):
     def post(self):
         data = request.get_json()
-        first_name = data.get('fName')
-        last_name = data.get('lName')
+        first_name = data.get('first_name')
+        last_name = data.get('last_name')
         email = data.get('email')
         username = data.get('username')
         password = data.get('password')

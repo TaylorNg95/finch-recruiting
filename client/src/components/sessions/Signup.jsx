@@ -12,14 +12,16 @@ function Signup() {
   const navigate = useNavigate()
 
   const initialValues = {
-    name: '',
+    first_name: '',
+    last_name: '',
     email: '',
     username: '',
     password: ''
   }
 
   const validationSchema = yup.object().shape({
-    name: yup.string().required('Name required'),
+    first_name: yup.string().required('First name required'),
+    last_name: yup.string().required('Last name required'),
     email: yup.string().required('Email required'),
     username: yup.string().required('Username required'),
     password: yup.string().required('Password required')
@@ -53,8 +55,10 @@ function Signup() {
   return (
     <>
         <form onSubmit={formik.handleSubmit}>
-          <label>Name: <input type='text' name='name' value={formik.values.name} onChange={formik.handleChange}/></label><br />
-          <p style={{ color: "red" }}> {formik.errors.name}</p>
+          <label>First name: <input type='text' name='first_name' value={formik.values.first_name} onChange={formik.handleChange}/></label><br />
+          <p style={{ color: "red" }}> {formik.errors.first_name}</p>
+          <label>Last name: <input type='text' name='last_name' value={formik.values.last_name} onChange={formik.handleChange}/></label><br />
+          <p style={{ color: "red" }}> {formik.errors.last_name}</p>
           <label>Email: <input type='email' name='email' value={formik.values.email} onChange={formik.handleChange}/></label><br />
           <p style={{ color: "red" }}> {formik.errors.email}</p>
           <label>Username: <input type='text' name='username' value={formik.values.username} onChange={formik.handleChange}/></label><br />
