@@ -7,8 +7,9 @@ import NewTouchpointForm from './NewTouchpointForm'
 function RecruitProfile() {
   const recruit_id = useParams().id
   
-  const {recruits} = useContext(UserContext)
+  const {recruits, touchpoints} = useContext(UserContext)
   const recruit = recruits.find(recruit => recruit.id == recruit_id)
+  const recruitTouchpoints = touchpoints.filter(touchpoint => touchpoint.recruit_id == recruit.id)
   console.log(recruit)
   
   return (
@@ -19,7 +20,7 @@ function RecruitProfile() {
       <p>{recruit.email}</p>
       <p>{recruit.cell}</p>
       <h3>Contact Log:</h3>
-      {recruit.touchpoints.map(touchpoint => <TouchpointCard key={touchpoint.id} touchpoint={touchpoint}/>)}
+      {recruitTouchpoints.map(touchpoint => <TouchpointCard key={touchpoint.id} touchpoint={touchpoint}/>)}
       {<NewTouchpointForm recruit_id={recruit_id}/>}
     </>
   )

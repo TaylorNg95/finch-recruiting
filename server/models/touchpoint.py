@@ -15,7 +15,7 @@ class Touchpoint(db.Model, SerializerMixin):
     recruit = db.relationship('Recruit', back_populates='touchpoints')
     meetingType = db.relationship('MeetingType', back_populates='touchpoints')
 
-    serialize_rules = ('-recruit.touchpoints', '-meetingType.touchpoints','-recruit_id','-meetingType_id',)
+    serialize_rules = ('-recruit.touchpoints', '-meetingType.touchpoints','-meetingType_id',)
 
     def __repr__(self):
         return f'<Touchpoint id={self.id} recruit_id={self.recruit_id}>'

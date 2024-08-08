@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { UserContext } from '../../context/UserContext'
 import * as yup from 'yup'
 import { useFormik } from 'formik'
 
 function NewTouchpointForm({recruit_id}) {
+    const {addTouchpoint} = useContext(UserContext)
 
     const initialValues = {
         recruit_id: recruit_id,
@@ -22,8 +23,8 @@ function NewTouchpointForm({recruit_id}) {
         validateOnChange: false,
         onSubmit: function(values, {resetForm}){
             console.log('submitted')
-            /* addTouchpoint(values)
-            resetForm() */
+            addTouchpoint(values)
+            resetForm()
         }
       })
 

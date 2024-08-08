@@ -11,7 +11,7 @@ class TouchpointsResource(Resource):
     
     def post(self):
         data = request.get_json()
-        recruit_id = data.get('recruit')
+        recruit_id = data.get('recruit_id')
         meetingType_id = data.get('meetingType_id')
         date = data.get('date')
         notes = data.get('notes')

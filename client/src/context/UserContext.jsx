@@ -56,12 +56,27 @@ function UserProvider({children}) {
       setRecruits([...recruits, newRecruit])
     }
   }
+
+  async function addTouchpoint(touchpoint){
+    const response = await fetch('/api/touchpoints', {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+          'Accepts': 'application/json'
+      },
+      body: JSON.stringify(touchpoint)
+    })
+    if (response.status == 201){
+      const newTouchpoint = await response.json()
+      setTouchpoints([...touchpoints, newTouchpoint])
+    }
+  }
   
   console.log('userContext')
   if (loading){
     return <h1>Loading...</h1>
   } else return (
-    <UserContext.Provider value={{loggedIn, user, recruits, addRecruit, login, logout}}>{children}</UserContext.Provider>
+    <UserContext.Provider value={{loggedIn, user, recruits, touchpoints, addRecruit, addTouchpoint, login, logout}}>{children}</UserContext.Provider>
   )
 }
 
