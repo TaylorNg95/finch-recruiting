@@ -3,7 +3,7 @@ import { UserContext } from '../../context/UserContext'
 import * as yup from 'yup'
 import { useFormik } from 'formik'
 
-function NewRecruitForm() {
+function NewRecruitForm({close}) {
     const {user, addRecruit} = useContext(UserContext)
 
     const [formError, setFormError] = useState(null)
@@ -31,6 +31,7 @@ function NewRecruitForm() {
         validateOnChange: false,
         onSubmit: function(values){
             addRecruit(values)
+            close()
         }
       })
 

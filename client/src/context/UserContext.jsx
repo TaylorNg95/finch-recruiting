@@ -11,7 +11,7 @@ function UserProvider({children}) {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    const checkUser = async function(){
+    async function checkUser(){
       const response = await fetch('/api/check_session')
       if (response.status == 200){
         const user = await response.json()
@@ -44,11 +44,10 @@ function UserProvider({children}) {
       body: JSON.stringify(recruit)
     })
     if (response.status == 201){
-      debugger
-        const newRecruit = await response.json()
-        setRecruits(...recruits, newRecruit)
+      const newRecruit = await response.json()
+      setRecruits([...recruits, newRecruit])
     } else if (response.status == 422){
-        console.log('error')
+        console.log(response)
     }
   }
   

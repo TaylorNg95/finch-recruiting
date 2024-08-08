@@ -21,7 +21,7 @@ function Dashboard() {
                             <div className='content'>
                                 + Add New Recruit
                             </div>
-                            {<NewRecruitForm />}
+                            {<NewRecruitForm close={close}/>}
                             <div>
                                 <button onClick=
                                     {() => close()}>
