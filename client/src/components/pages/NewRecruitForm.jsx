@@ -6,8 +6,6 @@ import { useFormik } from 'formik'
 function NewRecruitForm({close}) {
     const {user, addRecruit} = useContext(UserContext)
 
-    const [formError, setFormError] = useState(null)
-
     const initialValues = {
         user_id: user.id,
         name: '',
@@ -29,8 +27,9 @@ function NewRecruitForm({close}) {
         initialValues: initialValues,
         validationSchema: validationSchema,
         validateOnChange: false,
-        onSubmit: function(values){
+        onSubmit: function(values, {resetForm}){
             addRecruit(values)
+            resetForm()
             close()
         }
       })
@@ -56,7 +55,6 @@ function NewRecruitForm({close}) {
         <p style={{ color: "red" }}> {formik.errors.email}</p>
         <label>Cell: <input type='tel' name='cell' value={formik.values.cell} onChange={formik.handleChange}/></label><br />
         <p style={{ color: "red" }}> {formik.errors.cell}</p>
-        <p style={{ color: "red" }}> {formError}</p>
         <input type='submit' value='Submit'/>
     </form>
   )

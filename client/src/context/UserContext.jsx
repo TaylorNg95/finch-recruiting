@@ -9,6 +9,7 @@ function UserProvider({children}) {
   const [user, setUser] = useState(null)
   const [recruits, setRecruits] = useState(null)
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
 
   useEffect(() => {
     async function checkUser(){
@@ -46,8 +47,6 @@ function UserProvider({children}) {
     if (response.status == 201){
       const newRecruit = await response.json()
       setRecruits([...recruits, newRecruit])
-    } else if (response.status == 422){
-        console.log(response)
     }
   }
   
