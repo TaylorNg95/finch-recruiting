@@ -13,9 +13,9 @@ with app.app_context():
     Touchpoint.query.delete()
 
     # Seed users
-    bob = User(name='Bob', email='Bob@gmail.com', username='bob123')
+    bob = User(first_name='Bob', last_name='Dallis', email='Bob@gmail.com', username='bob123')
     bob.password_hash = 'pw123'
-    sanela = User(name='Sanela', email='Sanela@gmail.com', username='sanela123')
+    sanela = User(first_name='Sanela', last_name='Kunovac', email='Sanela@gmail.com', username='sanela123')
     sanela.password_hash = 'pw456'
 
     db.session.add_all([bob, sanela])

@@ -8,12 +8,13 @@ from sqlalchemy.exc import IntegrityError
 class Signup(Resource):
     def post(self):
         data = request.get_json()
-        name = data.get('name')
+        first_name = data.get('fName')
+        last_name = data.get('lName')
         email = data.get('email')
         username = data.get('username')
         password = data.get('password')
         try:
-            user = User(name=name, email=email, username=username)
+            user = User(first_name=first_name, last_name=last_name, email=email, username=username)
             user.password_hash = password
             db.session.add(user)
             db.session.commit()
@@ -47,7 +48,6 @@ class CheckSession(Resource):
 class Logout(Resource):
     @login_required
     def delete(self):
-        #if current_user.get_id():
         logout_user()
         return {}, 204
         

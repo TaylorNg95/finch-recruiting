@@ -9,7 +9,8 @@ class User(db.Model, SerializerMixin, UserMixin):
     __tablename__ = 'users'
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String, nullable=False)
+    first_name = db.Column(db.String, nullable=False)
+    last_name = db.Column(db.String, nullable=False)
     email = db.Column(db.String, nullable=False)
     username = db.Column(db.String, nullable=False, unique=True)
     _password_hash = db.Column(db.String, nullable=False)
@@ -20,7 +21,7 @@ class User(db.Model, SerializerMixin, UserMixin):
     serialize_rules = ('-recruits.user',)
 
     def __repr__(self):
-        return f'<User id={self.id} name={self.name}>'
+        return f'<User id={self.id} name={self.first_name} {self.last_name}>'
 
     @hybrid_property
     def password_hash(self):
@@ -37,10 +38,10 @@ class User(db.Model, SerializerMixin, UserMixin):
     def authenticate(self, password):
         return bcrypt.check_password_hash(self._password_hash, password)
     
-    @validates('name', 'username')
+    @validates('first_name', 'last_name', 'username')
     def check_inputs(self, key, input):
         if input == '':
-            raise ValueError('Name and username required')
+            raise ValueError('Full name and username required')
         else:
             return input
         
