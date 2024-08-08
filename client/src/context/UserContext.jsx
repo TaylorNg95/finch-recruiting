@@ -1,15 +1,13 @@
 import React from 'react'
 import { createContext, useState, useEffect } from 'react'
-import {useNavigate} from 'react-router-dom'
 
 const UserContext = createContext()
 
 function UserProvider({children}) {
 
-  const navigate = useNavigate()
-
   const [loggedIn, setLoggedIn] = useState(false)
   const [user, setUser] = useState(null)
+  const [recruits, setRecruits] = useState(null)
 
   useEffect(() => {
     const checkUser = async function(){
@@ -17,6 +15,7 @@ function UserProvider({children}) {
       if (response.status == 200){
         const user = await response.json()
         login(user)
+        setRecruits(user.recruits)
       }
     }
     checkUser()
@@ -33,7 +32,7 @@ function UserProvider({children}) {
   }
 
   return (
-    <UserContext.Provider value={{loggedIn, user, login, logout}}>{children}</UserContext.Provider>
+    <UserContext.Provider value={{loggedIn, user, recruits, login, logout}}>{children}</UserContext.Provider>
   )
 }
 

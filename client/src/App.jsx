@@ -5,6 +5,7 @@ import Home from "./components/Home"
 import Signup from "./components/sessions/Signup"
 import Login from "./components/sessions/Login"
 import {UserProvider} from "./context/UserContext"
+import Dashboard from "./components/pages/Dashboard"
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
             <Route path='/' element={<Home />}/>
             <Route path='/signup' element={<Signup />}/>
             <Route path='/login' element={<Login />}/>
+            <Route path='/dashboard' element={<Dashboard />}/>
           </Routes>
       </UserProvider>
     </BrowserRouter>

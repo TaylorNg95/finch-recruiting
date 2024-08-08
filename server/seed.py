@@ -27,8 +27,9 @@ with app.app_context():
     erica = Recruit(user_id=1, name='Erica', location='Boston', classYear=2025, email='erica@gmail.com', cell='1-222-222-2222')
     dayna = Recruit(user_id=1, name='Dayna', location='Rhode Island', classYear=2026, email='dayna@gmail.com', cell='1-111-111-1111')
     brittany = Recruit(user_id=2, name='Brittany', location='Massachusetts', classYear=2027, email='brittany@gmail.com', cell='1-777-777-7777')
+    justina = Recruit(user_id=1, name='Justina', location='Lithuania', classYear=2027, email='justina@gmail.com', cell='+91-777-777-7777')
 
-    db.session.add_all([taylor, kana, erica, dayna, brittany])
+    db.session.add_all([taylor, kana, erica, dayna, brittany, justina])
     db.session.commit()
 
     # Seed meeting types
