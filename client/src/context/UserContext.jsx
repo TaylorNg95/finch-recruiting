@@ -8,6 +8,7 @@ function UserProvider({children}) {
   const [loggedIn, setLoggedIn] = useState(false)
   const [user, setUser] = useState(null)
   const [recruits, setRecruits] = useState(null)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const checkUser = async function(){
@@ -15,23 +16,28 @@ function UserProvider({children}) {
       if (response.status == 200){
         const user = await response.json()
         login(user)
-        setRecruits(user.recruits)
       }
+      setLoading(false)
     }
     checkUser()
   }, [])
   
   function login(user){
     setUser(user)
+    setRecruits(user.recruits)
     setLoggedIn(true)
   }
 
   function logout(){
     setUser(null)
+    setRecruits(null)
     setLoggedIn(false)
   }
-
-  return (
+  
+  console.log('userContext')
+  if (loading){
+    return <h1>Loading...</h1>
+  } else return (
     <UserContext.Provider value={{loggedIn, user, recruits, login, logout}}>{children}</UserContext.Provider>
   )
 }

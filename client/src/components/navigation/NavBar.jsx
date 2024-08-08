@@ -27,6 +27,7 @@ function NavBar() {
     </>
   )
 
+  console.log('navbar')
   return (
     <ul>
         {routes}

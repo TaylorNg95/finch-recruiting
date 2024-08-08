@@ -37,6 +37,7 @@ function Login() {
         if (response.status == 200){
             const user = await response.json()
             login(user)
+            // debugger
             navigate('/')
         } else if (response.status == 422){
             const error = await response.json()
@@ -46,6 +47,7 @@ function Login() {
     }
   )
   
+  console.log('login')
   return (
     <>
         <form onSubmit={formik.handleSubmit}>
