@@ -6,22 +6,14 @@ import { useFormik } from 'formik'
 function NewTouchpointForm({recruit_id}) {
 
     const initialValues = {
-        recruit_id: user.id,
-        first_name: '',
-        last_name: '',
-        location: '',
-        classYear: '2027',
-        email: '',
-        cell: ''
+        recruit_id: recruit_id,
+        meetingType_id: '1',
+        date: '',
+        notes: ''
       }
     
       const validationSchema = yup.object().shape({
-        first_name: yup.string().required('First name required'),
-        last_name: yup.string().required('Last name required'),
-        location: yup.string().required('Location required'),
-        classYear: yup.number().required('ClassYear required'),
-        email: yup.string().matches(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, 'Invalid email format'),
-        cell: yup.string().matches(/^(\+\d{1,2}\s?)?1?\-?\.?\s?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/, 'Invalid cell format')
+        date: yup.string().required('Date required').matches(/^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$/, 'Invalid date format')
       })
     
       const formik = useFormik({
@@ -29,14 +21,29 @@ function NewTouchpointForm({recruit_id}) {
         validationSchema: validationSchema,
         validateOnChange: false,
         onSubmit: function(values, {resetForm}){
-            addRecruit(values)
-            resetForm()
-            close()
+            console.log('submitted')
+            /* addTouchpoint(values)
+            resetForm() */
         }
       })
 
   return (
-    <div>NewTouchpointForm</div>
+    <form onSubmit={formik.handleSubmit}>
+        <label>Date: <input type='date' name='date' value={formik.values.date} onChange={formik.handleChange}/></label><br />
+        <p style={{ color: "red" }}> {formik.errors.date}</p>
+        <label>Meeting Type: 
+            <select name='meetingType_id' value={formik.values.meetingType_id} onChange={formik.handleChange}>
+                <option value='1'>Call</option>
+                <option value='2'>Text</option>
+                <option value='3'>Video</option>
+                <option value='4'>In-Person</option>
+                <option value='5'>Other</option>
+            </select>
+        </label><br />
+        <p style={{ color: "red" }}> {formik.errors.meetingType_id}</p>
+        <label>Notes: <textarea name='notes' value={formik.values.notes} onChange={formik.handleChange}/></label><br />
+        <input type='submit' value='Submit'/>
+    </form>
   )
 }
 
