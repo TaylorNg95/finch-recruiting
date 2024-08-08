@@ -7,9 +7,11 @@ function UserProvider({children}) {
 
   const [loggedIn, setLoggedIn] = useState(false)
   const [user, setUser] = useState(null)
+  
   const [recruits, setRecruits] = useState(null)
+  const [touchpoints, setTouchpoints] = useState(null)
+
   const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
 
   useEffect(() => {
     async function checkUser(){
@@ -25,8 +27,13 @@ function UserProvider({children}) {
   
   function login(user){
     setUser(user)
-    setRecruits(user.recruits)
     setLoggedIn(true)
+    setRecruits(user.recruits)
+    let touchpoints = []
+    for (const recruit of user.recruits){
+      touchpoints = touchpoints.concat(recruit.touchpoints)
+      setTouchpoints(touchpoints)
+    }
   }
 
   function logout(){

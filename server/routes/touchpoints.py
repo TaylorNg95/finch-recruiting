@@ -25,5 +25,4 @@ class TouchpointsResource(Resource):
         except IntegrityError as e:
             return {'error': str(e)}, 422
 
-    
 api.add_resource(TouchpointsResource, '/api/touchpoints')
