@@ -8,7 +8,8 @@ function NewRecruitForm({close}) {
 
     const initialValues = {
         user_id: user.id,
-        name: '',
+        first_name: '',
+        last_name: '',
         location: '',
         classYear: '2027',
         email: '',
@@ -16,7 +17,8 @@ function NewRecruitForm({close}) {
       }
     
       const validationSchema = yup.object().shape({
-        name: yup.string().required('Name required'),
+        first_name: yup.string().required('First name required'),
+        last_name: yup.string().required('Last name required'),
         location: yup.string().required('Location required'),
         classYear: yup.number().required('ClassYear required'),
         email: yup.string().matches(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, 'Invalid email format'),
@@ -36,8 +38,10 @@ function NewRecruitForm({close}) {
 
   return (
     <form onSubmit={formik.handleSubmit}>
-        <label>Name: <input type='text' name='name' value={formik.values.name} onChange={formik.handleChange}/></label><br />
-        <p style={{ color: "red" }}> {formik.errors.name}</p>
+        <label>First name: <input type='text' name='first_name' value={formik.values.first_name} onChange={formik.handleChange}/></label><br />
+        <p style={{ color: "red" }}> {formik.errors.first_name}</p>
+        <label>Last name: <input type='text' name='last_name' value={formik.values.last_name} onChange={formik.handleChange}/></label><br />
+        <p style={{ color: "red" }}> {formik.errors.last_name}</p>
         <label>Location: <input type='text' name='location' value={formik.values.location} onChange={formik.handleChange}/></label><br />
         <p style={{ color: "red" }}> {formik.errors.location}</p>
         <label>Class Year: 

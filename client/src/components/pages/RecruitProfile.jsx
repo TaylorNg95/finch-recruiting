@@ -12,7 +12,7 @@ function RecruitProfile() {
   
   return (
     <>
-      <h2>{recruit.name}</h2>
+      <h2>{`${recruit.first_name} ${recruit.last_name}`}</h2>
       <p>{recruit.location}</p>
       <p>{recruit.classYear}</p>
       <p>{recruit.email}</p>
