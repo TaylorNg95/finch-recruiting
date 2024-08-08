@@ -33,12 +33,30 @@ function UserProvider({children}) {
     setRecruits(null)
     setLoggedIn(false)
   }
+
+  async function addRecruit(recruit){
+    const response = await fetch('/api/recruits', {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+          'Accepts': 'application/json'
+      },
+      body: JSON.stringify(recruit)
+    })
+    if (response.status == 201){
+      debugger
+        const newRecruit = await response.json()
+        setRecruits(...recruits, newRecruit)
+    } else if (response.status == 422){
+        console.log('error')
+    }
+  }
   
   console.log('userContext')
   if (loading){
     return <h1>Loading...</h1>
   } else return (
-    <UserContext.Provider value={{loggedIn, user, recruits, login, logout}}>{children}</UserContext.Provider>
+    <UserContext.Provider value={{loggedIn, user, recruits, addRecruit, login, logout}}>{children}</UserContext.Provider>
   )
 }
 
