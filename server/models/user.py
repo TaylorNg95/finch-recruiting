@@ -1,10 +1,9 @@
 from config import db, bcrypt
 from sqlalchemy_serializer import SerializerMixin
+from flask_login import UserMixin
 from sqlalchemy.ext.hybrid import hybrid_property
 from sqlalchemy.orm import validates
 import re
-
-from flask_login import UserMixin
 
 class User(db.Model, SerializerMixin, UserMixin):
     __tablename__ = 'users'

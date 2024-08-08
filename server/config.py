@@ -4,10 +4,9 @@ from sqlalchemy.schema import MetaData
 from flask_migrate import Migrate
 from flask_bcrypt import Bcrypt
 from flask_restful import Api
+from flask_login import LoginManager
 from dotenv import load_dotenv
 import os
-
-from flask_login import LoginManager
 
 load_dotenv()
 
