@@ -12,13 +12,14 @@ class RecruitsResource(Resource):
     def post(self):
         data = request.get_json()
         user_id = data.get('user_id')
-        name = data.get('name')
+        first_name = data.get('first_name')
+        last_name = data.get('last_name')
         location = data.get('location')
         classYear = data.get('classYear')
         email = data.get('email')
         cell = data.get('cell')
         try:
-            recruit = Recruit(user_id=user_id, name=name, location=location, classYear=classYear, email=email, cell=cell)
+            recruit = Recruit(user_id=user_id, first_name=first_name, last_name=last_name, location=location, classYear=classYear, email=email, cell=cell)
             db.session.add(recruit)
             db.session.commit()
             return recruit.to_dict(), 201
