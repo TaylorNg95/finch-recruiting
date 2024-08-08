@@ -9,7 +9,8 @@ function Dashboard() {
   console.log('dashboard')
   return (
     <>
-        <div>Dashboard</div>
+        <div>Dashboard</div><br />
+        <button>+ Add New Recruit</button>
         {recruits.map(recruit => <RecruitCard key={recruit.id} recruit={recruit}/>)}
     </>
   )
