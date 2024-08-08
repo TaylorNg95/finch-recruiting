@@ -7,7 +7,7 @@ class Touchpoint(db.Model, SerializerMixin):
     __tablename__ = 'touchpoints'
 
     id = db.Column(db.Integer, primary_key=True)
-    player_id = db.Column(db.Integer, db.ForeignKey('recruits.id'), nullable=False)
+    recruit_id = db.Column(db.Integer, db.ForeignKey('recruits.id'), nullable=False)
     meetingType_id = db.Column(db.Integer, db.ForeignKey('meeting_types.id'), nullable=False)
     date = db.Column(db.String, nullable=False)
     notes = db.Column(db.String)
@@ -15,10 +15,10 @@ class Touchpoint(db.Model, SerializerMixin):
     recruit = db.relationship('Recruit', back_populates='touchpoints')
     meetingType = db.relationship('MeetingType', back_populates='touchpoints')
 
-    serialize_rules = ('-recruit.touchpoints', '-meetingType.touchpoints','-player_id','-meetingType_id',)
+    serialize_rules = ('-recruit.touchpoints', '-meetingType.touchpoints','-recruit_id','-meetingType_id',)
 
     def __repr__(self):
-        return f'<Touchpoint id={self.id} player_id={self.player_id}>'
+        return f'<Touchpoint id={self.id} recruit_id={self.recruit_id}>'
 
     @validates('date')
     def validate_date(self, key, date):

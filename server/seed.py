@@ -43,14 +43,14 @@ with app.app_context():
     db.session.commit()
 
     # Seed touchpoints
-    tp1 = Touchpoint(player_id=1, meetingType_id=1, date='2024-06-15', notes='Can improve. Well spoken.')
-    tp2 = Touchpoint(player_id=2, meetingType_id=1, date='2024-06-15', notes='First outreach.')
-    tp3 = Touchpoint(player_id=2, meetingType_id=2, date='2024-06-30', notes='Will not make it to clays.')
-    tp4 = Touchpoint(player_id=3, meetingType_id=1, date='2024-06-15', notes='Has younger sister.')
-    tp5 = Touchpoint(player_id=3, meetingType_id=4, date='2024-07-01', notes='Forehand is a liability, competes well.')
-    tp6 = Touchpoint(player_id=4, meetingType_id=2, date='2024-07-16', notes='Not intersted in Dartmouth.')
-    tp7 = Touchpoint(player_id=5, meetingType_id=2, date='2024-06-15', notes='Initial text.')
-    tp8 = Touchpoint(player_id=5, meetingType_id=4, date='2024-08-04', notes='Watched her play at hard courts.')
+    tp1 = Touchpoint(recruit_id=1, meetingType_id=1, date='2024-06-15', notes='Can improve. Well spoken.')
+    tp2 = Touchpoint(recruit_id=2, meetingType_id=1, date='2024-06-15', notes='First outreach.')
+    tp3 = Touchpoint(recruit_id=2, meetingType_id=2, date='2024-06-30', notes='Will not make it to clays.')
+    tp4 = Touchpoint(recruit_id=3, meetingType_id=1, date='2024-06-15', notes='Has younger sister.')
+    tp5 = Touchpoint(recruit_id=3, meetingType_id=4, date='2024-07-01', notes='Forehand is a liability, competes well.')
+    tp6 = Touchpoint(recruit_id=4, meetingType_id=2, date='2024-07-16', notes='Not intersted in Dartmouth.')
+    tp7 = Touchpoint(recruit_id=5, meetingType_id=2, date='2024-06-15', notes='Initial text.')
+    tp8 = Touchpoint(recruit_id=5, meetingType_id=4, date='2024-08-04', notes='Watched her play at hard courts.')
 
     db.session.add_all([tp1, tp2, tp3, tp4, tp5, tp6, tp7, tp8])
     db.session.commit()
