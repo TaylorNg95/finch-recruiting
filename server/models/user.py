@@ -41,7 +41,7 @@ class User(db.Model, SerializerMixin, UserMixin):
     @validates('first_name', 'last_name', 'username')
     def check_inputs(self, key, input):
         if input == '':
-            raise ValueError('Full name and username required')
+            raise ValueError('Name and username required')
         else:
             return input
         

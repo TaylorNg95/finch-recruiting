@@ -8,7 +8,8 @@ class Recruit(db.Model, SerializerMixin):
 
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    name = db.Column(db.String, nullable=False)
+    first_name = db.Column(db.String, nullable=False)
+    last_name = db.Column(db.String, nullable=False)
     location = db.Column(db.String, nullable=False)
     classYear = db.Column(db.Integer, nullable=False)
     email = db.Column(db.String)
@@ -24,7 +25,7 @@ class Recruit(db.Model, SerializerMixin):
     def __repr__(self):
         return f'<Recruit id={self.id} name={self.name}>'
     
-    @validates('name', 'location')
+    @validates('first_name', 'last_name', 'location')
     def check_inputs(self, key, input):
         if input == '':
             raise ValueError('Name and location required')
