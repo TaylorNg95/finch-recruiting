@@ -13,6 +13,7 @@ flask-restful = "*"
 python-dotenv = "*"
 flask-login = "*"
 flask-mail = "*"
+flask-apscheduler = "*"
 
 [dev-packages]
 

@@ -13,11 +13,11 @@ with app.app_context():
     Touchpoint.query.delete()
 
     # Seed users
-    bob = User(first_name='Bob', last_name='Dallis', email='Bob@gmail.com', username='bob123')
+    bob = User(first_name='Bob', last_name='Dallis', email='bankingontennis@gmail.com', username='bob123')
     bob.password_hash = 'pw123'
-    sanela = User(first_name='Sanela', last_name='Kunovac', email='Sanela@gmail.com', username='sanela123')
+    sanela = User(first_name='Sanela', last_name='Kunovac', email='bankingontennis@gmail.com', username='sanela123')
     sanela.password_hash = 'pw456'
-    taylor = User(first_name='Taylor', last_name='Ng', email='Taylor@gmail.com', username='taylor123')
+    taylor = User(first_name='Taylor', last_name='Ng', email='bankingontennis@gmail.com', username='taylor123')
     taylor.password_hash = 'pw789'
 
     db.session.add_all([bob, sanela, taylor])
@@ -45,7 +45,7 @@ with app.app_context():
     db.session.commit()
 
     # Seed touchpoints
-    tp1 = Touchpoint(recruit_id=1, meetingType_id=1, date='2024-08-06', notes='Can improve. Well spoken.')
+    tp1 = Touchpoint(recruit_id=1, meetingType_id=1, date='2024-08-01', notes='Can improve. Well spoken.')
     tp2 = Touchpoint(recruit_id=2, meetingType_id=1, date='2024-08-05', notes='First outreach.')
     tp3 = Touchpoint(recruit_id=2, meetingType_id=2, date='2024-08-04', notes='Will not make it to clays.')
     tp4 = Touchpoint(recruit_id=3, meetingType_id=1, date='2024-08-05', notes='Has younger sister.')

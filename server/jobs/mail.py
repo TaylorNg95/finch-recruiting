@@ -1,39 +1,28 @@
-from config import mail
+from config import app, mail
+import datetime as dt
 from flask_mail import Message
 from models.user import User
 from models.recruit import Recruit
+from models.touchpoint import Touchpoint
+from jobs.helpers import weeklySummaryEmail
 
-def get(self, id):
-    user = User.query.filter(User.id == id).first()
-    recruits = Recruit.query.filter(Recruit.user_id == id)
-    touchpoints = []
-    for recruit in recruits:
-        touchpoints += recruit.touchpoints
-    touchpoints = [touchpoint for touchpoint in touchpoints if '2024-08-01' <= touchpoint.date <= '2024-08-08']
-    
-    if touchpoints:
-        weekly_touchpoints = [f"• {touchpoint.date}: {touchpoint.meetingType.type} with {touchpoint.recruit_id}\n" for touchpoint in touchpoints]
+today = dt.datetime.now().date().isoformat() # current date
+week_ago = (dt.datetime.now() - dt.timedelta(days=7)).date().isoformat() # date one week ago
 
-        msg = Message(
-            subject='Your Weekly Summary',
-            recipients=['bankingontennis@gmail.com']
-        )
-        msg.body = f'''{user.first_name},
+def sendWeeklyEmail():
+    with app.app_context():
+        users = User.query.filter(User.notifications == 1)
+        all_touchpoints = Touchpoint.query.all()
+        all_touchpoints_this_week = [touchpoint for touchpoint in all_touchpoints if week_ago <= touchpoint.date <= today]
+        for user in users:
+            user_recruit_ids = [recruit.id for recruit in user.recruits]
+            user_touchpoints_this_week = [touchpoint for touchpoint in all_touchpoints_this_week if touchpoint.recruit_id in user_recruit_ids]
+            # this works because recruits are unique to users, so you only need to compare the touchpoint_recruit_ids
+            message_strings = [f"• {touchpoint.date} || {touchpoint.meetingType_id} with {touchpoint.recruit_id}\n" for touchpoint in user_touchpoints_this_week]
 
-Your weekly activity summary:
-
-----------------
-
-TOUCHPOINTS:
-
-{"".join(weekly_touchpoints)}
-----------------
-
-Visit portal (make this a link).
-
-Regards,
-Your Team @ Recruiter
-
-'''
-        mail.send(msg)
-        return {"message": "Successfully sent!"}, 200
+            msg = Message(
+                subject='Your Weekly Summary',
+                recipients=[user.email]
+            )
+            msg.body = weeklySummaryEmail(user.first_name, ''.join(message_strings))
+            mail.send(msg)
