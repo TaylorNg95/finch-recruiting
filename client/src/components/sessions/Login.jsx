@@ -46,7 +46,6 @@ function Login() {
     }
   )
   
-  console.log('login')
   return (
     <>
         <form onSubmit={formik.handleSubmit}>

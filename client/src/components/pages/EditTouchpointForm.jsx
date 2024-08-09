@@ -24,7 +24,6 @@ function EditTouchpointForm({touchpoint, close}) {
         validationSchema: validationSchema,
         validateOnChange: false,
         onSubmit: function(values, {resetForm}){
-            console.log('submitted')
             editTouchpoint(values, touchpoint.id)
             resetForm()
             close()

@@ -21,7 +21,6 @@ function MeetingTypeProvider({children}) {
     loadMeetingTypes()
   }, [])
 
-  console.log('meetingTypeContext')
   if (loading){
     return <h1>Loading...</h1>
   } else return (

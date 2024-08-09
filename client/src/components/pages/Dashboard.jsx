@@ -8,7 +8,6 @@ import NewRecruitForm from './NewRecruitForm'
 function Dashboard() {
   const {recruits} = useContext(UserContext)
   
-  console.log('dashboard')
   return (
     <>
         <div>Dashboard</div><br />

@@ -24,7 +24,6 @@ function NewTouchpointForm({recruit_id}) {
         validationSchema: validationSchema,
         validateOnChange: false,
         onSubmit: function(values, {resetForm}){
-            console.log('submitted')
             addTouchpoint(values)
             resetForm()
         }
