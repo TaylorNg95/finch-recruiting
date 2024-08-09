@@ -13,7 +13,7 @@ function NavBar() {
       method: 'DELETE'
     })
     logout()
-    navigate('/')
+    navigate('/login')
   }
 
   const routes = (

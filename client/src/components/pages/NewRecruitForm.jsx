@@ -11,7 +11,7 @@ function NewRecruitForm({close}) {
         first_name: '',
         last_name: '',
         location: '',
-        classYear: '2027',
+        classYear: 2027,
         email: '',
         cell: ''
       }

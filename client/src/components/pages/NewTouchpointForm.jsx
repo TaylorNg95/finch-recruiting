@@ -1,14 +1,16 @@
 import React, { useContext } from 'react'
 import { UserContext } from '../../context/UserContext'
+import { MeetingTypeContext } from '../../context/MeetingTypeContext'
 import * as yup from 'yup'
 import { useFormik } from 'formik'
 
 function NewTouchpointForm({recruit_id}) {
     const {addTouchpoint} = useContext(UserContext)
+    const {meetingTypes} = useContext(MeetingTypeContext)
 
     const initialValues = {
         recruit_id: recruit_id,
-        meetingType_id: '1',
+        meetingType_id: 1,
         date: '',
         notes: ''
       }
@@ -28,17 +30,19 @@ function NewTouchpointForm({recruit_id}) {
         }
       })
 
+      const meetingTypeOptions = (
+        <>
+          {meetingTypes.map(meetingType => <option value={meetingType.id}>{meetingType.type}</option>)}
+        </>
+      )
+
   return (
     <form onSubmit={formik.handleSubmit}>
         <label>Date: <input type='date' name='date' value={formik.values.date} onChange={formik.handleChange}/></label><br />
         <p style={{ color: "red" }}> {formik.errors.date}</p>
         <label>Meeting Type: 
             <select name='meetingType_id' value={formik.values.meetingType_id} onChange={formik.handleChange}>
-                <option value='1'>Call</option>
-                <option value='2'>Text</option>
-                <option value='3'>Video</option>
-                <option value='4'>In-Person</option>
-                <option value='5'>Other</option>
+                {meetingTypeOptions}
             </select>
         </label><br />
         <p style={{ color: "red" }}> {formik.errors.meetingType_id}</p>
