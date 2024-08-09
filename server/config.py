@@ -5,6 +5,7 @@ from flask_migrate import Migrate
 from flask_bcrypt import Bcrypt
 from flask_restful import Api
 from flask_login import LoginManager
+from flask_mail import Mail
 from dotenv import load_dotenv
 import os
 
@@ -20,9 +21,17 @@ metadata = MetaData(naming_convention={
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db' # change to OS and env file
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = os.getenv('FLASK_SECRET_KEY')
+
+app.config['MAIL_SERVER']= 'smtp.gmail.com'
+app.config['MAIL_PORT'] = 465
+app.config['MAIL_USERNAME'] = 'bankingontennis@gmail.com'
+app.config['MAIL_PASSWORD'] = 'soghrhjmbwmrcoif'
+app.config['MAIL_USE_TLS'] = False
+app.config['MAIL_USE_SSL'] = True
+app.config['MAIL_DEFAULT_SENDER'] = ('Taylor from Recruiter','bankingontennis@gmail.com')
 
 db = SQLAlchemy(app=app, metadata=metadata)
 
@@ -31,6 +40,8 @@ migrate = Migrate(app=app, db=db, render_as_batch=True)
 bcrypt = Bcrypt(app)
 
 api = Api(app)
+
+mail = Mail(app)
 
 login_manager = LoginManager()
 login_manager.init_app(app)

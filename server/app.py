@@ -6,6 +6,7 @@ from models.touchpoint import Touchpoint
 from routes.users import *
 from routes.recruits import *
 from routes.touchpoints import *
+from routes.mail import *
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)

@@ -23,7 +23,7 @@ class Recruit(db.Model, SerializerMixin):
     serialize_rules = ('-user.recruits', '-touchpoints.recruit')
 
     def __repr__(self):
-        return f'<Recruit id={self.id} name={self.name}>'
+        return f'<Recruit id={self.id} name={self.first_name} {self.last_name}>'
     
     @validates('first_name', 'last_name', 'location')
     def check_inputs(self, key, input):
