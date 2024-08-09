@@ -1,8 +1,8 @@
 import React, {useContext} from 'react'
 import { useParams } from 'react-router-dom'
 import { UserContext } from '../../context/UserContext'
-import TouchpointCard from './TouchpointCard'
-import NewTouchpointForm from './NewTouchpointForm'
+import TouchpointCard from '../cards/TouchpointCard'
+import NewTouchpointForm from '../forms/NewTouchpointForm'
 
 function RecruitProfile() {
   const recruit_id = useParams().id

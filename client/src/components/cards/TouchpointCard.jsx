@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import Popup from 'reactjs-popup'
-import EditTouchpointForm from './EditTouchpointForm'
+import EditTouchpointForm from '../forms/EditTouchpointForm'
 import { UserContext } from '../../context/UserContext'
 
 function TouchpointCard({touchpoint}) {

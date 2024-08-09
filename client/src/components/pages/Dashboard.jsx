@@ -1,9 +1,9 @@
 import React from 'react'
 import { useContext } from 'react'
 import { UserContext } from '../../context/UserContext'
-import RecruitCard from './RecruitCard'
+import RecruitCard from '../cards/RecruitCard'
 import Popup from 'reactjs-popup'
-import NewRecruitForm from './NewRecruitForm'
+import NewRecruitForm from '../forms/NewRecruitForm'
 
 function Dashboard() {
   const {recruits} = useContext(UserContext)
