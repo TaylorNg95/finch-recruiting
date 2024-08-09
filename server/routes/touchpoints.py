@@ -49,6 +49,15 @@ class TouchpointResource(Resource):
             return {'error': str(e)}, 422
         except IntegrityError as e:
             return {'error': str(e)}, 422
+        
+    def delete(self, id):
+        touchpoint = Touchpoint.query.filter(Touchpoint.id == id).first()
+        try:    
+            db.session.delete(touchpoint)
+            db.session.commit()
+            return {}, 204
+        except:
+            return {'error': 'Invalid touchpoint ID'}, 422
 
 api.add_resource(TouchpointsResource, '/api/touchpoints')
 api.add_resource(TouchpointResource, '/api/touchpoints/<int:id>')
