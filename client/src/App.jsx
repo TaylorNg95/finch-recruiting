@@ -21,8 +21,8 @@ function App() {
               <Route path='/signup' element={<Signup />}/>
               <Route path='/login' element={<Login />}/>
               <Route path='/dashboard' element={<Dashboard />}/>
-              <Route path='/archive' element={<Archive />}/>
               <Route path='/recruits/:id' element={<RecruitProfile />}/>
+              <Route path='/archive' element={<Archive />}/>
             </Routes>
         </MeetingTypeProvider>
       </UserProvider>
