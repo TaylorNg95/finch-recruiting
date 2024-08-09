@@ -1,5 +1,6 @@
 import React from 'react'
 import { createContext, useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const UserContext = createContext()
 
@@ -13,12 +14,16 @@ function UserProvider({children}) {
 
   const [loading, setLoading] = useState(true)
 
+  const navigate = useNavigate()
+
   useEffect(() => {
     async function checkUser(){
       const response = await fetch('/api/check_session')
       if (response.status == 200){
         const user = await response.json()
         login(user)
+      } else {
+        navigate('/login')
       }
       setLoading(false)
     }

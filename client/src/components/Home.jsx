@@ -6,7 +6,7 @@ function Home() {
 
   return (
     <>
-      {loggedIn ? <div>Welcome, {user.first_name}</div> : <div>Home</div>}
+      <div>Welcome, {user.first_name}</div>
     </>
   )
 }
