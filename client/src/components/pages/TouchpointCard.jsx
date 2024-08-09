@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Popup from 'reactjs-popup'
 import EditTouchpointForm from './EditTouchpointForm'
+import { UserContext } from '../../context/UserContext'
 
 function TouchpointCard({touchpoint}) {
+  const {deleteTouchpoint} = useContext(UserContext)
 
-  console.log(touchpoint)
   return (
     <div>
         {`${touchpoint.date} || ${touchpoint.meetingType.type} || ${touchpoint.notes}`}
@@ -28,7 +29,7 @@ function TouchpointCard({touchpoint}) {
                     )
                 }
         </Popup>
-        <button>Delete</button>
+        <button onClick={() => deleteTouchpoint(touchpoint.id)}>Delete</button>
     </div>
   )
 }

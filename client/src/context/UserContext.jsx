@@ -99,12 +99,21 @@ function UserProvider({children}) {
       }))
     }
   }
+
+  async function deleteTouchpoint(id){
+    if (confirm('Are you sure you want delete this touchpoint?')){
+      const response = await fetch(`/api/touchpoints/${id}`, {
+        method: 'DELETE'
+      })
+      setTouchpoints(touchpoints.filter(touchpoint => touchpoint.id != id))
+    }
+  }
   
   console.log('userContext')
   if (loading){
     return <h1>Loading...</h1>
   } else return (
-    <UserContext.Provider value={{loggedIn, user, recruits, touchpoints, addRecruit, addTouchpoint, editTouchpoint, login, logout}}>{children}</UserContext.Provider>
+    <UserContext.Provider value={{loggedIn, user, login, logout, recruits, touchpoints, addRecruit, addTouchpoint, editTouchpoint, deleteTouchpoint}}>{children}</UserContext.Provider>
   )
 }
 
