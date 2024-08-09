@@ -6,6 +6,7 @@ from models.touchpoint import Touchpoint
 from routes.users import *
 from routes.recruits import *
 from routes.touchpoints import *
+from routes.meetingTypes import *
 from jobs.mail import sendWeeklyEmail
 
 if __name__ == '__main__':

@@ -17,7 +17,7 @@ function UserProvider({children}) {
   const navigate = useNavigate()
 
   useEffect(() => {
-    async function checkUser(){
+    async function loadUser(){
       const response = await fetch('/api/check_session')
       if (response.status == 200){
         const user = await response.json()
@@ -27,7 +27,7 @@ function UserProvider({children}) {
       }
       setLoading(false)
     }
-    checkUser()
+    loadUser()
   }, [])
   
   function login(user){
