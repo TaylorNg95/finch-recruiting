@@ -16,6 +16,7 @@ function UserProvider({children}) {
 
   const navigate = useNavigate()
 
+  // Load user state
   useEffect(() => {
     async function loadUser(){
       const response = await fetch('/api/check_session')
@@ -30,6 +31,7 @@ function UserProvider({children}) {
     loadUser()
   }, [])
   
+  // login & logout
   function login(user){
     setUser(user)
     setLoggedIn(true)
@@ -47,6 +49,7 @@ function UserProvider({children}) {
     setLoggedIn(false)
   }
 
+  // POST requests & state updates -- recruits and touchpoints
   async function addRecruit(recruit){
     const response = await fetch('/api/recruits', {
       method: 'POST',
@@ -76,12 +79,32 @@ function UserProvider({children}) {
       setTouchpoints([...touchpoints, newTouchpoint])
     }
   }
+
+  // PATCH requests & state updates -- recruits and touchpoints
+  async function editTouchpoint(touchpoint, id){
+    const response = await fetch(`/api/touchpoints/${id}`, {
+      method: 'PATCH',
+      headers: {
+          'Content-Type': 'application/json',
+          'Accepts': 'application/json'
+      },
+      body: JSON.stringify(touchpoint)
+    })
+    if (response.status == 200){
+      const updatedTouchpoint = await response.json()
+      setTouchpoints(touchpoints.map(touchpoint => {
+        if (touchpoint.id == updatedTouchpoint.id){
+          return updatedTouchpoint
+        } else return touchpoint
+      }))
+    }
+  }
   
   console.log('userContext')
   if (loading){
     return <h1>Loading...</h1>
   } else return (
-    <UserContext.Provider value={{loggedIn, user, recruits, touchpoints, addRecruit, addTouchpoint, login, logout}}>{children}</UserContext.Provider>
+    <UserContext.Provider value={{loggedIn, user, recruits, touchpoints, addRecruit, addTouchpoint, editTouchpoint, login, logout}}>{children}</UserContext.Provider>
   )
 }
 

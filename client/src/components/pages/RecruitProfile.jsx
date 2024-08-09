@@ -10,7 +10,6 @@ function RecruitProfile() {
   const {recruits, touchpoints} = useContext(UserContext)
   const recruit = recruits.find(recruit => recruit.id == recruit_id)
   const recruitTouchpoints = touchpoints.filter(touchpoint => touchpoint.recruit_id == recruit.id)
-  console.log(recruit)
   
   return (
     <>
