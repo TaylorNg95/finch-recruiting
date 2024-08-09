@@ -7,7 +7,7 @@ from sqlalchemy.exc import IntegrityError
 class TouchpointsResource(Resource):
     def get(self):
         touchpoints = Touchpoint.query.all()
-        return [touchpoint.to_dict() for touchpoint in touchpoints]
+        return [touchpoint.to_dict() for touchpoint in touchpoints], 200
     
     def post(self):
         data = request.get_json()
@@ -24,5 +24,31 @@ class TouchpointsResource(Resource):
             return {'error': str(e)}, 422
         except IntegrityError as e:
             return {'error': str(e)}, 422
+        
+class TouchpointResource(Resource):
+    def get(self, id):
+        touchpoint = Touchpoint.query.filter(Touchpoint.id == id).first()
+        return touchpoint.to_dict(), 200
+    
+    def patch(self, id):
+        data = request.get_json()
+        recruit_id = data.get('recruit_id')
+        meetingType_id = data.get('meetingType_id')
+        date = data.get('date')
+        notes = data.get('notes')
+        try:
+            touchpoint = Touchpoint.query.filter(Touchpoint.id == id).first()
+            touchpoint.recruit_id = recruit_id
+            touchpoint.meetingType_id = meetingType_id
+            touchpoint.date = date
+            touchpoint.notes = notes
+            db.session.add(touchpoint)
+            db.session.commit()
+            return touchpoint.to_dict(), 200
+        except ValueError as e:
+            return {'error': str(e)}, 422
+        except IntegrityError as e:
+            return {'error': str(e)}, 422
 
 api.add_resource(TouchpointsResource, '/api/touchpoints')
+api.add_resource(TouchpointResource, '/api/touchpoints/<int:id>')

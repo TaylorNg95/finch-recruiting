@@ -18,7 +18,7 @@ def sendWeeklyEmail():
             user_recruit_ids = [recruit.id for recruit in user.recruits]
             user_touchpoints_this_week = [touchpoint for touchpoint in all_touchpoints_this_week if touchpoint.recruit_id in user_recruit_ids]
             # this works because recruits are unique to users, so you only need to compare the touchpoint_recruit_ids
-            message_strings = [f"• {touchpoint.date} || {touchpoint.meetingType_id} with {touchpoint.recruit_id}\n" for touchpoint in user_touchpoints_this_week]
+            message_strings = [f"• {touchpoint.date} || {touchpoint.meetingType.type} with {touchpoint.recruit.first_name} {touchpoint.recruit.last_name}\n" for touchpoint in user_touchpoints_this_week]
 
             msg = Message(
                 subject='Your Weekly Summary',

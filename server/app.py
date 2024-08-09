@@ -10,7 +10,7 @@ from routes.meetingTypes import *
 from jobs.mail import sendWeeklyEmail
 
 if __name__ == '__main__':
-    scheduler.add_job(func=sendWeeklyEmail, trigger='cron', day_of_week=4, hour=12, minute=40, second=35, id='welcomeJob')
+    scheduler.add_job(func=sendWeeklyEmail, trigger='cron', day_of_week=4, hour=14, minute=17, second=15, id='welcomeJob')
 
     scheduler.start()
     app.run(port=5555, debug=False)

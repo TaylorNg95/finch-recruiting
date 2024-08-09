@@ -32,7 +32,7 @@ function NewTouchpointForm({recruit_id}) {
 
       const meetingTypeOptions = (
         <>
-          {meetingTypes.map(meetingType => <option value={meetingType.id}>{meetingType.type}</option>)}
+          {meetingTypes.map(meetingType => <option key={meetingType.id} value={meetingType.id}>{meetingType.type}</option>)}
         </>
       )
 
