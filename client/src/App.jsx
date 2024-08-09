@@ -1,13 +1,14 @@
 import React from "react"
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import {UserProvider} from "./context/UserContext"
+import { MeetingTypeProvider } from "./context/MeetingTypeContext"
 import NavBar from "./components/navigation/NavBar"
 import Home from "./components/Home"
 import Signup from "./components/sessions/Signup"
 import Login from "./components/sessions/Login"
-import {UserProvider} from "./context/UserContext"
 import Dashboard from "./components/pages/Dashboard"
+import Archive from "./components/pages/Archive"
 import RecruitProfile from "./components/pages/RecruitProfile"
-import { MeetingTypeProvider } from "./context/MeetingTypeContext"
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
               <Route path='/signup' element={<Signup />}/>
               <Route path='/login' element={<Login />}/>
               <Route path='/dashboard' element={<Dashboard />}/>
+              <Route path='/archive' element={<Archive />}/>
               <Route path='/recruits/:id' element={<RecruitProfile />}/>
             </Routes>
         </MeetingTypeProvider>
