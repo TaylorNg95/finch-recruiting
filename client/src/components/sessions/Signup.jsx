@@ -15,6 +15,7 @@ function Signup() {
     first_name: '',
     last_name: '',
     email: '',
+    cell: '',
     username: '',
     password: ''
   }
@@ -22,7 +23,8 @@ function Signup() {
   const validationSchema = yup.object().shape({
     first_name: yup.string().required('First name required'),
     last_name: yup.string().required('Last name required'),
-    email: yup.string().required('Email required'),
+    email: yup.string().required('Email required').matches(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, 'Invalid email format'),
+    cell: yup.string().requited('Cell required').matches(/^(\+\d{1,2}\s?)?1?\-?\.?\s?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/, 'Invalid cell format'),
     username: yup.string().required('Username required'),
     password: yup.string().required('Password required')
   })
@@ -61,6 +63,8 @@ function Signup() {
           <p style={{ color: "red" }}> {formik.errors.last_name}</p>
           <label>Email: <input type='email' name='email' value={formik.values.email} onChange={formik.handleChange}/></label><br />
           <p style={{ color: "red" }}> {formik.errors.email}</p>
+          <label>Cell: <input type='tel' name='cell' value={formik.values.cell} onChange={formik.handleChange}/></label><br />
+          <p style={{ color: "red" }}> {formik.errors.cell}</p>
           <label>Username: <input type='text' name='username' value={formik.values.username} onChange={formik.handleChange}/></label><br />
             <p style={{ color: "red" }}> {formik.errors.username}</p>
             <label>Password: <input type='password' name='password' value={formik.values.password} onChange={formik.handleChange}/></label><br />

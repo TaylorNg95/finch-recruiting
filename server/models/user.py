@@ -12,6 +12,7 @@ class User(db.Model, SerializerMixin, UserMixin):
     first_name = db.Column(db.String, nullable=False)
     last_name = db.Column(db.String, nullable=False)
     email = db.Column(db.String, nullable=False)
+    cell = db.Column(db.String, nullable=False)
     username = db.Column(db.String, nullable=False, unique=True)
     _password_hash = db.Column(db.String, nullable=False)
     notifications = db.Column(db.Boolean, default=True)
@@ -53,3 +54,12 @@ class User(db.Model, SerializerMixin, UserMixin):
             raise ValueError('Email invalid')
         else:
             return email
+        
+    @validates('cell')
+    def check_cell(self, key, cell):
+        if cell == '':
+            raise ValueError('Cell required')
+        elif not re.fullmatch(r'^(\+\d{1,2}\s?)?1?\-?\.?\s?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$', cell):
+            raise ValueError('Cell number invalid')
+        else:
+            return cell

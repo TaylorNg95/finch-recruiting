@@ -11,10 +11,11 @@ class Signup(Resource):
         first_name = data.get('first_name')
         last_name = data.get('last_name')
         email = data.get('email')
+        cell = data.get('cell')
         username = data.get('username')
         password = data.get('password')
         try:
-            user = User(first_name=first_name, last_name=last_name, email=email, username=username)
+            user = User(first_name=first_name, last_name=last_name, email=email, cell=cell, username=username)
             user.password_hash = password
             db.session.add(user)
             db.session.commit()
