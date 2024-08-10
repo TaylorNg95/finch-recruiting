@@ -41,8 +41,7 @@ function RecruitProfile() {
       <p>{recruit.location}</p>
       <p>{recruit.classYear}</p>
       <p>{recruit.email}</p>
-      <p>{recruit.cell}</p>
-      <button>SET CONTACT ALERT</button><br /><br />
+      <p>{recruit.cell}</p><br />
       <h3>Contact Log:</h3>
       {sortedRecruitTPs.map(touchpoint => <TouchpointCard key={touchpoint.id} touchpoint={touchpoint}/>)}
       <Popup trigger=
