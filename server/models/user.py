@@ -16,7 +16,7 @@ class User(db.Model, SerializerMixin, UserMixin):
     _password_hash = db.Column(db.String, nullable=False)
     notifications = db.Column(db.Boolean, default=True)
 
-    recruits = db.relationship('Recruit', back_populates='user')
+    recruits = db.relationship('Recruit', back_populates='user', cascade='all, delete-orphan')
 
     serialize_rules = ('-recruits.user',)
 

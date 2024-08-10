@@ -18,7 +18,7 @@ class Recruit(db.Model, SerializerMixin):
     # not yet included: nextTouchpoint, topRecruit tag
 
     user = db.relationship('User', back_populates='recruits')
-    touchpoints = db.relationship('Touchpoint', back_populates='recruit')
+    touchpoints = db.relationship('Touchpoint', back_populates='recruit', cascade='all, delete-orphan')
 
     serialize_rules = ('-user.recruits', '-touchpoints.recruit')
 
