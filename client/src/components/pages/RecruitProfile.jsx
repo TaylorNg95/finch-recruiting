@@ -9,7 +9,7 @@ import EditRecruitForm from '../forms/EditRecruitForm'
 function RecruitProfile() {
   const recruit_id = useParams().id
   
-  const {recruits, touchpoints} = useContext(UserContext)
+  const {recruits, touchpoints, deleteRecruit} = useContext(UserContext)
   const recruit = recruits.find(recruit => recruit.id == recruit_id)
   const recruitTouchpoints = touchpoints.filter(touchpoint => touchpoint.recruit_id == recruit.id)
   
@@ -40,6 +40,7 @@ function RecruitProfile() {
             )
         }
       </Popup>
+      <button onClick={() => deleteRecruit(recruit.id)}>Delete Recruit</button>
       <h3>Contact Log:</h3>
       {recruitTouchpoints.map(touchpoint => <TouchpointCard key={touchpoint.id} touchpoint={touchpoint}/>)}
       {<NewTouchpointForm recruit_id={recruit_id}/>}

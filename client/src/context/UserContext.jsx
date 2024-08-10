@@ -119,6 +119,16 @@ function UserProvider({children}) {
     }
   }
 
+  async function deleteRecruit(id){
+    if (confirm('Are you sure you want delete this recruit?')){
+      const response = await fetch(`/api/recruits/${id}`, {
+        method: 'DELETE'
+      })
+      setRecruits(recruits.filter(recruit => recruit.id != id))
+      navigate('/dashboard')
+    }
+  }
+
   async function deleteTouchpoint(id){
     if (confirm('Are you sure you want delete this touchpoint?')){
       const response = await fetch(`/api/touchpoints/${id}`, {
@@ -131,7 +141,7 @@ function UserProvider({children}) {
   if (loading){
     return <h1>Loading...</h1>
   } else return (
-    <UserContext.Provider value={{loggedIn, user, login, logout, recruits, touchpoints, addRecruit, editRecruit, addTouchpoint, editTouchpoint, deleteTouchpoint}}>{children}</UserContext.Provider>
+    <UserContext.Provider value={{loggedIn, user, login, logout, recruits, touchpoints, addRecruit, editRecruit, deleteRecruit, addTouchpoint, editTouchpoint, deleteTouchpoint}}>{children}</UserContext.Provider>
   )
 }
 
