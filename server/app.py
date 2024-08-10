@@ -7,10 +7,11 @@ from routes.users import *
 from routes.recruits import *
 from routes.touchpoints import *
 from routes.meetingTypes import *
-from jobs.mail import sendWeeklyEmail
+from jobs.mail import sendWeeklyEmail, sendTouchpointReminder
 
 if __name__ == '__main__':
-    scheduler.add_job(func=sendWeeklyEmail, trigger='cron', day_of_week=4, hour=14, minute=17, second=15, id='welcomeJob')
-
+    scheduler.add_job(func=sendWeeklyEmail, trigger='cron', day_of_week=4, hour=14, minute=17, second=15, id='weeklyUpdateJob')
+    scheduler.add_job(func=sendTouchpointReminder, trigger='cron', hour=8, minute=50, second=15, id='contactReminderJob')
+    
     scheduler.start()
     app.run(port=5555, debug=False)

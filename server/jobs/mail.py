@@ -4,7 +4,7 @@ from flask_mail import Message
 from models.user import User
 from models.recruit import Recruit
 from models.touchpoint import Touchpoint
-from jobs.helpers import weeklySummaryEmail
+from jobs.helpers import weeklySummaryEmail, touchpointReminderEmail
 
 today = dt.datetime.now().date().isoformat() # current date
 week_ago = (dt.datetime.now() - dt.timedelta(days=7)).date().isoformat() # date one week ago
@@ -25,4 +25,21 @@ def sendWeeklyEmail():
                 recipients=[user.email]
             )
             msg.body = weeklySummaryEmail(user.first_name, ''.join(message_strings))
+            mail.send(msg)
+
+
+def sendTouchpointReminder():
+    with app.app_context():
+        recruitsToContact = Recruit.query.filter(Recruit.nextTouchpoint == today)
+        usersToContact = set([recruit.user for recruit in recruitsToContact])
+        if not usersToContact:
+            return None # don't send email if no users to contact
+        for user in usersToContact:
+            userRecruits = [recruit for recruit in recruitsToContact if recruit.user_id == user.id]
+            message_strings = [f"• {recruit.first_name} {recruit.last_name}\n" for recruit in userRecruits]
+            msg = Message(
+                subject='Your Recruiting Reminders',
+                recipients=[user.email]
+            )
+            msg.body = touchpointReminderEmail(user.first_name, ''.join(message_strings))
             mail.send(msg)
