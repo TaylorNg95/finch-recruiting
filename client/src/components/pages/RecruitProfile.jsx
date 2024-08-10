@@ -11,15 +11,12 @@ function RecruitProfile() {
   
   const {recruits, touchpoints, deleteRecruit} = useContext(UserContext)
   const recruit = recruits.find(recruit => recruit.id == recruit_id)
-  const recruitTouchpoints = touchpoints.filter(touchpoint => touchpoint.recruit_id == recruit.id)
+  const recruitTPs = touchpoints.filter(touchpoint => touchpoint.recruit_id == recruit.id)
+  const sortedRecruitTPs = recruitTPs.sort((a, b) => b.date.localeCompare(a.date))
   
   return (
     <>
       <h2>{`${recruit.first_name} ${recruit.last_name}`}</h2>
-      <p>{recruit.location}</p>
-      <p>{recruit.classYear}</p>
-      <p>{recruit.email}</p>
-      <p>{recruit.cell}</p>
       <Popup trigger=
         {<button>Edit Recruit</button>}
         modal nested>
@@ -41,8 +38,13 @@ function RecruitProfile() {
         }
       </Popup>
       <button onClick={() => deleteRecruit(recruit.id)}>Delete Recruit</button>
+      <p>{recruit.location}</p>
+      <p>{recruit.classYear}</p>
+      <p>{recruit.email}</p>
+      <p>{recruit.cell}</p>
+      <button>SET CONTACT ALERT</button><br /><br />
       <h3>Contact Log:</h3>
-      {recruitTouchpoints.map(touchpoint => <TouchpointCard key={touchpoint.id} touchpoint={touchpoint}/>)}
+      {sortedRecruitTPs.map(touchpoint => <TouchpointCard key={touchpoint.id} touchpoint={touchpoint}/>)}
       <Popup trigger=
         {<button>Add Touchpoint</button>}
         modal nested>

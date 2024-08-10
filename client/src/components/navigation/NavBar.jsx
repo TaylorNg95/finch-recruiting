@@ -20,7 +20,6 @@ function NavBar() {
     loggedIn ? <>
       <li><Link to='/'>Home</Link></li>
       <li><Link to='/recruits'>Dashboard</Link></li>
-      <li><Link to='/archives/recruits'>Archives</Link></li>
       <li><Link to='#' onClick={handleLogout}>Logout</Link></li>
     </> : <>
       <li><Link to='/signup'>Signup</Link></li>

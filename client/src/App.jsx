@@ -7,7 +7,6 @@ import Home from "./components/Home"
 import Signup from "./components/sessions/Signup"
 import Login from "./components/sessions/Login"
 import Dashboard from "./components/pages/Dashboard"
-import Archive from "./components/pages/Archive"
 import RecruitProfile from "./components/pages/RecruitProfile"
 
 function App() {
@@ -22,7 +21,6 @@ function App() {
               <Route path='/login' element={<Login />}/>
               <Route path='/recruits' element={<Dashboard />}/>
               <Route path='/recruits/:id' element={<RecruitProfile />}/>
-              <Route path='/archives/recruits' element={<Archive />}/>
             </Routes>
         </MeetingTypeProvider>
       </UserProvider>
