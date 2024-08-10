@@ -81,6 +81,25 @@ function UserProvider({children}) {
   }
 
   // PATCH requests & state updates -- recruits and touchpoints
+  async function editRecruit(recruit, id){
+    const response = await fetch(`/api/recruits/${id}`, {
+      method: 'PATCH',
+      headers: {
+          'Content-Type': 'application/json',
+          'Accepts': 'application/json'
+      },
+      body: JSON.stringify(recruit)
+    })
+    if (response.status == 200){
+      const updatedRecruit = await response.json()
+      setRecruits(recruits.map(recruit => {
+        if (recruit.id == updatedRecruit.id){
+          return updatedRecruit
+        } else return recruit
+      }))
+    }
+  }
+  
   async function editTouchpoint(touchpoint, id){
     const response = await fetch(`/api/touchpoints/${id}`, {
       method: 'PATCH',
@@ -112,7 +131,7 @@ function UserProvider({children}) {
   if (loading){
     return <h1>Loading...</h1>
   } else return (
-    <UserContext.Provider value={{loggedIn, user, login, logout, recruits, touchpoints, addRecruit, addTouchpoint, editTouchpoint, deleteTouchpoint}}>{children}</UserContext.Provider>
+    <UserContext.Provider value={{loggedIn, user, login, logout, recruits, touchpoints, addRecruit, editRecruit, addTouchpoint, editTouchpoint, deleteTouchpoint}}>{children}</UserContext.Provider>
   )
 }
 

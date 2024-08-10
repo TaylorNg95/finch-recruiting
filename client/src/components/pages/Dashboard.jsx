@@ -16,7 +16,7 @@ function Dashboard() {
                 modal nested>
                 {
                     close => (
-                        <div style={{'border': 'solid', 'padding': '5%'}}className='modal'>
+                        <div style={{'border': 'solid', 'padding': '5%', 'background': 'white'}}className='modal'>
                             <div className='content'>
                                 + Add New Recruit
                             </div>
