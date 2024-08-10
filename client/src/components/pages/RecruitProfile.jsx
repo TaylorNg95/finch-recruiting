@@ -43,7 +43,26 @@ function RecruitProfile() {
       <button onClick={() => deleteRecruit(recruit.id)}>Delete Recruit</button>
       <h3>Contact Log:</h3>
       {recruitTouchpoints.map(touchpoint => <TouchpointCard key={touchpoint.id} touchpoint={touchpoint}/>)}
-      {<NewTouchpointForm recruit_id={recruit_id}/>}
+      <Popup trigger=
+        {<button>Add Touchpoint</button>}
+        modal nested>
+        {
+            close => (
+                <div style={{'border': 'solid', 'padding': '5%', 'background': 'white'}}className='modal'>
+                    <div className='content'>
+                        Add Touchpoint
+                    </div>
+                    {<NewTouchpointForm recruit_id={recruit_id} close={close}/>}
+                    <div>
+                        <button onClick=
+                            {() => close()}>
+                                Cancel
+                        </button>
+                    </div>
+                </div>
+            )
+        }
+      </Popup>
     </>
   )
 }

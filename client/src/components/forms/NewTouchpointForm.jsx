@@ -4,7 +4,7 @@ import { MeetingTypeContext } from '../../context/MeetingTypeContext'
 import * as yup from 'yup'
 import { useFormik } from 'formik'
 
-function NewTouchpointForm({recruit_id}) {
+function NewTouchpointForm({recruit_id, close}) {
     const {addTouchpoint} = useContext(UserContext)
     const {meetingTypes} = useContext(MeetingTypeContext)
 
@@ -26,6 +26,7 @@ function NewTouchpointForm({recruit_id}) {
         onSubmit: function(values, {resetForm}){
             addTouchpoint(values)
             resetForm()
+            close()
         }
       })
 

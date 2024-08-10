@@ -6,7 +6,7 @@ function RecruitCard({recruit}) {
   return (
     <>
       <h2>{`${recruit.first_name} ${recruit.last_name}`}</h2>
-      <Link to={`/recruits/${recruit.id}`}>View Contact</Link>
+      <Link to={`/${recruit.archived ? 'archives/' : ''}recruits/${recruit.id}`}>View Contact</Link>
     </>
   )
 }
