@@ -24,9 +24,9 @@ with app.app_context():
     db.session.commit()
 
     # Seed recruits
-    taylor = Recruit(user_id=1, first_name='Taylor', last_name='Ng', location='New Jersey', classYear=2025, email='taylor@gmail.com', cell='1-555-555-5555')
-    kana = Recruit(user_id=2, first_name='Kana', last_name='Daniel', location='Philadelphia', classYear=2026, email='kana@gmail.com', cell='1-444-444-4444')
-    erica = Recruit(user_id=1, first_name='Erica', last_name='Oosterhaut', location='Boston', classYear=2025, email='erica@gmail.com', cell='1-222-222-2222')
+    taylor = Recruit(user_id=1, first_name='Taylor', last_name='Ng', location='New Jersey', classYear=2025, email='taylor@gmail.com', cell='1-555-555-5555', nextTouchpoint='2024-08-12')
+    kana = Recruit(user_id=2, first_name='Kana', last_name='Daniel', location='Philadelphia', classYear=2026, email='kana@gmail.com', cell='1-444-444-4444', nextTouchpoint='2024-08-12')
+    erica = Recruit(user_id=1, first_name='Erica', last_name='Oosterhaut', location='Boston', classYear=2025, email='erica@gmail.com', cell='1-222-222-2222', nextTouchpoint='2024-08-12')
     dayna = Recruit(user_id=1, first_name='Dayna', last_name='Lord', location='Rhode Island', classYear=2026, email='dayna@gmail.com', cell='1-111-111-1111')
     brittany = Recruit(user_id=2, first_name='Brittany', last_name='Collens', location='Massachusetts', classYear=2027, email='brittany@gmail.com', cell='1-777-777-7777')
     justina = Recruit(user_id=1, first_name='Justina', last_name='Mikulskyte', location='Lithuania', classYear=2027, email='justina@gmail.com', cell='+91-777-777-7777')
