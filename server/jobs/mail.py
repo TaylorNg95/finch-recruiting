@@ -29,7 +29,7 @@ def sendWeeklyEmail():
 
 def sendTouchpointReminder():
     with app.app_context():
-        recruitsToContact = Recruit.query.filter(Recruit.nextTouchpoint == today)
+        recruitsToContact = Recruit.query.filter(Recruit.next_touchpoint == today)
         usersToContact = set([recruit.user for recruit in recruitsToContact])
         if not usersToContact:
             return None # don't send email if no users to contact

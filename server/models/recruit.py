@@ -16,7 +16,7 @@ class Recruit(db.Model, SerializerMixin):
     cell = db.Column(db.String)
     archived = db.Column(db.Boolean, default=False)
     next_touchpoint = db.Column(db.String)
-    # not yet included: topRecruit tag
+    high_priority = db.Column(db.Boolean, default=False)
 
     user = db.relationship('User', back_populates='recruits')
     touchpoints = db.relationship('Touchpoint', back_populates='recruit', cascade='all, delete-orphan')

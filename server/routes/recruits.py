@@ -42,6 +42,7 @@ class RecruitResource(Resource):
         email = data.get('email')
         cell = data.get('cell')
         next_touchpoint = data.get('next_touchpoint')
+        high_priority = data.get('high_priority')
         try:
             recruit = Recruit.query.filter(Recruit.id == id).first()
             recruit.first_name = first_name
@@ -51,6 +52,7 @@ class RecruitResource(Resource):
             recruit.email = email
             recruit.cell = cell
             recruit.next_touchpoint = next_touchpoint
+            recruit.high_priority = high_priority
             db.session.add(recruit)
             db.session.commit()
             return recruit.to_dict(), 200
