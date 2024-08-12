@@ -127,7 +127,7 @@ function UserProvider({children}) {
         method: 'DELETE'
       })
       setRecruits(recruits.filter(recruit => recruit.id != id))
-      navigate('/recruits')
+      navigate('/recruits', {replace: true})
     }
   }
 

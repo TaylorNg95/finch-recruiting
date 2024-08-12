@@ -4,6 +4,7 @@ from sqlalchemy.schema import MetaData
 from flask_migrate import Migrate
 from flask_bcrypt import Bcrypt
 from flask_restful import Api
+from flask_cors import CORS
 from flask_login import LoginManager
 from flask_mail import Mail
 from flask_apscheduler import APScheduler
@@ -41,6 +42,8 @@ migrate = Migrate(app=app, db=db, render_as_batch=True)
 bcrypt = Bcrypt(app)
 
 api = Api(app)
+
+CORS(app)
 
 mail = Mail(app)
 scheduler = APScheduler()

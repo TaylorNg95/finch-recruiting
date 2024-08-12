@@ -5,6 +5,7 @@ import TouchpointCard from '../cards/TouchpointCard'
 import NewTouchpointForm from '../forms/NewTouchpointForm'
 import Popup from 'reactjs-popup'
 import EditRecruitForm from '../forms/EditRecruitForm'
+import ContactReminderForm from '../forms/ContactReminderForm'
 
 function RecruitProfile() {
   const recruit_id = useParams().id
@@ -43,6 +44,7 @@ function RecruitProfile() {
       <p>{recruit.email}</p>
       <p>{recruit.cell}</p><br />
       <h3>Contact Log:</h3>
+      <ContactReminderForm recruit={recruit}/>
       {sortedRecruitTPs.map(touchpoint => <TouchpointCard key={touchpoint.id} touchpoint={touchpoint}/>)}
       <Popup trigger=
         {<button>Add Touchpoint</button>}
