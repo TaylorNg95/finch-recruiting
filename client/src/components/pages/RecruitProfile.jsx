@@ -10,7 +10,7 @@ import ContactReminderForm from '../forms/ContactReminderForm'
 function RecruitProfile() {
   const recruit_id = useParams().id
   
-  const {recruits, touchpoints, deleteRecruit} = useContext(UserContext)
+  const {recruits, touchpoints, deleteRecruit, editRecruit} = useContext(UserContext)
   const recruit = recruits.find(recruit => recruit.id == recruit_id)
   const recruitTPs = touchpoints.filter(touchpoint => touchpoint.recruit_id == recruit.id)
   const sortedRecruitTPs = recruitTPs.sort((a, b) => b.date.localeCompare(a.date))
@@ -18,6 +18,8 @@ function RecruitProfile() {
   return (
     <>
       <h2>{`${recruit.first_name} ${recruit.last_name}`}</h2>
+      
+      <button onClick={() => editRecruit({...recruit, high_priority: !recruit.high_priority}, recruit.id)}>{recruit.high_priority ? 'High Priority' : 'Low Priority'}</button>
       <Popup trigger=
         {<button>Edit Recruit</button>}
         modal nested>

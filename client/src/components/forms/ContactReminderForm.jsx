@@ -27,7 +27,7 @@ function ContactReminderForm({recruit}) {
   const nextTpForm = (
     <form onSubmit={formik.handleSubmit}>
         <label>Set Contact Reminder: <input type='date' name='next_touchpoint' value={formik.values.next_touchpoint} onChange={formik.handleChange}/></label>
-        <input type='submit' value='Submit'/>
+        <input type='submit' value='Go'/>
     </form>
   )
 
@@ -38,7 +38,7 @@ function ContactReminderForm({recruit}) {
   } else return (
     <>
         <p>Contact Reminder Set: {recruit.next_touchpoint}</p>
-        <button onClick={() => editRecruit({...initialValues, next_touchpoint: null}, recruit.id)}>Clear</button>
+        <button onClick={() => editRecruit({...initialValues, next_touchpoint: null}, recruit.id)}>Delete Reminder</button>
     </>
 )
 }

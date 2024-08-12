@@ -1,6 +1,6 @@
 import React from 'react'
 import { createContext, useState, useEffect } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 const UserContext = createContext()
 
@@ -15,7 +15,6 @@ function UserProvider({children}) {
   const [loading, setLoading] = useState(true)
 
   const navigate = useNavigate()
-  const location = useLocation()
 
   // Load user state
   useEffect(() => {
@@ -51,7 +50,7 @@ function UserProvider({children}) {
     navigate('/login', {replace: true})
   }
 
-  // POST requests & state updates -- recruits and touchpoints
+  // CRUD - Recruits
   async function addRecruit(recruit){
     const response = await fetch('/api/recruits', {
       method: 'POST',
@@ -67,22 +66,6 @@ function UserProvider({children}) {
     }
   }
 
-  async function addTouchpoint(touchpoint){
-    const response = await fetch('/api/touchpoints', {
-      method: 'POST',
-      headers: {
-          'Content-Type': 'application/json',
-          'Accepts': 'application/json'
-      },
-      body: JSON.stringify(touchpoint)
-    })
-    if (response.status == 201){
-      const newTouchpoint = await response.json()
-      setTouchpoints([...touchpoints, newTouchpoint])
-    }
-  }
-
-  // PATCH requests & state updates -- recruits and touchpoints
   async function editRecruit(recruit, id){
     const response = await fetch(`/api/recruits/${id}`, {
       method: 'PATCH',
@@ -99,6 +82,32 @@ function UserProvider({children}) {
           return updatedRecruit
         } else return recruit
       }))
+    }
+  }
+
+  async function deleteRecruit(id){
+    if (confirm('Are you sure you want delete this recruit?')){
+      const response = await fetch(`/api/recruits/${id}`, {
+        method: 'DELETE'
+      })
+      setRecruits(recruits.filter(recruit => recruit.id != id))
+      navigate('/recruits', {replace: true})
+    }
+  }
+
+  // CRUD - Touchpoints
+  async function addTouchpoint(touchpoint){
+    const response = await fetch('/api/touchpoints', {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+          'Accepts': 'application/json'
+      },
+      body: JSON.stringify(touchpoint)
+    })
+    if (response.status == 201){
+      const newTouchpoint = await response.json()
+      setTouchpoints([...touchpoints, newTouchpoint])
     }
   }
   
@@ -121,16 +130,6 @@ function UserProvider({children}) {
     }
   }
 
-  async function deleteRecruit(id){
-    if (confirm('Are you sure you want delete this recruit?')){
-      const response = await fetch(`/api/recruits/${id}`, {
-        method: 'DELETE'
-      })
-      setRecruits(recruits.filter(recruit => recruit.id != id))
-      navigate('/recruits', {replace: true})
-    }
-  }
-
   async function deleteTouchpoint(id){
     if (confirm('Are you sure you want delete this touchpoint?')){
       const response = await fetch(`/api/touchpoints/${id}`, {
@@ -140,10 +139,15 @@ function UserProvider({children}) {
     }
   }
   
+  // Render component
   if (loading){
     return <h1>Loading...</h1>
   } else return (
-    <UserContext.Provider value={{loggedIn, user, login, logout, recruits, touchpoints, addRecruit, editRecruit, deleteRecruit, addTouchpoint, editTouchpoint, deleteTouchpoint}}>{children}</UserContext.Provider>
+    <UserContext.Provider value={{
+      loggedIn, user, login, logout,
+      recruits, addRecruit, editRecruit, deleteRecruit,
+      touchpoints, addTouchpoint, editTouchpoint, deleteTouchpoint
+    }}>{children}</UserContext.Provider>
   )
 }
 
