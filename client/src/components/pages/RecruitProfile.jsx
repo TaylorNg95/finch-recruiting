@@ -9,9 +9,10 @@ import EditRecruitForm from '../forms/EditRecruitForm'
 function RecruitProfile() {
   const recruit_id = useParams().id
   
-  const {recruits, deleteRecruit} = useContext(UserContext)
+  const {recruits, touchpoints, deleteRecruit} = useContext(UserContext)
   const recruit = recruits.find(recruit => recruit.id == recruit_id)
-  const sortedRecruitTPs = recruit.touchpoints.sort((a, b) => b.date.localeCompare(a.date))
+  const recruitTPs = touchpoints.filter(touchpoint => touchpoint.recruit_id == recruit.id)
+  const sortedRecruitTPs = recruitTPs.sort((a, b) => b.date.localeCompare(a.date))
   
   return (
     <>

@@ -1,6 +1,6 @@
 import React from 'react'
 import { createContext, useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 const UserContext = createContext()
 
@@ -15,6 +15,7 @@ function UserProvider({children}) {
   const [loading, setLoading] = useState(true)
 
   const navigate = useNavigate()
+  const location = useLocation()
 
   // Load user state
   useEffect(() => {
@@ -47,6 +48,7 @@ function UserProvider({children}) {
     setUser(null)
     setRecruits(null)
     setLoggedIn(false)
+    navigate('/login', {replace: true})
   }
 
   // POST requests & state updates -- recruits and touchpoints
