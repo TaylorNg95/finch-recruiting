@@ -2,7 +2,7 @@ from config import api, db
 from flask import request
 from flask_restful import Resource
 from models.user import User
-from flask_login import login_user, current_user, logout_user, login_required
+from flask_login import login_user, current_user, logout_user
 from sqlalchemy.exc import IntegrityError
 
 class Signup(Resource):
@@ -45,7 +45,6 @@ class CheckSession(Resource):
             return {'message': 'User not logged in'}, 401
 
 class Logout(Resource):
-    @login_required
     def delete(self):
         logout_user()
         return {}, 204
