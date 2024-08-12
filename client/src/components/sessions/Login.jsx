@@ -12,12 +12,12 @@ function Login() {
   const navigate = useNavigate()
 
   const initialValues = {
-    username: '',
+    email: '',
     password: ''
   }
 
   const validationSchema = yup.object().shape({
-    username: yup.string().required('Username required'),
+    email: yup.string().required('Email required'),
     password: yup.string().required('Password required')
   })
 
@@ -49,8 +49,8 @@ function Login() {
   return (
     <>
         <form onSubmit={formik.handleSubmit}>
-            <label>Username: <input type='text' name='username' value={formik.values.username} onChange={formik.handleChange}/></label><br />
-            <p style={{ color: "red" }}> {formik.errors.username}</p>
+            <label>Email: <input type='email' name='email' value={formik.values.email} onChange={formik.handleChange}/></label><br />
+            <p style={{ color: "red" }}> {formik.errors.email}</p>
             <label>Password: <input type='password' name='password' value={formik.values.password} onChange={formik.handleChange}/></label><br />
             <p style={{ color: "red" }}> {formik.errors.password}</p>
             <p style={{ color: "red" }}> {loginError}</p>

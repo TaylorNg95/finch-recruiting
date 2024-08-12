@@ -10,11 +10,10 @@ class Signup(Resource):
         data = request.get_json()
         first_name = data.get('first_name')
         last_name = data.get('last_name')
-        email = data.get('email')
-        username = data.get('username')
+        email = data.get('email').lower()
         password = data.get('password')
         try:
-            user = User(first_name=first_name, last_name=last_name, email=email, username=username)
+            user = User(first_name=first_name, last_name=last_name, email=email)
             user.password_hash = password
             db.session.add(user)
             db.session.commit()
@@ -23,15 +22,15 @@ class Signup(Resource):
         except ValueError as e:
             return {'error': str(e)}, 422
         except IntegrityError:
-            return {'error': 'Username taken. Please try again.'}, 422
+            return {'error': 'Email taken. Please try again.'}, 422
 
 class Login(Resource):
     def post(self):
         data = request.get_json()
-        username = data.get('username')
+        email = data.get('email').lower()
         password = data.get('password')
         
-        user = User.query.filter(User.username == username).first()
+        user = User.query.filter(User.email == email).first()
         if user and user.authenticate(password):
             login_user(user)
             return current_user.to_dict(), 200

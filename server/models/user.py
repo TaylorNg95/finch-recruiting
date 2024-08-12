@@ -11,8 +11,7 @@ class User(db.Model, SerializerMixin, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String, nullable=False)
     last_name = db.Column(db.String, nullable=False)
-    email = db.Column(db.String, nullable=False)
-    username = db.Column(db.String, nullable=False, unique=True)
+    email = db.Column(db.String, nullable=False, unique=True)
     _password_hash = db.Column(db.String, nullable=False)
 
     recruits = db.relationship('Recruit', back_populates='user', cascade='all, delete-orphan')
@@ -37,10 +36,10 @@ class User(db.Model, SerializerMixin, UserMixin):
     def authenticate(self, password):
         return bcrypt.check_password_hash(self._password_hash, password)
     
-    @validates('first_name', 'last_name', 'username')
+    @validates('first_name', 'last_name')
     def check_inputs(self, key, input):
         if input == '':
-            raise ValueError('Name and username required')
+            raise ValueError('Name required')
         else:
             return input
         

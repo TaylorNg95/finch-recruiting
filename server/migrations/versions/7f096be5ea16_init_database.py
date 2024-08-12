@@ -1,8 +1,8 @@
 """init database
 
-Revision ID: 4b36405ae6ba
+Revision ID: 7f096be5ea16
 Revises: 
-Create Date: 2024-08-10 09:18:56.121715
+Create Date: 2024-08-12 16:21:10.214271
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '4b36405ae6ba'
+revision = '7f096be5ea16'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -28,12 +28,9 @@ def upgrade():
     sa.Column('first_name', sa.String(), nullable=False),
     sa.Column('last_name', sa.String(), nullable=False),
     sa.Column('email', sa.String(), nullable=False),
-    sa.Column('cell', sa.String(), nullable=False),
-    sa.Column('username', sa.String(), nullable=False),
     sa.Column('_password_hash', sa.String(), nullable=False),
-    sa.Column('notifications', sa.Boolean(), nullable=True),
     sa.PrimaryKeyConstraint('id', name=op.f('pk_users')),
-    sa.UniqueConstraint('username', name=op.f('uq_users_username'))
+    sa.UniqueConstraint('email', name=op.f('uq_users_email'))
     )
     op.create_table('recruits',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -45,7 +42,8 @@ def upgrade():
     sa.Column('email', sa.String(), nullable=True),
     sa.Column('cell', sa.String(), nullable=True),
     sa.Column('archived', sa.Boolean(), nullable=True),
-    sa.Column('nextTouchpoint', sa.String(), nullable=True),
+    sa.Column('next_touchpoint', sa.String(), nullable=True),
+    sa.Column('high_priority', sa.Boolean(), nullable=True),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], name=op.f('fk_recruits_user_id_users')),
     sa.PrimaryKeyConstraint('id', name=op.f('pk_recruits'))
     )
