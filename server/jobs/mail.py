@@ -18,13 +18,13 @@ def sendWeeklyEmail():
             user_recruit_ids = [recruit.id for recruit in user.recruits]
             user_touchpoints_this_week = sorted([touchpoint for touchpoint in all_touchpoints_this_week if touchpoint.recruit_id in user_recruit_ids], key=lambda x:x.date, reverse=True)
             # this works because recruits are unique to users, so you only need to compare the touchpoint_recruit_ids
-            message_strings = [f"• {touchpoint.date} || {touchpoint.meetingType.type} with {touchpoint.recruit.first_name} {touchpoint.recruit.last_name}\n" for touchpoint in user_touchpoints_this_week] if user_touchpoints_this_week else 'No logged touchpoints.\n'
+            message_strings = [f"• {touchpoint.date} || {touchpoint.meetingType.type} with {touchpoint.recruit.first_name} {touchpoint.recruit.last_name}<br>" for touchpoint in user_touchpoints_this_week] if user_touchpoints_this_week else 'No logged touchpoints.'
 
             msg = Message(
                 subject='Your Weekly Summary',
                 recipients=[user.email]
             )
-            msg.body = weeklySummaryEmail(user.first_name, ''.join(message_strings))
+            msg.html = weeklySummaryEmail(user.first_name, ''.join(message_strings))
             mail.send(msg)
 
 def sendTouchpointReminder():

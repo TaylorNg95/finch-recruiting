@@ -14,7 +14,6 @@ class User(db.Model, SerializerMixin, UserMixin):
     email = db.Column(db.String, nullable=False)
     username = db.Column(db.String, nullable=False, unique=True)
     _password_hash = db.Column(db.String, nullable=False)
-    notifications = db.Column(db.Boolean, default=True)
 
     recruits = db.relationship('Recruit', back_populates='user', cascade='all, delete-orphan')
 
