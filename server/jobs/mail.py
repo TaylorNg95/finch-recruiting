@@ -35,5 +35,6 @@ def sendTouchpointReminder():
 def generate_message(user, subject, items, template):
     msg = Message(subject=subject, recipients=[user.email])
     template_path = f'emails/{template}'
-    msg.html = render_template(template_path, name=user.first_name, items=items)
+    msg.body = 'This is working!'
+    """ msg.html = render_template(template_path, name=user.first_name, items=items) """
     return msg
