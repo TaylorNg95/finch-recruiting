@@ -4,7 +4,7 @@ from flask_restful import Resource
 from models.user import User
 from flask_login import login_user, current_user, logout_user
 from sqlalchemy.exc import IntegrityError
-from emails.email import sendWelcome, sendWeeklySummary
+from emails.email import sendWelcome
 
 class Signup(Resource):
     def post(self):

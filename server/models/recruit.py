@@ -14,7 +14,6 @@ class Recruit(db.Model, SerializerMixin):
     classYear = db.Column(db.Integer, nullable=False)
     email = db.Column(db.String)
     cell = db.Column(db.String)
-    archived = db.Column(db.Boolean, default=False)
     next_touchpoint = db.Column(db.String)
     high_priority = db.Column(db.Boolean, default=False)
 

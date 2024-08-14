@@ -31,17 +31,11 @@ class TouchpointResource(Resource):
         return touchpoint.to_dict(), 200
     
     def patch(self, id):
+        touchpoint = Touchpoint.query.filter(Touchpoint.id == id).first()
         data = request.get_json()
-        recruit_id = data.get('recruit_id')
-        meetingType_id = data.get('meetingType_id')
-        date = data.get('date')
-        notes = data.get('notes')
+        for attr in data:
+            setattr(touchpoint, attr, data.get(attr))
         try:
-            touchpoint = Touchpoint.query.filter(Touchpoint.id == id).first()
-            touchpoint.recruit_id = recruit_id
-            touchpoint.meetingType_id = meetingType_id
-            touchpoint.date = date
-            touchpoint.notes = notes
             db.session.add(touchpoint)
             db.session.commit()
             return touchpoint.to_dict(), 200

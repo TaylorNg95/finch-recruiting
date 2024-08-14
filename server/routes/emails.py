@@ -12,9 +12,9 @@ class WeeklySummary(Resource):
             sendWeeklySummary(user)
             return {'message': 'Sent!'}, 201
         except:
-            return {'error': 'Error sending email'}, 422
+            return {'error': 'Email error, please try again later'}, 422
 
-class TouchpointReminder(Resource):
+class TouchpointReminders(Resource):
     def post(self):
         user_id = request.get_json().get('user_id')
         user = User.query.filter(User.id == user_id).first()
@@ -22,7 +22,7 @@ class TouchpointReminder(Resource):
             sendTouchpointReminder(user)
             return {'message': 'Sent!'}, 201
         except:
-            return {'error': 'Error sending email'}, 422
+            return {'error': 'Email error, please try again later'}, 422
         
 api.add_resource(WeeklySummary, '/api/send-weekly-summary')
-api.add_resource(TouchpointReminder, '/api/send-touchpoint-reminder')
+api.add_resource(TouchpointReminders, '/api/send-touchpoint-reminders')

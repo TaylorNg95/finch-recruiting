@@ -7,4 +7,4 @@ class MeetingTypesResource(Resource):
         meetingTypes = MeetingType.query.all()
         return [meetingType.to_dict() for meetingType in meetingTypes], 200
     
-api.add_resource(MeetingTypesResource, '/api/meetingTypes')
+api.add_resource(MeetingTypesResource, '/api/meeting-types')

@@ -34,25 +34,11 @@ class RecruitResource(Resource):
         return recruit.to_dict(), 200
     
     def patch(self, id):
+        recruit = Recruit.query.filter(Recruit.id == id).first()
         data = request.get_json()
-        first_name = data.get('first_name')
-        last_name = data.get('last_name')
-        location = data.get('location')
-        classYear = data.get('classYear')
-        email = data.get('email')
-        cell = data.get('cell')
-        next_touchpoint = data.get('next_touchpoint')
-        high_priority = data.get('high_priority')
+        for attr in data:
+            setattr(recruit, attr, data.get(attr))
         try:
-            recruit = Recruit.query.filter(Recruit.id == id).first()
-            recruit.first_name = first_name
-            recruit.last_name = last_name
-            recruit.location = location
-            recruit.classYear = classYear
-            recruit.email = email
-            recruit.cell = cell
-            recruit.next_touchpoint = next_touchpoint
-            recruit.high_priority = high_priority
             db.session.add(recruit)
             db.session.commit()
             return recruit.to_dict(), 200
