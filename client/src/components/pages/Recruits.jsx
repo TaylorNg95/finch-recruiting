@@ -3,10 +3,10 @@ import { useContext } from 'react'
 import { UserContext } from '../../context/UserContext'
 import RecruitCard from '../cards/RecruitCard'
 import Popup from 'reactjs-popup'
-import NewRecruitForm from '../forms/NewRecruitForm'
+import RecruitForm from '../forms/RecruitForm'
 
 function Recruits() {
-  const {recruits} = useContext(UserContext)
+  const {recruits, addRecruit} = useContext(UserContext)
   
   return (
     <>
@@ -20,7 +20,7 @@ function Recruits() {
                             <div className='content'>
                                 + Add New Recruit
                             </div>
-                            {<NewRecruitForm close={close}/>}
+                            {<RecruitForm recruit={''} submitFn={addRecruit} close={close}/>}
                             <div>
                                 <button onClick=
                                     {() => close()}>

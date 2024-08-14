@@ -3,10 +3,12 @@ import { UserContext } from '../../context/UserContext'
 import * as yup from 'yup'
 import { useFormik } from 'formik'
 
-function EditRecruitForm({recruit, close}) {
-    const {editRecruit} = useContext(UserContext)
+function NewRecruitForm({recruit, submitFn, close}) {
+    const {user} = useContext(UserContext)
 
-    const initialValues = {
+    let initialValues
+    if (recruit){
+      initialValues = {
         first_name: recruit.first_name,
         last_name: recruit.last_name,
         location: recruit.location,
@@ -14,6 +16,17 @@ function EditRecruitForm({recruit, close}) {
         email: recruit.email,
         cell: recruit.cell
       }
+  } else {
+      initialValues = {
+        user_id: user.id,
+        first_name: '',
+        last_name: '',
+        location: '',
+        classYear: 2025,
+        email: '',
+        cell: ''
+      }
+  }
     
     const validationSchema = yup.object().shape({
       first_name: yup.string().required('First name required'),
@@ -29,7 +42,7 @@ function EditRecruitForm({recruit, close}) {
       validationSchema: validationSchema,
       validateOnChange: false,
       onSubmit: function(values, {resetForm}){
-          editRecruit(values, recruit.id)
+          recruit ? submitFn(values, recruit.id) : submitFn(values)
           resetForm()
           close()
       }
@@ -63,4 +76,4 @@ function EditRecruitForm({recruit, close}) {
   )
 }
 
-export default EditRecruitForm
+export default NewRecruitForm

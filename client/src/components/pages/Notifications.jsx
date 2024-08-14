@@ -18,7 +18,7 @@ function Notifications() {
     if (response.status == 201){
         alert('Notification sent. Please check your inbox!')
     } else {
-        alert('Email error')
+        alert('Error, please try again later!')
     }
   }
 
@@ -34,7 +34,7 @@ function Notifications() {
     if (response.status == 201){
         alert('Notification sent. Please check your inbox!')
     } else {
-        alert('Email error')
+        alert('Error, please try again later!')
     }
   }
 

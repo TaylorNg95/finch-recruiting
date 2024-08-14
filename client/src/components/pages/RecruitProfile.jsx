@@ -4,7 +4,7 @@ import { UserContext } from '../../context/UserContext'
 import TouchpointCard from '../cards/TouchpointCard'
 import NewTouchpointForm from '../forms/NewTouchpointForm'
 import Popup from 'reactjs-popup'
-import EditRecruitForm from '../forms/EditRecruitForm'
+import RecruitForm from '../forms/RecruitForm'
 import ContactReminderForm from '../forms/ContactReminderForm'
 
 function RecruitProfile() {
@@ -29,7 +29,7 @@ function RecruitProfile() {
                     <div className='content'>
                         Edit Recruit
                     </div>
-                    {<EditRecruitForm recruit={recruit} close={close}/>}
+                    {<RecruitForm recruit={recruit} submitFn={editRecruit} close={close}/>}
                     <div>
                         <button onClick=
                             {() => close()}>
