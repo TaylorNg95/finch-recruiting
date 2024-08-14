@@ -1,39 +1,43 @@
 import React, { useContext } from 'react'
 import { UserContext } from '../../context/UserContext'
 import { MeetingTypeContext } from '../../context/MeetingTypeContext'
-import * as yup from 'yup'
 import { useFormik } from 'formik'
 
-function EditTouchpointForm({touchpoint, close}) {
-    const {editTouchpoint} = useContext(UserContext)
+function TouchpointForm({touchpoint, recruit_id, submitFn, close}) {
+    const {addTouchpoint} = useContext(UserContext)
     const {meetingTypes} = useContext(MeetingTypeContext)
 
-    const initialValues = {
+    let initialValues
+    if(touchpoint){
+      initialValues = {
         meetingType_id: touchpoint.meetingType_id,
         date: touchpoint.date,
         notes: touchpoint.notes
       }
+    } else {
+      initialValues = {
+        recruit_id: recruit_id,
+        meetingType_id: 1,
+        date: '',
+        notes: ''
+      }
+    }
     
-      const validationSchema = yup.object().shape({
-        date: yup.string().required('Date required').matches(/^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$/, 'Invalid date format')
-      })
-    
-      const formik = useFormik({
-        initialValues: initialValues,
-        validationSchema: validationSchema,
-        validateOnChange: false,
-        onSubmit: function(values, {resetForm}){
-            editTouchpoint(values, touchpoint.id)
-            resetForm()
-            close()
-        }
-      })
+    const formik = useFormik({
+      initialValues: initialValues,
+      validateOnChange: false,
+      onSubmit: function(values, {resetForm}){
+          touchpoint ? submitFn(values, touchpoint.id) : submitFn(values)
+          resetForm()
+          close()
+      }
+    })
 
-      const meetingTypeOptions = (
-        <>
-          {meetingTypes.map(meetingType => <option key={meetingType.id} value={meetingType.id}>{meetingType.type}</option>)}
-        </>
-      )
+    const meetingTypeOptions = (
+      <>
+        {meetingTypes.map(meetingType => <option key={meetingType.id} value={meetingType.id}>{meetingType.type}</option>)}
+      </>
+    )
 
   return (
     <form onSubmit={formik.handleSubmit}>
@@ -51,4 +55,4 @@ function EditTouchpointForm({touchpoint, close}) {
   )
 }
 
-export default EditTouchpointForm
+export default TouchpointForm

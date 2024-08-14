@@ -2,7 +2,7 @@ import React, {useContext} from 'react'
 import { useParams } from 'react-router-dom'
 import { UserContext } from '../../context/UserContext'
 import TouchpointCard from '../cards/TouchpointCard'
-import NewTouchpointForm from '../forms/NewTouchpointForm'
+import TouchpointForm from '../forms/TouchpointForm'
 import Popup from 'reactjs-popup'
 import RecruitForm from '../forms/RecruitForm'
 import ContactReminderForm from '../forms/ContactReminderForm'
@@ -10,7 +10,7 @@ import ContactReminderForm from '../forms/ContactReminderForm'
 function RecruitProfile() {
   const recruit_id = useParams().id
   
-  const {recruits, touchpoints, deleteRecruit, editRecruit} = useContext(UserContext)
+  const {recruits, touchpoints, deleteRecruit, editRecruit, addTouchpoint} = useContext(UserContext)
   const recruit = recruits.find(recruit => recruit.id == recruit_id)
   const recruitTPs = touchpoints ? touchpoints.filter(touchpoint => touchpoint.recruit_id == recruit.id) : ''
   const sortedRecruitTPs = recruitTPs.sort((a, b) => b.date.localeCompare(a.date))
@@ -57,7 +57,7 @@ function RecruitProfile() {
                     <div className='content'>
                         Add Touchpoint
                     </div>
-                    {<NewTouchpointForm recruit_id={recruit_id} close={close}/>}
+                    {<TouchpointForm recruit_id={recruit_id} submitFn={addTouchpoint} close={close}/>}
                     <div>
                         <button onClick=
                             {() => close()}>

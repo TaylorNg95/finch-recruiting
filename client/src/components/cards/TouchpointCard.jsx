@@ -1,10 +1,10 @@
 import React, { useContext } from 'react'
 import Popup from 'reactjs-popup'
-import EditTouchpointForm from '../forms/EditTouchpointForm'
+import TouchpointForm from '../forms/TouchpointForm'
 import { UserContext } from '../../context/UserContext'
 
 function TouchpointCard({touchpoint}) {
-  const {deleteTouchpoint} = useContext(UserContext)
+  const {deleteTouchpoint, editTouchpoint} = useContext(UserContext)
 
   return (
     <div>
@@ -18,7 +18,7 @@ function TouchpointCard({touchpoint}) {
                             <div className='content'>
                                 Edit Touchpoint
                             </div>
-                            {<EditTouchpointForm touchpoint={touchpoint} close={close}/>}
+                            {<TouchpointForm touchpoint={touchpoint} submitFn={editTouchpoint} close={close}/>}
                             <div>
                                 <button onClick=
                                     {() => close()}>
