@@ -4,6 +4,7 @@ from flask_restful import Resource
 from models.user import User
 from flask_login import login_user, current_user, logout_user
 from sqlalchemy.exc import IntegrityError
+from emails.email import sendWelcome, sendWeeklySummary
 
 class Signup(Resource):
     def post(self):
@@ -18,6 +19,7 @@ class Signup(Resource):
             db.session.add(user)
             db.session.commit()
             login_user(user)
+            sendWelcome(user)
             return current_user.to_dict(), 201
         except ValueError as e:
             return {'error': str(e)}, 422
