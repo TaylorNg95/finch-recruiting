@@ -16,10 +16,11 @@ class WeeklySummary(Resource):
 
 class TouchpointReminder(Resource):
     def post(self):
-        user = request.get_json().get('user')
+        user_id = request.get_json().get('user_id')
+        user = User.query.filter(User.id == user_id).first()
         try:
             sendTouchpointReminder(user)
-            return {'message': 'Sent!'}
+            return {'message': 'Sent!'}, 201
         except:
             return {'error': 'Error sending email'}, 422
         

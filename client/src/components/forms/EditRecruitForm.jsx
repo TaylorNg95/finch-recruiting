@@ -12,7 +12,9 @@ function EditRecruitForm({recruit, close}) {
         location: recruit.location,
         classYear: recruit.classYear,
         email: recruit.email,
-        cell: recruit.cell
+        cell: recruit.cell,
+        next_touchpoint: recruit.next_touchpoint,
+        high_priority: recruit.high_priority
       }
     
       const validationSchema = yup.object().shape({

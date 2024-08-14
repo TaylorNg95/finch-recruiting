@@ -37,7 +37,7 @@ function Login() {
         if (response.status == 200){
             const user = await response.json()
             login(user)
-            navigate('/')
+            navigate('/recruits')
         } else if (response.status == 422){
             const error = await response.json()
             setLoginError(error.error)

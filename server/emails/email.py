@@ -19,7 +19,7 @@ def sendWeeklySummary(user):
     user_tp_this_week = sorted([tp for tp in all_tp_this_week if tp.recruit_id in user_recruit_ids], key=lambda x:x.date, reverse=True)
 
     message_strings = [f"{tp.date[5:] + '-' + tp.date[2:4]}: {tp.meetingType.type} with {tp.recruit.first_name} {tp.recruit.last_name}" for tp in user_tp_this_week] if user_tp_this_week else ['No logged activity']
-    msg = generate_message(user, 'Your Weekly Summary', 'weekly_summary.html', message_strings)
+    msg = generate_message(user, 'Your Weekly Activity Summary', 'weekly_summary.html', message_strings)
     mail.send(msg)
 
 def sendTouchpointReminder(user):

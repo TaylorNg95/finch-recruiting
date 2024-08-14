@@ -8,6 +8,7 @@ import Signup from "./components/sessions/Signup"
 import Login from "./components/sessions/Login"
 import Dashboard from "./components/pages/Dashboard"
 import RecruitProfile from "./components/pages/RecruitProfile"
+import Notifications from "./components/pages/Notifications"
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
               <Route path='/login' element={<Login />}/>
               <Route path='/recruits' element={<Dashboard />}/>
               <Route path='/recruits/:id' element={<RecruitProfile />}/>
+              <Route path='/notifications' element={<Notifications />}/>
             </Routes>
         </MeetingTypeProvider>
       </UserProvider>

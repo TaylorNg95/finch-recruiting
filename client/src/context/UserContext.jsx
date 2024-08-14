@@ -24,7 +24,7 @@ function UserProvider({children}) {
         const user = await response.json()
         login(user)
       } else {
-        navigate('/login')
+        navigate('/')
       }
       setLoading(false)
     }
