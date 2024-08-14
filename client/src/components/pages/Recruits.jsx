@@ -5,12 +5,12 @@ import RecruitCard from '../cards/RecruitCard'
 import Popup from 'reactjs-popup'
 import NewRecruitForm from '../forms/NewRecruitForm'
 
-function Dashboard() {
+function Recruits() {
   const {recruits} = useContext(UserContext)
   
   return (
     <>
-        <div>Dashboard</div><br />
+        <div>Recruits</div><br />
         <Popup trigger=
                 {<button>+ Add New Recruit</button>}
                 modal nested>
@@ -36,4 +36,4 @@ function Dashboard() {
   )
 }
 
-export default Dashboard
+export default Recruits

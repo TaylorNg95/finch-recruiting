@@ -11,7 +11,7 @@ function MeetingTypeProvider({children}) {
 
   useEffect(() => {
     async function loadMeetingTypes(){
-        const response = await fetch('/api/meetingTypes')
+        const response = await fetch('/api/meeting-types')
         if (response.status == 200){
             const meetingTypes = await response.json()
             setMeetingTypes(meetingTypes)

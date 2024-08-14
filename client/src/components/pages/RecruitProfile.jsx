@@ -12,14 +12,14 @@ function RecruitProfile() {
   
   const {recruits, touchpoints, deleteRecruit, editRecruit} = useContext(UserContext)
   const recruit = recruits.find(recruit => recruit.id == recruit_id)
-  const recruitTPs = touchpoints.filter(touchpoint => touchpoint.recruit_id == recruit.id)
+  const recruitTPs = touchpoints ? touchpoints.filter(touchpoint => touchpoint.recruit_id == recruit.id) : ''
   const sortedRecruitTPs = recruitTPs.sort((a, b) => b.date.localeCompare(a.date))
   
   return (
     <>
       <h2>{`${recruit.first_name} ${recruit.last_name}`}</h2>
       
-      <button onClick={() => editRecruit({...recruit, high_priority: !recruit.high_priority}, recruit.id)}>{recruit.high_priority ? 'High Priority' : 'Low Priority'}</button>
+      <button onClick={() => editRecruit({high_priority: !recruit.high_priority}, recruit.id)}>{recruit.high_priority ? 'High Priority' : 'Low Priority'}</button>
       <Popup trigger=
         {<button>Edit Recruit</button>}
         modal nested>
@@ -49,7 +49,7 @@ function RecruitProfile() {
       <ContactReminderForm recruit={recruit}/>
       {sortedRecruitTPs.map(touchpoint => <TouchpointCard key={touchpoint.id} touchpoint={touchpoint}/>)}
       <Popup trigger=
-        {<button>Add Touchpoint</button>}
+        {<button>Add</button>}
         modal nested>
         {
             close => (

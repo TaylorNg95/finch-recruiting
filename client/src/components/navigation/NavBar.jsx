@@ -18,7 +18,7 @@ function NavBar() {
 
   const routes = (
     loggedIn ? <>
-      <li><Link to='/recruits'>Dashboard</Link></li>
+      <li><Link to='/recruits'>Recruits</Link></li>
       <li><Link to='/notifications'>Notifications</Link></li>
       <li><Link to='#' onClick={handleLogout}>Logout</Link></li>
     </> : <>

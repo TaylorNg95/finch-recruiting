@@ -6,7 +6,7 @@ import NavBar from "./components/navigation/NavBar"
 import Home from "./components/Home"
 import Signup from "./components/sessions/Signup"
 import Login from "./components/sessions/Login"
-import Dashboard from "./components/pages/Dashboard"
+import Recruits from "./components/pages/Recruits"
 import RecruitProfile from "./components/pages/RecruitProfile"
 import Notifications from "./components/pages/Notifications"
 
@@ -20,7 +20,7 @@ function App() {
               <Route path='/' element={<Home />}/>
               <Route path='/signup' element={<Signup />}/>
               <Route path='/login' element={<Login />}/>
-              <Route path='/recruits' element={<Dashboard />}/>
+              <Route path='/recruits' element={<Recruits />}/>
               <Route path='/recruits/:id' element={<RecruitProfile />}/>
               <Route path='/notifications' element={<Notifications />}/>
             </Routes>

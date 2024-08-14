@@ -16,14 +16,14 @@ function Notifications() {
         body: JSON.stringify({user_id: user.id})
     })
     if (response.status == 201){
-        alert('Check your inbox!')
+        alert('Notification sent. Please check your inbox!')
     } else {
         alert('Email error')
     }
   }
 
   async function sendReminders(){
-    const response = await fetch('/api/send-touchpoint-reminder', {
+    const response = await fetch('/api/send-touchpoint-reminders', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -32,7 +32,7 @@ function Notifications() {
         body: JSON.stringify({user_id: user.id})
     })
     if (response.status == 201){
-        alert('Check your inbox!')
+        alert('Notification sent. Please check your inbox!')
     } else {
         alert('Email error')
     }
@@ -40,7 +40,7 @@ function Notifications() {
 
   return (
     <>
-        <div>Notifications</div>
+        <div>Email Notifications</div>
         <p>Request Weekly Activity Summary</p>
         <button onClick={sendWeeklyEmail}>SEND</button>
         <p>Request Today's Touchpoint Reminders</p>

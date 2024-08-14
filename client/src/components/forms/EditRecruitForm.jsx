@@ -4,7 +4,7 @@ import * as yup from 'yup'
 import { useFormik } from 'formik'
 
 function EditRecruitForm({recruit, close}) {
-    const {user, editRecruit} = useContext(UserContext)
+    const {editRecruit} = useContext(UserContext)
 
     const initialValues = {
         first_name: recruit.first_name,
@@ -12,30 +12,28 @@ function EditRecruitForm({recruit, close}) {
         location: recruit.location,
         classYear: recruit.classYear,
         email: recruit.email,
-        cell: recruit.cell,
-        next_touchpoint: recruit.next_touchpoint,
-        high_priority: recruit.high_priority
+        cell: recruit.cell
       }
     
-      const validationSchema = yup.object().shape({
-        first_name: yup.string().required('First name required'),
-        last_name: yup.string().required('Last name required'),
-        location: yup.string().required('Location required'),
-        classYear: yup.number().required('ClassYear required'),
-        email: yup.string().matches(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, 'Invalid email format'),
-        cell: yup.string().matches(/^(\+\d{1,2}\s?)?1?\-?\.?\s?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/, 'Invalid cell format')
-      })
-    
-      const formik = useFormik({
-        initialValues: initialValues,
-        validationSchema: validationSchema,
-        validateOnChange: false,
-        onSubmit: function(values, {resetForm}){
-            editRecruit(values, recruit.id)
-            resetForm()
-            close()
-        }
-      })
+    const validationSchema = yup.object().shape({
+      first_name: yup.string().required('First name required'),
+      last_name: yup.string().required('Last name required'),
+      location: yup.string().required('Location required'),
+      classYear: yup.number().required('ClassYear required'),
+      email: yup.string().matches(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, 'Invalid email format'),
+      cell: yup.string().matches(/^(\+\d{1,2}\s?)?1?\-?\.?\s?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/, 'Invalid cell format')
+    })
+  
+    const formik = useFormik({
+      initialValues: initialValues,
+      validationSchema: validationSchema,
+      validateOnChange: false,
+      onSubmit: function(values, {resetForm}){
+          editRecruit(values, recruit.id)
+          resetForm()
+          close()
+      }
+    })
 
   return (
     <form onSubmit={formik.handleSubmit}>

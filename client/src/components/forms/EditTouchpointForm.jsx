@@ -9,7 +9,6 @@ function EditTouchpointForm({touchpoint, close}) {
     const {meetingTypes} = useContext(MeetingTypeContext)
 
     const initialValues = {
-        recruit_id: touchpoint.recruit_id,
         meetingType_id: touchpoint.meetingType_id,
         date: touchpoint.date,
         notes: touchpoint.notes

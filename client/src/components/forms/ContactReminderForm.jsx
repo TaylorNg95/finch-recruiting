@@ -6,12 +6,6 @@ function ContactReminderForm({recruit}) {
     const {editRecruit} = useContext(UserContext)
 
     const initialValues = {
-        first_name: recruit.first_name,
-        last_name: recruit.last_name,
-        location: recruit.location,
-        classYear: recruit.classYear,
-        email: recruit.email,
-        cell: recruit.cell,
         next_touchpoint: recruit.next_touchpoint == null ? '' : recruit.next_touchpoint
     }
     
