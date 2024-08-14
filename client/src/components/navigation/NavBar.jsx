@@ -1,7 +1,10 @@
 import React from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { useContext } from 'react'
 import {UserContext} from '../../context/UserContext'
+
+// Material UI
+import Breadcrumbs from '@mui/material/Breadcrumbs';
 
 function NavBar() {
   const {logout, loggedIn} = useContext(UserContext)
@@ -17,21 +20,27 @@ function NavBar() {
   }
 
   const routes = (
-    loggedIn ? <>
-      <li><Link to='/recruits'>Recruits</Link></li>
-      <li><Link to='/notifications'>Notifications</Link></li>
-      <li><Link to='#' onClick={handleLogout}>Logout</Link></li>
-    </> : <>
-      <li><Link to='/'>Home</Link></li>
-      <li><Link to='/signup'>Signup</Link></li>
-      <li><Link to='/login'>Login</Link></li>
-    </>
+    loggedIn ?
+      <div role="presentation">
+        <Breadcrumbs aria-label="breadcrumb">
+          <Link to='/recruits'>Recruits</Link>
+          <Link to='/notifications'>Notifications</Link>
+          <Link to='#' onClick={handleLogout}>Logout</Link>
+        </Breadcrumbs>
+      </div> :
+      <div role="presentation">
+        <Breadcrumbs aria-label="breadcrumb">
+          <Link to='/'>Home</Link>
+          <Link to='/signup'>Signup</Link>
+          <Link to='/login'>Login</Link>
+        </Breadcrumbs>
+      </div>
   )
 
   return (
-    <ul>
-        {routes}
-    </ul>
+    <>
+      {routes}
+    </>
   )
 }
 
