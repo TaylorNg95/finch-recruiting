@@ -1,10 +1,8 @@
 import React, { useContext } from 'react'
-import { UserContext } from '../../context/UserContext'
 import { MeetingTypeContext } from '../../context/MeetingTypeContext'
 import { useFormik } from 'formik'
 
 function TouchpointForm({touchpoint, recruit_id, submitFn, close}) {
-    const {addTouchpoint} = useContext(UserContext)
     const {meetingTypes} = useContext(MeetingTypeContext)
 
     let initialValues

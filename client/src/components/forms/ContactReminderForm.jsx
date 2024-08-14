@@ -32,7 +32,7 @@ function ContactReminderForm({recruit}) {
   } else return (
     <>
         <p>Contact Reminder Set: {recruit.next_touchpoint}</p>
-        <button onClick={() => editRecruit({...initialValues, next_touchpoint: null}, recruit.id)}>Delete Reminder</button>
+        <button onClick={() => editRecruit({...initialValues, next_touchpoint: ''}, recruit.id)}>Delete Reminder</button>
     </>
 )
 }

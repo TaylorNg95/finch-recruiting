@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import {Link} from 'react-router-dom'
 
 function RecruitCard({recruit}) {
@@ -6,7 +6,7 @@ function RecruitCard({recruit}) {
   return (
     <>
       <h2>{`${recruit.first_name} ${recruit.last_name}`}</h2>
-      <Link to={`/recruits/${recruit.id}`}>View Contact</Link>
+      <Link to={`/recruits/${recruit.id}`}>View Profile</Link>
     </>
   )
 }

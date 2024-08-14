@@ -43,7 +43,7 @@ function Notifications() {
         <div>Email Notifications</div>
         <p>Request Weekly Activity Summary</p>
         <button onClick={sendWeeklyEmail}>SEND</button>
-        <p>Request Today's Touchpoint Reminders</p>
+        <p>Request Today's Contact Reminders</p>
         <button onClick={sendReminders}>SEND</button>
     </>
   )

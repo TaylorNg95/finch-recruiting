@@ -23,7 +23,7 @@ def sendWeeklySummary(user):
 def sendTouchpointReminder(user):
     recruits_to_contact = [recruit for recruit in user.recruits if recruit.next_touchpoint == today]
     message_strings = [f"{recruit.first_name} {recruit.last_name}" for recruit in recruits_to_contact] if recruits_to_contact else ['No outstanding reminders']
-    msg = generate_message(user, 'Your Recruiting Reminders', 'touchpoint_reminder.html', message_strings)
+    msg = generate_message(user, 'Your Contact Reminders', 'touchpoint_reminder.html', message_strings)
     mail.send(msg)
 
 def generate_message(user, subject, template, items=None):

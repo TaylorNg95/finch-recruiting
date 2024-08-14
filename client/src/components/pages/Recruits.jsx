@@ -4,9 +4,18 @@ import { UserContext } from '../../context/UserContext'
 import RecruitCard from '../cards/RecruitCard'
 import Popup from 'reactjs-popup'
 import RecruitForm from '../forms/RecruitForm'
+import ClassYearCard from '../cards/ClassYearCard'
 
 function Recruits() {
   const {recruits, addRecruit} = useContext(UserContext)
+
+  let years = {}
+  for(let recruit of recruits){
+    years[recruit.classYear] = true
+  }
+  years = Object.keys(years)
+
+  const classYearCards = years.map(year => <ClassYearCard key={year} year={year} recruits={recruits}/>)
   
   return (
     <>
@@ -31,7 +40,7 @@ function Recruits() {
                     )
                 }
         </Popup>
-        {recruits.map(recruit => <RecruitCard key={recruit.id} recruit={recruit}/>)}
+        {classYearCards}
     </>
   )
 }
