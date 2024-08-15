@@ -5,6 +5,7 @@ import RecruitCard from '../cards/RecruitCard'
 import Popup from 'reactjs-popup'
 import RecruitForm from '../forms/RecruitForm'
 import ClassYearCard from '../cards/ClassYearCard'
+import { Grid } from '@mui/material'
 
 function Recruits() {
   const {recruits, addRecruit} = useContext(UserContext)
@@ -18,8 +19,7 @@ function Recruits() {
   const classYearCards = years.map(year => <ClassYearCard key={year} year={year} recruits={recruits}/>)
   
   return (
-    <>
-        <div>Recruits</div><br />
+    <Grid container>
         <Popup trigger=
                 {<button>+ Add New Recruit</button>}
                 modal nested>
@@ -41,7 +41,7 @@ function Recruits() {
                 }
         </Popup>
         {classYearCards}
-    </>
+    </Grid>
   )
 }
 
