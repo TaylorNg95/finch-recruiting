@@ -5,6 +5,7 @@ import {UserContext} from '../../context/UserContext'
 
 // Material UI
 import Breadcrumbs from '@mui/material/Breadcrumbs';
+import { Box } from '@mui/material';
 
 function NavBar() {
   const {logout, loggedIn} = useContext(UserContext)
@@ -21,26 +22,22 @@ function NavBar() {
 
   const routes = (
     loggedIn ?
-      <div role="presentation">
         <Breadcrumbs aria-label="breadcrumb">
           <Link to='/recruits'>Recruits</Link>
           <Link to='/notifications'>Notifications</Link>
           <Link to='#' onClick={handleLogout}>Logout</Link>
-        </Breadcrumbs>
-      </div> :
-      <div role="presentation">
+        </Breadcrumbs> :
         <Breadcrumbs aria-label="breadcrumb">
           <Link to='/'>Home</Link>
           <Link to='/signup'>Signup</Link>
           <Link to='/login'>Login</Link>
         </Breadcrumbs>
-      </div>
   )
 
   return (
-    <>
+    <Box sx={{'padding': '2%'}}>
       {routes}
-    </>
+    </Box>
   )
 }
 
