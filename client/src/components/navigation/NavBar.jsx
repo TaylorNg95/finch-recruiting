@@ -5,7 +5,7 @@ import {UserContext} from '../../context/UserContext'
 
 // Material UI
 import Breadcrumbs from '@mui/material/Breadcrumbs';
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 
 function NavBar() {
   const {logout, loggedIn} = useContext(UserContext)
@@ -35,8 +35,9 @@ function NavBar() {
   )
 
   return (
-    <Box sx={{'padding': '2%', height: '10vh', display: 'flex', flexDirection: 'reverse', alignItems: 'center', backgroundColor: '#555D50'}}>
+    <Box sx={{'padding': '2%', height: '10vh', display: 'flex', flexDirection: 'reverse', alignItems: 'center', justifyContent: 'space-between', backgroundColor: '#555D50'}}>
       {routes}
+      {<Typography variant='h4' sx={{fontFamily: 'Keania One', color: '#FFFFFF', position: 'right'}}>F</Typography>}
     </Box>
   )
 }

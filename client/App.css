@@ -1,12 +1,10 @@
 .MuiBreadcrumbs-li a {
     color: #FFFFFF;
     text-decoration: none;
-    animation: fadeIn 1s ease-in forwards;
 }
 
 .MuiBreadcrumbs-separator {
     color: #FFFFFF;
-    animation: fadeIn 1s ease-in forwards;
 }
 
 #logo, #slogan {
@@ -23,6 +21,6 @@
     }
 }
 
-.MuiFormControl-root {
+.MuiFilled-root {
     margin-bottom: 5%
 }

@@ -1,5 +1,6 @@
 import React from 'react'
 import RecruitCard from './RecruitCard'
+import { Typography } from '@mui/material'
 
 function ClassYearCard({year, recruits}) {
   const filteredRecruits = recruits.filter(recruit => recruit.classYear == year)
@@ -7,7 +8,7 @@ function ClassYearCard({year, recruits}) {
 
   return (
     <>
-      <h2>{`Class of ${year}`}</h2>
+      <Typography component='h3' variant='h5'>{`Class of ${year}`}</Typography>
       <hr></hr>
       {sortedRecruits.map(recruit => <RecruitCard key={recruit.id} recruit={recruit}/>)}
     </>
