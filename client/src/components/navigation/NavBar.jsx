@@ -29,13 +29,13 @@ function NavBar() {
         </Breadcrumbs> :
         <Breadcrumbs aria-label="breadcrumb">
           <Link to='/'>Home</Link>
-          <Link to='/signup'>Signup</Link>
           <Link to='/login'>Login</Link>
+          <Link to='/signup'>Signup</Link>
         </Breadcrumbs>
   )
 
   return (
-    <Box sx={{'padding': '2%'}}>
+    <Box sx={{'padding': '2%', height: '10vh', display: 'flex', flexDirection: 'reverse', alignItems: 'center', backgroundColor: '#555D50'}}>
       {routes}
     </Box>
   )

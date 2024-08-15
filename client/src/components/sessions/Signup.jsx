@@ -5,6 +5,10 @@ import {useNavigate} from 'react-router-dom'
 import { useContext } from 'react'
 import {UserContext} from '../../context/UserContext'
 
+// Material UI
+
+import { Typography, TextField, Button, Box } from '@mui/material'
+
 function Signup() {
   const {login} = useContext(UserContext)
   const [loginError, setLoginError] = useState(null)
@@ -51,20 +55,20 @@ function Signup() {
   )
   
   return (
-    <>
-        <form onSubmit={formik.handleSubmit}>
-          <label>First name: <input type='text' name='first_name' value={formik.values.first_name} onChange={formik.handleChange}/></label><br />
-          <p style={{ color: "red" }}> {formik.errors.first_name}</p>
-          <label>Last name: <input type='text' name='last_name' value={formik.values.last_name} onChange={formik.handleChange}/></label><br />
-          <p style={{ color: "red" }}> {formik.errors.last_name}</p>
-          <label>Email: <input type='email' name='email' value={formik.values.email} onChange={formik.handleChange}/></label><br />
-          <p style={{ color: "red" }}> {formik.errors.email}</p>
-          <label>Password: <input type='password' name='password' value={formik.values.password} onChange={formik.handleChange}/></label><br />
-          <p style={{ color: "red" }}> {formik.errors.password}</p>
-          <p style={{ color: "red" }}> {loginError}</p>
-          <input type='submit' value='Submit'/>
-        </form>
-    </>
+    <Box sx={{textAlign: 'center', minHeight: '90vh', display: 'flex', flexDirection: 'column-reverse', justifyContent: 'center', backgroundColor: '#555D50'}}>
+      <Box component="form" onSubmit={formik.handleSubmit} sx={{alignItems: 'center'}}>
+        <TextField sx={{backgroundColor: '#FFFFFF'}} label="First Name" name='first_name' variant="filled" value={formik.values.first_name} onChange={formik.handleChange}/>
+        <Typography component='p' sx={{color: '#FFFFFF', mb: '1%'}}>{formik.errors.first_name}</Typography>
+        <TextField sx={{backgroundColor: '#FFFFFF'}} label="Last Name" name='last_name' variant="filled" value={formik.values.last_name} onChange={formik.handleChange}/>
+        <Typography component='p' sx={{color: '#FFFFFF', mb: '1%'}}>{formik.errors.last_name}</Typography>
+        <TextField sx={{backgroundColor: '#FFFFFF'}} label="Email" name='email' type='email' variant="filled" value={formik.values.email} onChange={formik.handleChange}/>
+        <Typography component='p' sx={{color: '#FFFFFF', mb: '1%'}}>{formik.errors.email}</Typography>
+        <TextField sx={{backgroundColor: '#FFFFFF'}} label="Password" name='password' type='password' variant="filled" value={formik.values.password} onChange={formik.handleChange}/>
+        <Typography component='p' sx={{color: '#FFFFFF', mb: '1%'}}>{formik.errors.password}</Typography>
+        <Typography component='p' sx={{color: '#FFFFFF', mb: '1%'}}>{loginError}</Typography>
+        <Button type='submit' variant='outlined' sx={{border: 'solid 2px', color: '#FFFFFF', fontWeight: 'bold'}}>Sign Up</Button>
+      </Box>
+    </Box>
   )
 }
 

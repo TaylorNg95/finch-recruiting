@@ -7,8 +7,10 @@ const theme = createTheme({
       },
       secondary: {
         main: '#19857b',
-      }
-    },
+      }, error: {
+        main: '#FF0000',
+      },
+    }
   });
   
   export default theme;
