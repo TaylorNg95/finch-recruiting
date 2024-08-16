@@ -66,7 +66,7 @@ function NewRecruitForm({recruit, submitFn, close}) {
                 <option value='2030'>2030</option>
             </select>
         </label><br />
-        <p style={{ color: "red" }}> {formik.errors.location}</p>
+        <p style={{ color: "red" }}> {formik.errors.classYear}</p>
         <label>Email: <input type='email' name='email' value={formik.values.email} onChange={formik.handleChange}/></label><br />
         <p style={{ color: "red" }}> {formik.errors.email}</p>
         <label>Cell: <input type='tel' name='cell' value={formik.values.cell} onChange={formik.handleChange}/></label><br />

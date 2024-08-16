@@ -9,12 +9,9 @@ function ClassYearCard({year, recruits}) {
   return (
     <>
       <Grid item xs={12}>
-        <Typography sx={{mt: '5%'}} component='h3' variant='h5'>{`Class of ${year}`}</Typography>
+        <Typography sx={{mt: '3%', fontWeight: 'bold'}} component='h3' variant='h5'>{`CLASS OF ${year}`}</Typography>
       </Grid>
       {sortedRecruits.map(recruit => <RecruitCard key={recruit.id} recruit={recruit}/>)}
-      <Grid item xs={12}>
-        <br />
-      </Grid>
     </>
   )
 }

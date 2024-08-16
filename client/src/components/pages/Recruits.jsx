@@ -19,9 +19,9 @@ function Recruits() {
   const classYearCards = years.map(year => <ClassYearCard key={year} year={year} recruits={recruits}/>)
   
   return (
-    <Grid container>
+    <Grid container spacing={2} sx={{padding: '2%'}}>
         <Popup trigger=
-                {<button>+ Add New Recruit</button>}
+                {<button className='popup-btn'>+ Add New Recruit</button>}
                 modal nested>
                 {
                     close => (

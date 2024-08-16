@@ -35,9 +35,9 @@ function NavBar() {
   )
 
   return (
-    <Box sx={{'padding': '2%', height: '10vh', display: 'flex', flexDirection: 'reverse', alignItems: 'center', justifyContent: 'space-between', backgroundColor: '#555D50'}}>
+    <Box component='nav' sx={{'padding': '2%', height: '10vh', display: 'flex', flexDirection: 'reverse', alignItems: 'center', justifyContent: 'space-between', backgroundColor: '#555D50'}}>
       {routes}
-      {<Typography variant='h4' sx={{fontFamily: 'Keania One', color: '#FFFFFF', position: 'right'}}>F</Typography>}
+      {<Link to='/' style={{textDecoration: 'none'}}><Typography variant='h4' sx={{fontFamily: 'Keania One', color: '#FFFFFF', position: 'right', textDecoration: 'none'}}>F</Typography></Link>}
     </Box>
   )
 }
