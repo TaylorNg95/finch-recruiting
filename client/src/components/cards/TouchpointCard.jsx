@@ -16,15 +16,9 @@ function TouchpointCard({touchpoint}) {
     <Grid item container xs={12} justifyContent='center' alignItems='center'sx={{mt: '1%'}}>
         {`${formatDate(touchpoint.date)} -- ${touchpoint.meetingType.type} -- ${touchpoint.notes}`}
         <Popup trigger=
-                {<Button variant='outlined' size='small' sx={{mr: '1%', ml: '1%', minWidth: 'auto'}} title='Edit'><EditIcon sx={{ fontSize: '1rem' }}/></Button>}
-                modal nested touchpoint={touchpoint}>
-                {
-                    close => (
-                        <>
-                            {<TouchpointForm touchpoint={touchpoint} submitFn={editTouchpoint} close={close}/>}
-                        </>
-                    )
-                }
+            {<Button variant='outlined' size='small' sx={{mr: '1%', ml: '1%', minWidth: 'auto'}} title='Edit'><EditIcon sx={{ fontSize: '1rem' }}/></Button>}
+            modal nested touchpoint={touchpoint}>
+            {close =><TouchpointForm touchpoint={touchpoint} submitFn={editTouchpoint} close={close}/>}
         </Popup>
         <Button variant='outlined' size='small' title='Delete' onClick={() => deleteTouchpoint(touchpoint.id)} sx={{minWidth: 'auto'}}><DeleteOutlineIcon sx={{ fontSize: '1rem' }}/></Button>
     </Grid>

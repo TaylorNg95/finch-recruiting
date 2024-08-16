@@ -23,7 +23,7 @@ function RecruitProfile() {
   const sortedRecruitTPs = recruitTPs.sort((a, b) => b.date.localeCompare(a.date))
   
   return (
-    <Grid container>
+    <Grid container sx={{padding: '2%'}}>
       <Grid item container xs={12} justifyContent='center' alignItems='center'>
         <Typography variant='h4' sx={{mt: '2%', fontWeight: 'bold', mb: '1%'}}>{`${recruit.first_name} ${recruit.last_name}`}</Typography>
       </Grid>
@@ -32,13 +32,7 @@ function RecruitProfile() {
         <Popup trigger=
             {<Button variant='outlined' size='small' sx={{mr: '1%', ml: '1%'}} title='Edit'><EditIcon /></Button>}
             modal nested>
-            {
-                close => (
-                    <div style={{'border': 'solid', 'padding': '5%', 'background': '#555D50'}} className='modal'>
-                        {<RecruitForm recruit={recruit} submitFn={editRecruit} close={close}/>}
-                    </div>
-                )
-            }
+            {close => <RecruitForm recruit={recruit} submitFn={editRecruit} close={close}/>}
         </Popup>
         <Button variant='outlined' size='small' title='Delete' onClick={() => deleteRecruit(recruit.id)}><DeleteOutlineIcon /></Button>
       </Grid>
@@ -57,24 +51,22 @@ function RecruitProfile() {
       <Grid item xs={12}>
         <Divider sx={{backgroundColor: '#555D50', mt: '2%'}}/>
       </Grid>
-      <Grid item container xs={12} justifyContent='Start' alignItems='center' sx={{ml: '3%'}}>
-        <ContactReminderForm recruit={recruit}/>
+      <Grid item container xs={12} justifyContent='space-between' alignItems='center' sx={{ml: '3%', mr: '3%'}}>
+        <Grid item sx={{mt: '1%'}}>
+          <ContactReminderForm recruit={recruit}/>
+        </Grid>
+        <Grid item>
+          <Popup trigger=
+            {<Button variant='outlined' size='small' sx={{backgroundColor: '#D3D3D3', color: '#000000', fontSize: '0.75em'}}>+ Add Contact</Button>}
+            modal nested>
+            {close => <TouchpointForm recruit_id={recruit_id} submitFn={addTouchpoint} close={close}/>}
+          </Popup>
+        </Grid>
       </Grid>
-      <Grid item container xs={12} justifyContent='center' alignItems='center'>
+      <Grid item container xs={12} justifyContent='center' alignItems='center' sx={{mt: '2%'}}>
         <Typography component='h3' variant='h5' sx={{fontWeight: 'bold'}}>Contact Log:</Typography>
       </Grid>
       {sortedRecruitTPs.map(touchpoint => <TouchpointCard key={touchpoint.id} touchpoint={touchpoint}/>)}
-      <Popup trigger=
-        {<Button variant='outlined' size='small' sx={{ml: '1%', backgroundColor: '#D3D3D3', color: '#000000'}}>+ Add New Contact</Button>}
-        modal nested>
-        {
-            close => (
-              <div style={{'border': 'solid', 'padding': '5%', 'background': '#555D50'}} className='modal'>
-                  {<TouchpointForm recruit_id={recruit_id} submitFn={addTouchpoint} close={close}/>}
-              </div>
-            )
-        }
-      </Popup>
     </Grid>
   )
 }

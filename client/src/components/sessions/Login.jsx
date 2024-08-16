@@ -6,7 +6,6 @@ import { useContext } from 'react'
 import {UserContext} from '../../context/UserContext'
 
 // Material UI
-
 import { Typography, TextField, Button, Box } from '@mui/material'
 
 function Login() {

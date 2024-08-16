@@ -22,15 +22,9 @@ function Recruits() {
   return (
     <Grid container spacing={2} sx={{padding: '2%'}}>
         <Popup trigger=
-                {<Button variant='outlined' sx={{mt: '2%', ml: '1%', backgroundColor: '#D3D3D3', color: '#000000'}}>+ Add New Recruit</Button>}
-                modal nested>
-                {
-                    close => (
-                        <div style={{'border': 'solid', 'padding': '5%', 'background': '#555D50'}} className='modal'>
-                            {<RecruitForm recruit={''} submitFn={addRecruit} close={close}/>}
-                        </div>
-                    )
-                }
+            {<Button variant='outlined' sx={{mt: '2%', ml: '1%', backgroundColor: '#D3D3D3', color: '#000000'}}>+ Add Recruit</Button>}
+            modal nested>
+            {close => <RecruitForm recruit={''} submitFn={addRecruit} close={close}/>}
         </Popup>
         {classYearCards}
     </Grid>

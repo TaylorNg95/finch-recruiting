@@ -41,15 +41,16 @@ function ContactReminderForm({recruit}) {
 
   if (!recruit.next_touchpoint){
     return (
-      <Grid item container xs={12} justifyContent='start' alignItems='start' sx={{mt: '1%'}}>
         <>Set Reminder:{nextTpForm}</>
-      </Grid>
     )
   } else return (
-    <Grid item container xs={12} justifyContent='start' alignItems='start' sx={{mt: '1%'}}>
-        <Typography component='p'>Reminder Set: {formatDate(recruit.next_touchpoint)}</Typography>
-        <Button variant='outlined' size='small' title='Delete' onClick={() => editRecruit({...initialValues, next_touchpoint: ''}, recruit.id)} sx={{minWidth: 'auto', ml: '1%'}}><DeleteOutlineIcon sx={{ fontSize: '1rem' }}/></Button>
-    </Grid>
+      <>
+        <Typography component='p'>Reminder Set:</Typography>
+        <Box display={'flex'}>
+          <Typography>{formatDate(recruit.next_touchpoint)}</Typography>
+          <Button variant='outlined' size='small' title='Delete' onClick={() => editRecruit({...initialValues, next_touchpoint: ''}, recruit.id)} sx={{minWidth: 'auto', ml: '2%'}}><DeleteOutlineIcon sx={{ fontSize: '1rem' }}/></Button>
+        </Box>
+      </>    
 )
 }
 

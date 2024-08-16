@@ -1,6 +1,6 @@
 import React from 'react'
 import RecruitCard from './RecruitCard'
-import { Grid, Typography } from '@mui/material'
+import { Grid, Typography, Divider } from '@mui/material'
 
 function ClassYearCard({year, recruits}) {
   const filteredRecruits = recruits.filter(recruit => recruit.classYear == year)
@@ -12,6 +12,9 @@ function ClassYearCard({year, recruits}) {
         <Typography sx={{mt: '1%', fontWeight: 'bold'}} component='h3' variant='h5'>{`CLASS OF ${year}`}</Typography>
       </Grid>
       {sortedRecruits.map(recruit => <RecruitCard key={recruit.id} recruit={recruit}/>)}
+      <Grid item xs={12}>
+        <Divider sx={{backgroundColor: '#555D50', mt: '2%'}}/>
+      </Grid>
     </>
   )
 }

@@ -52,7 +52,7 @@ function NewRecruitForm({recruit, submitFn, close}) {
     })
 
   return (
-    <Box sx={{ textAlign: 'center', padding: '2%', display: 'flex', flexDirection: 'column-reverse', justifyContent: 'center', backgroundColor: '#555D50' }}>
+    <Box sx={{ border: 'solid', textAlign: 'center', padding: '5%', display: 'flex', flexDirection: 'column-reverse', justifyContent: 'center', backgroundColor: '#555D50' }}>
       <Box component="form" onSubmit={formik.handleSubmit} sx={{ mb: '1%' }}>
         <TextField sx={{ backgroundColor: '#FFFFFF', width: '100%' }} label="First Name" name='first_name' variant="filled" value={formik.values.first_name} onChange={formik.handleChange} />
         <Typography component='p' sx={{ color: '#FFFFFF', mb: '1%' }}>{formik.errors.first_name}</Typography>
