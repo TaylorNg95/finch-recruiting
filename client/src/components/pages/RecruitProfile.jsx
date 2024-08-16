@@ -7,6 +7,10 @@ import Popup from 'reactjs-popup'
 import RecruitForm from '../forms/RecruitForm'
 import ContactReminderForm from '../forms/ContactReminderForm'
 
+// Material UI
+import { Button, Divider, Grid, Typography } from '@mui/material'
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+
 function RecruitProfile() {
   const recruit_id = useParams().id
   
@@ -16,27 +20,43 @@ function RecruitProfile() {
   const sortedRecruitTPs = recruitTPs.sort((a, b) => b.date.localeCompare(a.date))
   
   return (
-    <>
-      <h2>{`${recruit.first_name} ${recruit.last_name}`}</h2>
-      
+    <Grid container>
       <button onClick={() => editRecruit({high_priority: !recruit.high_priority}, recruit.id)}>{recruit.high_priority ? 'High Priority' : 'Low Priority'}</button>
-      <Popup trigger=
-        {<button>Edit Recruit</button>}
-        modal nested>
-        {
-            close => (
-                <div style={{'border': 'solid', 'padding': '5%', 'background': '#555D50'}} className='modal'>
-                    {<RecruitForm recruit={recruit} submitFn={editRecruit} close={close}/>}
-                </div>
-            )
-        }
-      </Popup>
-      <button onClick={() => deleteRecruit(recruit.id)}>Delete Recruit</button>
-      <p>{recruit.location}</p>
-      <p>{recruit.classYear}</p>
-      <p>{recruit.email}</p>
-      <p>{recruit.cell}</p><br />
-      <h3>Contact Log:</h3>
+      <Grid item container xs={12} justifyContent='center' alignItems='center'>
+        <Typography variant='h4' sx={{mt: '2%', fontWeight: 'bold'}}>{`${recruit.first_name} ${recruit.last_name}`}</Typography>
+      </Grid>
+      <Grid item container xs={12} justifyContent='center' alignItems='center'>
+        <Popup trigger=
+            {<Button variant='outlined' size='small'>Edit</Button>}
+            modal nested>
+            {
+                close => (
+                    <div style={{'border': 'solid', 'padding': '5%', 'background': '#555D50'}} className='modal'>
+                        {<RecruitForm recruit={recruit} submitFn={editRecruit} close={close}/>}
+                    </div>
+                )
+            }
+        </Popup>
+        <Button variant='outlined' size='small' onClick={() => deleteRecruit(recruit.id)}><DeleteOutlineIcon /></Button>
+      </Grid>
+      <Grid item container xs={12} justifyContent='center' alignItems='center'>
+        <Typography variant='p' sx={{mt: '2%'}}>Location: {recruit.location}</Typography>
+      </Grid>
+      <Grid item container xs={12} justifyContent='center' alignItems='center'>
+        <Typography variant='p' sx={{mt: '2%'}}>Class Year: {recruit.classYear}</Typography>
+      </Grid>
+      <Grid item container xs={12} justifyContent='center' alignItems='center'>
+        <Typography variant='p' sx={{mt: '2%'}}>Email: {recruit.email ? recruit.email : '--'}</Typography>
+      </Grid>
+      <Grid item container xs={12} justifyContent='center' alignItems='center'>
+        <Typography variant='p' sx={{mt: '2%'}}>Cell: {recruit.cell ? recruit.cell : '--'}</Typography>
+      </Grid>
+      <Grid item xs={12}>
+        <Divider sx={{backgroundColor: '#555D50', mt: '2%'}}/>
+      </Grid>
+      <Grid item container xs={12} justifyContent='center' alignItems='center'>
+        <Typography component='h3' variant='h5' sx={{mt: '2%', fontWeight: 'bold'}}>Contact Log:</Typography>
+      </Grid>
       <ContactReminderForm recruit={recruit}/>
       {sortedRecruitTPs.map(touchpoint => <TouchpointCard key={touchpoint.id} touchpoint={touchpoint}/>)}
       <Popup trigger=
@@ -59,7 +79,7 @@ function RecruitProfile() {
             )
         }
       </Popup>
-    </>
+    </Grid>
   )
 }
 
