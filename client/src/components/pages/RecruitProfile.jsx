@@ -9,6 +9,9 @@ import ContactReminderForm from '../forms/ContactReminderForm'
 
 // Material UI
 import { Button, Divider, Grid, Typography } from '@mui/material'
+import StarIcon from '@mui/icons-material/Star';
+import StarOutlineIcon from '@mui/icons-material/StarOutline';
+import EditIcon from '@mui/icons-material/Edit';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
 function RecruitProfile() {
@@ -21,13 +24,13 @@ function RecruitProfile() {
   
   return (
     <Grid container>
-      <button onClick={() => editRecruit({high_priority: !recruit.high_priority}, recruit.id)}>{recruit.high_priority ? 'High Priority' : 'Low Priority'}</button>
       <Grid item container xs={12} justifyContent='center' alignItems='center'>
-        <Typography variant='h4' sx={{mt: '2%', fontWeight: 'bold'}}>{`${recruit.first_name} ${recruit.last_name}`}</Typography>
+        <Typography variant='h4' sx={{mt: '2%', fontWeight: 'bold', mb: '1%'}}>{`${recruit.first_name} ${recruit.last_name}`}</Typography>
       </Grid>
       <Grid item container xs={12} justifyContent='center' alignItems='center'>
+      <Button variant='outlined' size='small' title='Priority' onClick={() => editRecruit({high_priority: !recruit.high_priority}, recruit.id)}>{recruit.high_priority ? <StarIcon /> : <StarOutlineIcon />}</Button>
         <Popup trigger=
-            {<Button variant='outlined' size='small'>Edit</Button>}
+            { <Button variant='outlined' size='small' sx={{mr: '1%', ml: '1%'}} title='Edit'><EditIcon /></Button>}
             modal nested>
             {
                 close => (
@@ -37,7 +40,7 @@ function RecruitProfile() {
                 )
             }
         </Popup>
-        <Button variant='outlined' size='small' onClick={() => deleteRecruit(recruit.id)}><DeleteOutlineIcon /></Button>
+        <Button variant='outlined' size='small' title='Delete' onClick={() => deleteRecruit(recruit.id)}><DeleteOutlineIcon /></Button>
       </Grid>
       <Grid item container xs={12} justifyContent='center' alignItems='center'>
         <Typography variant='p' sx={{mt: '2%'}}>Location: {recruit.location}</Typography>
