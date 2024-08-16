@@ -1,11 +1,10 @@
 import React from 'react'
 import { useContext } from 'react'
 import { UserContext } from '../../context/UserContext'
-import RecruitCard from '../cards/RecruitCard'
 import Popup from 'reactjs-popup'
 import RecruitForm from '../forms/RecruitForm'
 import ClassYearCard from '../cards/ClassYearCard'
-import { Grid } from '@mui/material'
+import { Button, Grid } from '@mui/material'
 
 function Recruits() {
   const {recruits, addRecruit} = useContext(UserContext)
@@ -21,11 +20,11 @@ function Recruits() {
   return (
     <Grid container spacing={2} sx={{padding: '2%'}}>
         <Popup trigger=
-                {<button className='popup-btn'>+ Add New Recruit</button>}
+                {<Button variant='outlined' sx={{mt: '2%', ml: '1%', backgroundColor: '#D3D3D3', color: '#000000'}}>+ Add New Recruit</Button>}
                 modal nested>
                 {
                     close => (
-                        <div style={{'border': 'solid', 'padding': '5%', 'background': '#555D50'}}className='modal'>
+                        <div style={{'border': 'solid', 'padding': '5%', 'background': '#555D50'}} className='modal'>
                             {<RecruitForm recruit={''} submitFn={addRecruit} close={close}/>}
                         </div>
                     )

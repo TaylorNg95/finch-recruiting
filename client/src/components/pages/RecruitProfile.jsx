@@ -25,7 +25,7 @@ function RecruitProfile() {
         modal nested>
         {
             close => (
-                <div className='modal'>
+                <div style={{'border': 'solid', 'padding': '5%', 'background': '#555D50'}} className='modal'>
                     {<RecruitForm recruit={recruit} submitFn={editRecruit} close={close}/>}
                 </div>
             )
