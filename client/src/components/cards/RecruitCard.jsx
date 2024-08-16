@@ -20,7 +20,7 @@ function RecruitCard({recruit}) {
         </Typography>
         <Button onClick={() => editRecruit({high_priority: !recruit.high_priority}, recruit.id)}>{recruit.high_priority ? <StarIcon sx={{color: '#000000'}}/> : <StarBorderIcon sx={{color: '#000000'}}/>}</Button>
       </div>
-      <Link to={`/recruits/${recruit.id}`} style={{textDecoration: 'none', color: '#000000'}}>View Profile</Link>
+      <Button variant='outlined' size='small' sx={{border: 'solid 1px', backgroundColor: '#FFFFFF'}}><Link to={`/recruits/${recruit.id}`} style={{textDecoration: 'none', color: '#000000'}}>View</Link></Button>
     </Paper>
     </Grid>
   )

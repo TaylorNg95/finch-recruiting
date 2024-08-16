@@ -25,17 +25,8 @@ function Recruits() {
                 modal nested>
                 {
                     close => (
-                        <div style={{'border': 'solid', 'padding': '5%', 'background': 'white'}}className='modal'>
-                            <div className='content'>
-                                + Add New Recruit
-                            </div>
+                        <div style={{'border': 'solid', 'padding': '5%', 'background': '#555D50'}}className='modal'>
                             {<RecruitForm recruit={''} submitFn={addRecruit} close={close}/>}
-                            <div>
-                                <button onClick=
-                                    {() => close()}>
-                                        Cancel
-                                </button>
-                            </div>
                         </div>
                     )
                 }

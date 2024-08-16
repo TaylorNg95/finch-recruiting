@@ -3,6 +3,9 @@ import { UserContext } from '../../context/UserContext'
 import * as yup from 'yup'
 import { useFormik } from 'formik'
 
+// Material UI
+import { Box, Button, FormControl, InputLabel, MenuItem, Select, TextField, Typography } from '@mui/material'
+
 function NewRecruitForm({recruit, submitFn, close}) {
     const {user} = useContext(UserContext)
 
@@ -49,30 +52,33 @@ function NewRecruitForm({recruit, submitFn, close}) {
     })
 
   return (
-    <form onSubmit={formik.handleSubmit}>
-        <label>First name: <input type='text' name='first_name' value={formik.values.first_name} onChange={formik.handleChange}/></label><br />
-        <p style={{ color: "red" }}> {formik.errors.first_name}</p>
-        <label>Last name: <input type='text' name='last_name' value={formik.values.last_name} onChange={formik.handleChange}/></label><br />
-        <p style={{ color: "red" }}> {formik.errors.last_name}</p>
-        <label>Location: <input type='text' name='location' value={formik.values.location} onChange={formik.handleChange}/></label><br />
-        <p style={{ color: "red" }}> {formik.errors.location}</p>
-        <label>Class Year: 
-            <select name='classYear' value={formik.values.classYear} onChange={formik.handleChange}>
-                <option value='2025'>2025</option>
-                <option value='2026'>2026</option>
-                <option value='2027'>2027</option>
-                <option value='2028'>2028</option>
-                <option value='2029'>2029</option>
-                <option value='2030'>2030</option>
-            </select>
-        </label><br />
-        <p style={{ color: "red" }}> {formik.errors.classYear}</p>
-        <label>Email: <input type='email' name='email' value={formik.values.email} onChange={formik.handleChange}/></label><br />
-        <p style={{ color: "red" }}> {formik.errors.email}</p>
-        <label>Cell: <input type='tel' name='cell' value={formik.values.cell} onChange={formik.handleChange}/></label><br />
-        <p style={{ color: "red" }}> {formik.errors.cell}</p>
-        <input type='submit' value='Submit'/>
-    </form>
+    <Box sx={{ textAlign: 'center', padding: '2%', display: 'flex', flexDirection: 'column-reverse', justifyContent: 'center', backgroundColor: '#555D50' }}>
+      <Box component="form" onSubmit={formik.handleSubmit} sx={{ mb: '1%' }}>
+        <TextField sx={{ backgroundColor: '#FFFFFF', width: '100%' }} label="First Name" name='first_name' variant="filled" value={formik.values.first_name} onChange={formik.handleChange} />
+        <Typography component='p' sx={{ color: '#FFFFFF', mb: '1%' }}>{formik.errors.first_name}</Typography>
+        <TextField sx={{ backgroundColor: '#FFFFFF', width: '100%' }} label="Last Name" name='last_name' variant="filled" value={formik.values.last_name} onChange={formik.handleChange} />
+        <Typography component='p' sx={{ color: '#FFFFFF', mb: '1%' }}>{formik.errors.last_name}</Typography>
+        <TextField sx={{ backgroundColor: '#FFFFFF', width: '100%' }} label="Location" name='location' variant="filled" value={formik.values.location} onChange={formik.handleChange} />
+        <Typography component='p' sx={{ color: '#FFFFFF', mb: '1%' }}>{formik.errors.location}</Typography>
+        <FormControl variant="filled" sx={{ backgroundColor: '#FFFFFF', width: '100%', mb: '1%' }}>
+          <InputLabel id='ClassYear'>Class Year</InputLabel>
+          <Select labelId='ClassYear' sx={{textAlign: 'left'}} value={formik.values.classYear} label='Class Year' name='classYear' onChange={formik.handleChange}>
+            <MenuItem value='2025'>2025</MenuItem>
+            <MenuItem value='2026'>2026</MenuItem>
+            <MenuItem value='2027'>2027</MenuItem>
+            <MenuItem value='2028'>2028</MenuItem>
+            <MenuItem value='2029'>2029</MenuItem>
+            <MenuItem value='2030'>2030</MenuItem>
+          </Select>
+        </FormControl>
+        <TextField sx={{ backgroundColor: '#FFFFFF', width: '100%' }} label="Email" name='email' type='email' variant="filled" value={formik.values.email} onChange={formik.handleChange} />
+        <Typography component='p' sx={{ color: '#FFFFFF', mb: '1%' }}>{formik.errors.email}</Typography>
+        <TextField sx={{ backgroundColor: '#FFFFFF', width: '100%' }} label="Cell" name='cell' type='tel' variant="filled" value={formik.values.cell} onChange={formik.handleChange} />
+        <Typography component='p' sx={{ color: '#FFFFFF', mb: '1%' }}>{formik.errors.cell}</Typography>
+        <Button type='submit' variant='outlined' sx={{ border: 'solid 1px', color: '#FFFFFF', mb: '1%' }}>{recruit ? 'Edit Recruit' : 'Add Recruit'}</Button><br />
+        <Button type='button' variant='outlined' size='small' sx={{ border: 'solid 1px', color: '#FFFFFF' }} onClick={() => close()}>Cancel</Button>
+      </Box>
+    </Box>
   )
 }
 
