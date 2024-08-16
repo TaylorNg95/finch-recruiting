@@ -30,7 +30,7 @@ function RecruitProfile() {
       <Grid item container xs={12} justifyContent='center' alignItems='center'>
       <Button variant='outlined' size='small' title='Priority' onClick={() => editRecruit({high_priority: !recruit.high_priority}, recruit.id)}>{recruit.high_priority ? <StarIcon /> : <StarOutlineIcon />}</Button>
         <Popup trigger=
-            { <Button variant='outlined' size='small' sx={{mr: '1%', ml: '1%'}} title='Edit'><EditIcon /></Button>}
+            {<Button variant='outlined' size='small' sx={{mr: '1%', ml: '1%'}} title='Edit'><EditIcon /></Button>}
             modal nested>
             {
                 close => (
@@ -43,42 +43,35 @@ function RecruitProfile() {
         <Button variant='outlined' size='small' title='Delete' onClick={() => deleteRecruit(recruit.id)}><DeleteOutlineIcon /></Button>
       </Grid>
       <Grid item container xs={12} justifyContent='center' alignItems='center'>
-        <Typography variant='p' sx={{mt: '2%'}}>Location: {recruit.location}</Typography>
+        <Typography variant='p' sx={{mt: '2%'}}><b>Location:</b> {recruit.location}</Typography>
       </Grid>
       <Grid item container xs={12} justifyContent='center' alignItems='center'>
-        <Typography variant='p' sx={{mt: '2%'}}>Class Year: {recruit.classYear}</Typography>
+        <Typography variant='p' sx={{mt: '1%'}}><b>Class Year:</b> {recruit.classYear}</Typography>
       </Grid>
       <Grid item container xs={12} justifyContent='center' alignItems='center'>
-        <Typography variant='p' sx={{mt: '2%'}}>Email: {recruit.email ? recruit.email : '--'}</Typography>
+        <Typography variant='p' sx={{mt: '1%'}}><b>Email:</b> {recruit.email ? recruit.email : '--'}</Typography>
       </Grid>
       <Grid item container xs={12} justifyContent='center' alignItems='center'>
-        <Typography variant='p' sx={{mt: '2%'}}>Cell: {recruit.cell ? recruit.cell : '--'}</Typography>
+        <Typography variant='p' sx={{mt: '1%'}}><b>Cell:</b> {recruit.cell ? recruit.cell : '--'}</Typography>
       </Grid>
       <Grid item xs={12}>
         <Divider sx={{backgroundColor: '#555D50', mt: '2%'}}/>
       </Grid>
-      <Grid item container xs={12} justifyContent='center' alignItems='center'>
-        <Typography component='h3' variant='h5' sx={{mt: '2%', fontWeight: 'bold'}}>Contact Log:</Typography>
+      <Grid item container xs={12} justifyContent='Start' alignItems='center' sx={{ml: '3%'}}>
+        <ContactReminderForm recruit={recruit}/>
       </Grid>
-      <ContactReminderForm recruit={recruit}/>
+      <Grid item container xs={12} justifyContent='center' alignItems='center'>
+        <Typography component='h3' variant='h5' sx={{fontWeight: 'bold'}}>Contact Log:</Typography>
+      </Grid>
       {sortedRecruitTPs.map(touchpoint => <TouchpointCard key={touchpoint.id} touchpoint={touchpoint}/>)}
       <Popup trigger=
-        {<button>Add</button>}
+        {<Button variant='outlined' size='small' sx={{ml: '1%', backgroundColor: '#D3D3D3', color: '#000000'}}>+ Add New Contact</Button>}
         modal nested>
         {
             close => (
-                <div style={{'border': 'solid', 'padding': '5%', 'background': 'white'}}className='modal'>
-                    <div className='content'>
-                        Add Touchpoint
-                    </div>
-                    {<TouchpointForm recruit_id={recruit_id} submitFn={addTouchpoint} close={close}/>}
-                    <div>
-                        <button onClick=
-                            {() => close()}>
-                                Cancel
-                        </button>
-                    </div>
-                </div>
+              <div style={{'border': 'solid', 'padding': '5%', 'background': '#555D50'}} className='modal'>
+                  {<TouchpointForm recruit_id={recruit_id} submitFn={addTouchpoint} close={close}/>}
+              </div>
             )
         }
       </Popup>

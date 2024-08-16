@@ -1,6 +1,11 @@
 import React, { useContext } from 'react'
 import { UserContext } from '../../context/UserContext'
 import { useFormik } from 'formik'
+import { formatDate } from '../../helpers'
+
+// Material
+import { Box, Grid, TextField, Typography, Button } from '@mui/material'
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
 function ContactReminderForm({recruit}) {
     const {editRecruit} = useContext(UserContext)
@@ -18,22 +23,33 @@ function ContactReminderForm({recruit}) {
         }
       })
 
+  // use material UI to create a date field and a submit button
+
   const nextTpForm = (
-    <form onSubmit={formik.handleSubmit}>
-        <label>Set Contact Reminder: <input type='date' name='next_touchpoint' value={formik.values.next_touchpoint} onChange={formik.handleChange}/></label>
+    <Box component="form" onSubmit={formik.handleSubmit}>
+        <TextField
+          sx={{ backgroundColor: '#FFFFFF', border: 'solid 1px', borderRadius: '5px', width: 'auto'}}
+          type='date'
+          name='next_touchpoint'
+          variant="filled"
+          value={formik.values.next_touchpoint}
+          onChange={formik.handleChange}
+          InputProps={{sx: {fontSize: '0.75em', height: '7vh'}}}/>
         <input type='submit' value='Go'/>
-    </form>
+    </Box>
   )
 
   if (!recruit.next_touchpoint){
     return (
-        <>{nextTpForm}</>
+      <Grid item container xs={12} justifyContent='start' alignItems='start' sx={{mt: '1%'}}>
+        <>Set Reminder:{nextTpForm}</>
+      </Grid>
     )
   } else return (
-    <>
-        <p>Contact Reminder Set: {recruit.next_touchpoint}</p>
-        <button onClick={() => editRecruit({...initialValues, next_touchpoint: ''}, recruit.id)}>Delete Reminder</button>
-    </>
+    <Grid item container xs={12} justifyContent='start' alignItems='start' sx={{mt: '1%'}}>
+        <Typography component='p'>Reminder Set: {formatDate(recruit.next_touchpoint)}</Typography>
+        <Button variant='outlined' size='small' title='Delete' onClick={() => editRecruit({...initialValues, next_touchpoint: ''}, recruit.id)} sx={{minWidth: 'auto', ml: '1%'}}><DeleteOutlineIcon sx={{ fontSize: '1rem' }}/></Button>
+    </Grid>
 )
 }
 

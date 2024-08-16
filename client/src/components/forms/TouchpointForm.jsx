@@ -2,6 +2,9 @@ import React, { useContext } from 'react'
 import { MeetingTypeContext } from '../../context/MeetingTypeContext'
 import { useFormik } from 'formik'
 
+// Material UI
+import { Box, TextField, Typography, MenuItem, FormControl, InputLabel, Select, Button } from '@mui/material'
+
 function TouchpointForm({touchpoint, recruit_id, submitFn, close}) {
     const {meetingTypes} = useContext(MeetingTypeContext)
 
@@ -31,25 +34,76 @@ function TouchpointForm({touchpoint, recruit_id, submitFn, close}) {
       }
     })
 
-    const meetingTypeOptions = (
-      <>
-        {meetingTypes.map(meetingType => <option key={meetingType.id} value={meetingType.id}>{meetingType.type}</option>)}
-      </>
-    )
-
-  return (
-    <form onSubmit={formik.handleSubmit}>
-        <label>Date: <input type='date' name='date' value={formik.values.date} onChange={formik.handleChange}/></label><br />
-        <p style={{ color: "red" }}> {formik.errors.date}</p>
-        <label>Meeting Type: 
-            <select name='meetingType_id' value={formik.values.meetingType_id} onChange={formik.handleChange}>
-                {meetingTypeOptions}
-            </select>
-        </label><br />
-        <p style={{ color: "red" }}> {formik.errors.meetingType_id}</p>
-        <label>Notes: <textarea name='notes' value={formik.values.notes} onChange={formik.handleChange}/></label><br />
-        <input type='submit' value='Submit'/>
-    </form>
+    const meetingTypeOptions = meetingTypes.map(meetingType => (
+      <MenuItem key={meetingType.id} value={meetingType.id}>
+        {meetingType.type}
+      </MenuItem>
+    ));
+    
+    return (
+      <Box
+        sx={{
+          border: 'solid',
+          textAlign: 'center',
+          padding: '5%',
+          display: 'flex',
+          flexDirection: 'column-reverse',
+          justifyContent: 'center',
+          backgroundColor: '#555D50',
+        }}
+      >
+        <Box component="form" onSubmit={formik.handleSubmit} sx={{ mb: '1%' }}>
+          <TextField
+            sx={{ backgroundColor: '#FFFFFF', width: '100%' }}
+            type="date"
+            name="date"
+            variant="filled"
+            value={formik.values.date}
+            onChange={formik.handleChange}
+          />
+          <Typography component="p" sx={{ color: '#FFFFFF', mb: '1%' }}>
+            {formik.errors.date}
+          </Typography>
+          <FormControl
+            variant="filled"
+            sx={{ backgroundColor: '#FFFFFF', width: '100%', mb: '1%' }}
+          >
+            <InputLabel id="MeetingType">Meeting Type</InputLabel>
+            <Select
+              labelId="MeetingType"
+              sx={{ textAlign: 'left' }}
+              value={formik.values.meetingType_id}
+              label="Meeting Type"
+              name="meetingType_id"
+              onChange={formik.handleChange}
+            >
+              {meetingTypeOptions}
+            </Select>
+          </FormControl>
+          <TextField
+            sx={{ backgroundColor: '#FFFFFF', width: '100%' }}
+            label="Notes"
+            name="notes"
+            variant="filled"
+            value={formik.values.notes}
+            onChange={formik.handleChange}
+          />
+          <Button
+            type="submit"
+            variant="outlined"
+            sx={{
+              border: 'solid 1px',
+              color: '#FFFFFF',
+              mb: '1%',
+              mt: '1%',
+            }}
+          >
+            {touchpoint ? 'Edit Contact' : 'Add Contact'}
+          </Button>
+          <br />
+        <Button type='button' variant='outlined' size='small' sx={{ border: 'solid 1px', color: '#FFFFFF' }} onClick={() => close()}>Cancel</Button>
+      </Box>
+    </Box>
   )
 }
 
