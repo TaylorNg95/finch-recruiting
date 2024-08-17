@@ -19,8 +19,8 @@ function RecruitProfile() {
   
   const {recruits, touchpoints, deleteRecruit, editRecruit, addTouchpoint} = useContext(UserContext)
   const recruit = recruits.find(recruit => recruit.id == recruit_id)
-  const recruitTPs = touchpoints ? touchpoints.filter(touchpoint => touchpoint.recruit_id == recruit.id) : ''
-  const sortedRecruitTPs = recruitTPs ? recruitTPs.sort((a, b) => b.date.localeCompare(a.date)) : ''
+  const recruitTPs = touchpoints ? touchpoints.filter(touchpoint => touchpoint.recruit_id == recruit.id) : []
+  const sortedRecruitTPs = recruitTPs ? recruitTPs.sort((a, b) => b.date.localeCompare(a.date)) : []
   
   return (
     <Grid container sx={{padding: '2%'}}>
