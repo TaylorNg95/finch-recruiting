@@ -8,7 +8,7 @@ today = dt.datetime.now().date().isoformat() # current date
 week_ago = (dt.datetime.now() - dt.timedelta(days=7)).date().isoformat() # date one week ago
 
 def sendWelcome(user):
-    msg = generate_message(user, 'Welcome to Recruiter!', 'welcome.html')
+    msg = generate_message(user, 'Welcome to Finch!', 'welcome.html')
     mail.send(msg)
 
 def sendWeeklySummary(user):

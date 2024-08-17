@@ -34,14 +34,19 @@ function ContactReminderForm({recruit}) {
           variant="filled"
           value={formik.values.next_touchpoint}
           onChange={formik.handleChange}
-          InputProps={{sx: {fontSize: '0.75em', height: '7vh'}}}/>
-        <input type='submit' value='Go'/>
+          InputProps={{sx: {fontSize: '0.75em', height: '5vh'}}}/>
+        <input type='submit' value='+'/>
     </Box>
   )
 
   if (!recruit.next_touchpoint){
     return (
-        <>Set Reminder:{nextTpForm}</>
+        <>
+          <Typography component='p'>Set Reminder:</Typography>
+          <Box display={'flex'}>
+            {nextTpForm}
+          </Box>
+        </>
     )
   } else return (
       <>

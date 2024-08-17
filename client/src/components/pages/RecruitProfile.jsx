@@ -57,7 +57,7 @@ function RecruitProfile() {
         </Grid>
         <Grid item>
           <Popup trigger=
-            {<Button variant='outlined' size='small' sx={{backgroundColor: '#D3D3D3', color: '#000000', fontSize: '0.75em'}}>+ Add Contact</Button>}
+            {<Button variant='outlined' sx={{backgroundColor: '#D3D3D3', color: '#000000', fontSize: '0.75em'}}>+ Add Contact</Button>}
             modal nested>
             {close => <TouchpointForm recruit_id={recruit_id} submitFn={addTouchpoint} close={close}/>}
           </Popup>
