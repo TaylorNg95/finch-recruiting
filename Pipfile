@@ -15,6 +15,9 @@ flask-login = "*"
 flask-mail = "*"
 flask-apscheduler = "*"
 flask-cors = "*"
+gunicorn = "*"
+psycopg2-binary = "*"
+honcho = "*"
 
 [dev-packages]
 
