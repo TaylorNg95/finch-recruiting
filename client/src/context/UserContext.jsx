@@ -9,8 +9,8 @@ function UserProvider({children}) {
   const [loggedIn, setLoggedIn] = useState(false)
   const [user, setUser] = useState(null)
   
-  const [recruits, setRecruits] = useState(null)
-  const [touchpoints, setTouchpoints] = useState(null)
+  const [recruits, setRecruits] = useState([])
+  const [touchpoints, setTouchpoints] = useState([])
 
   const [loading, setLoading] = useState(true)
 
