@@ -4,7 +4,7 @@ import { useFormik } from 'formik'
 import { formatDate } from '../../helpers'
 
 // Material
-import { Box, Grid, TextField, Typography, Button } from '@mui/material'
+import { Box, TextField, Typography, Button } from '@mui/material'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
 function ContactReminderForm({recruit}) {
