@@ -14,13 +14,13 @@ class Recruit(db.Model, SerializerMixin):
     classYear = db.Column(db.Integer, nullable=False)
     email = db.Column(db.String)
     cell = db.Column(db.String)
-    next_touchpoint = db.Column(db.String)
+    next_contact = db.Column(db.String)
     high_priority = db.Column(db.Boolean, default=False)
 
     user = db.relationship('User', back_populates='recruits')
-    touchpoints = db.relationship('Touchpoint', back_populates='recruit', cascade='all, delete-orphan')
+    contacts = db.relationship('Contact', back_populates='recruit', cascade='all, delete-orphan')
 
-    serialize_rules = ('-user.recruits', '-touchpoints.recruit')
+    serialize_rules = ('-user.recruits', '-contacts.recruit')
 
     def __repr__(self):
         return f'<Recruit id={self.id} name={self.first_name} {self.last_name}>'

@@ -1,8 +1,8 @@
 import React, {useContext} from 'react'
 import { useParams } from 'react-router-dom'
 import { UserContext } from '../../context/UserContext'
-import TouchpointCard from '../cards/TouchpointCard'
-import TouchpointForm from '../forms/TouchpointForm'
+import ContactCard from '../cards/ContactCard'
+import ContactForm from '../forms/ContactForm'
 import Popup from 'reactjs-popup'
 import RecruitForm from '../forms/RecruitForm'
 import ContactReminderForm from '../forms/ContactReminderForm'
@@ -17,9 +17,9 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 function RecruitProfile() {
   const recruit_id = useParams().id
   
-  const {recruits, touchpoints, deleteRecruit, editRecruit, addTouchpoint} = useContext(UserContext)
+  const {recruits, contacts, deleteRecruit, editRecruit, addContact} = useContext(UserContext)
   const recruit = recruits.find(recruit => recruit.id == recruit_id)
-  const recruitTPs = touchpoints ? touchpoints.filter(touchpoint => touchpoint.recruit_id == recruit.id) : []
+  const recruitTPs = contacts ? contacts.filter(contact => contact.recruit_id == recruit.id) : []
   const sortedRecruitTPs = recruitTPs ? recruitTPs.sort((a, b) => b.date.localeCompare(a.date)) : []
   
   return (
@@ -59,14 +59,14 @@ function RecruitProfile() {
           <Popup trigger=
             {<Button variant='outlined' sx={{backgroundColor: '#D3D3D3', color: '#000000', fontSize: '0.75em'}}>+ Add Contact</Button>}
             modal nested>
-            {close => <TouchpointForm recruit_id={recruit_id} submitFn={addTouchpoint} close={close}/>}
+            {close => <ContactForm recruit_id={recruit_id} submitFn={addContact} close={close}/>}
           </Popup>
         </Grid>
       </Grid>
       <Grid item container xs={12} justifyContent='center' alignItems='center' sx={{mt: '2%'}}>
         <Typography component='h3' variant='h5' sx={{fontWeight: 'bold'}}>Contact Log:</Typography>
       </Grid>
-      {sortedRecruitTPs.map(touchpoint => <TouchpointCard key={touchpoint.id} touchpoint={touchpoint}/>)}
+      {sortedRecruitTPs.map(contact => <ContactCard key={contact.id} contact={contact}/>)}
     </Grid>
   )
 }

@@ -10,7 +10,7 @@ function UserProvider({children}) {
   const [user, setUser] = useState(null)
   
   const [recruits, setRecruits] = useState([])
-  const [touchpoints, setTouchpoints] = useState([])
+  const [contacts, setContacts] = useState([])
 
   const [loading, setLoading] = useState(true)
 
@@ -36,10 +36,10 @@ function UserProvider({children}) {
     setUser(user)
     setLoggedIn(true)
     setRecruits(user.recruits)
-    let touchpoints = []
+    let contacts = []
     for (const recruit of user.recruits){
-      touchpoints = touchpoints.concat(recruit.touchpoints)
-      setTouchpoints(touchpoints)
+      contacts = contacts.concat(recruit.contacts)
+      setContacts(contacts)
     }
   }
 
@@ -95,47 +95,47 @@ function UserProvider({children}) {
     }
   }
 
-  // CRUD - Touchpoints
-  async function addTouchpoint(touchpoint){
-    const response = await fetch('/api/touchpoints', {
+  // CRUD - Contacts
+  async function addContact(contact){
+    const response = await fetch('/api/contacts', {
       method: 'POST',
       headers: {
           'Content-Type': 'application/json',
           'Accepts': 'application/json'
       },
-      body: JSON.stringify(touchpoint)
+      body: JSON.stringify(contact)
     })
     if (response.status == 201){
-      const newTouchpoint = await response.json()
-      setTouchpoints([...touchpoints, newTouchpoint])
+      const newContact = await response.json()
+      setContacts([...contacts, newContact])
     }
   }
   
-  async function editTouchpoint(touchpoint, id){
-    const response = await fetch(`/api/touchpoints/${id}`, {
+  async function editContact(contact, id){
+    const response = await fetch(`/api/contacts/${id}`, {
       method: 'PATCH',
       headers: {
           'Content-Type': 'application/json',
           'Accepts': 'application/json'
       },
-      body: JSON.stringify(touchpoint)
+      body: JSON.stringify(contact)
     })
     if (response.status == 200){
-      const updatedTouchpoint = await response.json()
-      setTouchpoints(touchpoints.map(touchpoint => {
-        if (touchpoint.id == updatedTouchpoint.id){
-          return updatedTouchpoint
-        } else return touchpoint
+      const updatedContact = await response.json()
+      setContacts(contacts.map(contact => {
+        if (contact.id == updatedContact.id){
+          return updatedContact
+        } else return contact
       }))
     }
   }
 
-  async function deleteTouchpoint(id){
-    if (confirm('Are you sure you want delete this touchpoint?')){
-      const response = await fetch(`/api/touchpoints/${id}`, {
+  async function deleteContact(id){
+    if (confirm('Are you sure you want delete this contact?')){
+      const response = await fetch(`/api/contacts/${id}`, {
         method: 'DELETE'
       })
-      setTouchpoints(touchpoints.filter(touchpoint => touchpoint.id != id))
+      setContacts(contacts.filter(contact => contact.id != id))
     }
   }
   
@@ -146,7 +146,7 @@ function UserProvider({children}) {
     <UserContext.Provider value={{
       loggedIn, user, login, logout,
       recruits, addRecruit, editRecruit, deleteRecruit,
-      touchpoints, addTouchpoint, editTouchpoint, deleteTouchpoint
+      contacts, addContact, editContact, deleteContact
     }}>{children}</UserContext.Provider>
   )
 }

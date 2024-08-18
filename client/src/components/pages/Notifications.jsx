@@ -26,7 +26,7 @@ function Notifications() {
   }
 
   async function sendReminders(){
-    const response = await fetch('/api/send-touchpoint-reminders', {
+    const response = await fetch('/api/send-contact-reminders', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

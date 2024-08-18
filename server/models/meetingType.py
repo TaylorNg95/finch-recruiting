@@ -7,9 +7,9 @@ class MeetingType(db.Model, SerializerMixin):
     id = db.Column(db.Integer, primary_key=True)
     type = db.Column(db.String, nullable=False)
 
-    touchpoints = db.relationship('Touchpoint', back_populates='meetingType')
+    contacts = db.relationship('Contact', back_populates='meetingType')
 
-    serialize_rules = ('-touchpoints.meetingType',)
+    serialize_rules = ('-contacts.meetingType',)
 
     def __repr__(self):
         return f'<MeetingType id={self.id} type={self.type}>'

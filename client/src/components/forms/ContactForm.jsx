@@ -5,15 +5,15 @@ import { useFormik } from 'formik'
 // Material UI
 import { Box, TextField, Typography, MenuItem, FormControl, InputLabel, Select, Button } from '@mui/material'
 
-function TouchpointForm({touchpoint, recruit_id, submitFn, close}) {
+function ContactForm({contact, recruit_id, submitFn, close}) {
     const {meetingTypes} = useContext(MeetingTypeContext)
 
     let initialValues
-    if(touchpoint){
+    if(contact){
       initialValues = {
-        meetingType_id: touchpoint.meetingType_id,
-        date: touchpoint.date,
-        notes: touchpoint.notes
+        meetingType_id: contact.meetingType_id,
+        date: contact.date,
+        notes: contact.notes
       }
     } else {
       initialValues = {
@@ -28,7 +28,7 @@ function TouchpointForm({touchpoint, recruit_id, submitFn, close}) {
       initialValues: initialValues,
       validateOnChange: false,
       onSubmit: function(values, {resetForm}){
-          touchpoint ? submitFn(values, touchpoint.id) : submitFn(values)
+        contact ? submitFn(values, contact.id) : submitFn(values)
           resetForm()
           close()
       }
@@ -98,7 +98,7 @@ function TouchpointForm({touchpoint, recruit_id, submitFn, close}) {
               mt: '1%',
             }}
           >
-            {touchpoint ? 'Edit Contact' : 'Add Contact'}
+            {contact ? 'Edit Contact' : 'Add Contact'}
           </Button>
           <br />
         <Button type='button' variant='outlined' size='small' sx={{ border: 'solid 1px', color: '#FFFFFF' }} onClick={() => close()}>Cancel</Button>
@@ -107,4 +107,4 @@ function TouchpointForm({touchpoint, recruit_id, submitFn, close}) {
   )
 }
 
-export default TouchpointForm
+export default ContactForm

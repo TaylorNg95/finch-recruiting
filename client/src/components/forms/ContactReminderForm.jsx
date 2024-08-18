@@ -11,7 +11,7 @@ function ContactReminderForm({recruit}) {
     const {editRecruit} = useContext(UserContext)
 
     const initialValues = {
-        next_touchpoint: recruit.next_touchpoint == null ? '' : recruit.next_touchpoint
+        next_contact: recruit.next_contact == null ? '' : recruit.next_contact
     }
     
       const formik = useFormik({
@@ -30,16 +30,16 @@ function ContactReminderForm({recruit}) {
         <TextField
           sx={{ backgroundColor: '#FFFFFF', border: 'solid 1px', borderRadius: '5px', width: 'auto'}}
           type='date'
-          name='next_touchpoint'
+          name='next_contact'
           variant="filled"
-          value={formik.values.next_touchpoint}
+          value={formik.values.next_contact}
           onChange={formik.handleChange}
           InputProps={{sx: {fontSize: '0.75em', height: '5vh'}}}/>
         <input type='submit' value='+'/>
     </Box>
   )
 
-  if (!recruit.next_touchpoint){
+  if (!recruit.next_contact){
     return (
         <>
           <Typography component='p'>Set Reminder:</Typography>
@@ -52,8 +52,8 @@ function ContactReminderForm({recruit}) {
       <>
         <Typography component='p'>Reminder Set:</Typography>
         <Box display={'flex'}>
-          <Typography>{formatDate(recruit.next_touchpoint)}</Typography>
-          <Button variant='outlined' size='small' title='Delete' onClick={() => editRecruit({...initialValues, next_touchpoint: ''}, recruit.id)} sx={{minWidth: 'auto', ml: '2%'}}><DeleteOutlineIcon sx={{ fontSize: '1rem' }}/></Button>
+          <Typography>{formatDate(recruit.next_contact)}</Typography>
+          <Button variant='outlined' size='small' title='Delete' onClick={() => editRecruit({...initialValues, next_contact: ''}, recruit.id)} sx={{minWidth: 'auto', ml: '2%'}}><DeleteOutlineIcon sx={{ fontSize: '1rem' }}/></Button>
         </Box>
       </>    
 )

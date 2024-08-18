@@ -3,8 +3,8 @@ from sqlalchemy_serializer import SerializerMixin
 from sqlalchemy.orm import validates
 import re
 
-class Touchpoint(db.Model, SerializerMixin):
-    __tablename__ = 'touchpoints'
+class Contact(db.Model, SerializerMixin):
+    __tablename__ = 'contacts'
 
     id = db.Column(db.Integer, primary_key=True)
     recruit_id = db.Column(db.Integer, db.ForeignKey('recruits.id'), nullable=False)
@@ -12,13 +12,13 @@ class Touchpoint(db.Model, SerializerMixin):
     date = db.Column(db.String, nullable=False)
     notes = db.Column(db.String)
 
-    recruit = db.relationship('Recruit', back_populates='touchpoints')
-    meetingType = db.relationship('MeetingType', back_populates='touchpoints')
+    recruit = db.relationship('Recruit', back_populates='contacts')
+    meetingType = db.relationship('MeetingType', back_populates='contacts')
 
-    serialize_rules = ('-recruit.touchpoints', '-meetingType.touchpoints',)
+    serialize_rules = ('-recruit.contacts', '-meetingType.contacts',)
 
     def __repr__(self):
-        return f'<Touchpoint id={self.id} recruit_id={self.recruit_id}>'
+        return f'<Contact id={self.id} recruit_id={self.recruit_id}>'
 
     @validates('date')
     def validate_date(self, key, date):
