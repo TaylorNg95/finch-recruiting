@@ -54,14 +54,14 @@ function NewRecruitForm({recruit, submitFn, close}) {
   return (
     <Box sx={{ border: 'solid', textAlign: 'center', padding: '5%', display: 'flex', flexDirection: 'column-reverse', justifyContent: 'center', backgroundColor: '#555D50' }}>
       <Box component="form" onSubmit={formik.handleSubmit} sx={{ mb: '1%' }}>
-        <TextField sx={{ backgroundColor: '#FFFFFF', width: '100%' }} label="First Name" name='first_name' variant="filled" value={formik.values.first_name} onChange={formik.handleChange} />
+        <TextField sx={{ backgroundColor: '#FFFFFF', width: '100%' }} label="First Name" name='first_name' variant="filled" required value={formik.values.first_name} onChange={formik.handleChange} />
         <Typography component='p' sx={{ color: '#FFFFFF', mb: '1%' }}>{formik.errors.first_name}</Typography>
-        <TextField sx={{ backgroundColor: '#FFFFFF', width: '100%' }} label="Last Name" name='last_name' variant="filled" value={formik.values.last_name} onChange={formik.handleChange} />
+        <TextField sx={{ backgroundColor: '#FFFFFF', width: '100%' }} label="Last Name" name='last_name' variant="filled" required value={formik.values.last_name} onChange={formik.handleChange} />
         <Typography component='p' sx={{ color: '#FFFFFF', mb: '1%' }}>{formik.errors.last_name}</Typography>
-        <TextField sx={{ backgroundColor: '#FFFFFF', width: '100%' }} label="Location" name='location' variant="filled" value={formik.values.location} onChange={formik.handleChange} />
+        <TextField sx={{ backgroundColor: '#FFFFFF', width: '100%' }} label="Location" name='location' variant="filled" required value={formik.values.location} onChange={formik.handleChange} />
         <Typography component='p' sx={{ color: '#FFFFFF', mb: '1%' }}>{formik.errors.location}</Typography>
         <FormControl variant="filled" sx={{ backgroundColor: '#FFFFFF', width: '100%', mb: '1%' }}>
-          <InputLabel id='ClassYear'>Class Year</InputLabel>
+          <InputLabel id='ClassYear' required>Class Year</InputLabel>
           <Select labelId='ClassYear' sx={{textAlign: 'left'}} value={formik.values.classYear} label='Class Year' name='classYear' onChange={formik.handleChange}>
             <MenuItem value='2025'>2025</MenuItem>
             <MenuItem value='2026'>2026</MenuItem>

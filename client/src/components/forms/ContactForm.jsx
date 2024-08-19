@@ -60,6 +60,7 @@ function ContactForm({contact, recruit_id, submitFn, close}) {
             variant="filled"
             value={formik.values.date}
             onChange={formik.handleChange}
+            required
           />
           <Typography component="p" sx={{ color: '#FFFFFF', mb: '1%' }}>
             {formik.errors.date}
@@ -68,7 +69,7 @@ function ContactForm({contact, recruit_id, submitFn, close}) {
             variant="filled"
             sx={{ backgroundColor: '#FFFFFF', width: '100%', mb: '1%' }}
           >
-            <InputLabel id="MeetingType">Meeting Type</InputLabel>
+            <InputLabel id="MeetingType" required>Meeting Type</InputLabel>
             <Select
               labelId="MeetingType"
               sx={{ textAlign: 'left' }}

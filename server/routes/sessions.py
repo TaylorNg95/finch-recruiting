@@ -1,10 +1,10 @@
-from config import api, db
+from config import api, db, mail
 from flask import request
 from flask_restful import Resource
 from models.user import User
 from flask_login import login_user, current_user, logout_user
 from sqlalchemy.exc import IntegrityError
-from emails.email import sendWelcome
+from helpers import generate_message
 
 class Signup(Resource):
     def post(self):
@@ -19,7 +19,10 @@ class Signup(Resource):
             db.session.add(user)
             db.session.commit()
             login_user(user)
-            sendWelcome(user)
+
+            msg = generate_message(user, 'Welcome to Finch!', 'welcome.html')
+            mail.send(msg)
+
             return current_user.to_dict(), 201
         except ValueError as e:
             return {'error': str(e)}, 422

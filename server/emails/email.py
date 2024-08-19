@@ -2,10 +2,6 @@ from config import mail
 from models.contact import Contact
 from helpers import generate_message, today, week_ago
 
-def sendWelcome(user):
-    msg = generate_message(user, 'Welcome to Finch!', 'welcome.html')
-    mail.send(msg)
-
 def sendWeeklySummary(user):
     user_recruit_ids = [recruit.id for recruit in user.recruits]
     all_tp_this_week = [tp for tp in Contact.query.all() if week_ago <= tp.date <= today]
