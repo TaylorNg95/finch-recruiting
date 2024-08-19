@@ -1,5 +1,7 @@
-import { Box, Typography } from '@mui/material'
 import React from 'react'
+
+// Material UI
+import { Box, Typography } from '@mui/material'
 
 function Home() {
 

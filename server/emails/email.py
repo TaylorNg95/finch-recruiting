@@ -1,11 +1,6 @@
 from config import mail
-import datetime as dt
-from flask_mail import Message
-from flask import render_template
 from models.contact import Contact
-
-today = dt.datetime.now().date().isoformat() # current date
-week_ago = (dt.datetime.now() - dt.timedelta(days=7)).date().isoformat() # date one week ago
+from helpers import generate_message, today, week_ago
 
 def sendWelcome(user):
     msg = generate_message(user, 'Welcome to Finch!', 'welcome.html')
@@ -24,14 +19,3 @@ def sendContactReminder(user):
     message_strings = ''.join([f"<li>{recruit.first_name} {recruit.last_name}</li>" for recruit in recruits_to_contact]) if recruits_to_contact else '<li>No outstanding reminders</li>'
     msg = generate_message(user, 'Your Contact Reminders', 'contact_reminder.html', message_strings)
     mail.send(msg)
-
-def generate_message(user, subject, template, items=None):
-    msg = Message(subject=subject, recipients=[user.email])
-    with open(f'emails/{template}', 'r') as file:
-        html_content = file.read()
-        html_content = html_content.replace(f'{{name}}', user.first_name)
-        if items:
-            html_content = html_content.replace(f'{{items}}', items)
-
-    msg.html = html_content
-    return msg

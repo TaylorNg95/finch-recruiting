@@ -1,9 +1,9 @@
 import React, {useContext} from 'react'
 import { useParams } from 'react-router-dom'
 import { UserContext } from '../../context/UserContext'
+import Popup from 'reactjs-popup'
 import ContactCard from '../cards/ContactCard'
 import ContactForm from '../forms/ContactForm'
-import Popup from 'reactjs-popup'
 import RecruitForm from '../forms/RecruitForm'
 import ContactReminderForm from '../forms/ContactReminderForm'
 

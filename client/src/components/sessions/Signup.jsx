@@ -1,8 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import * as yup from 'yup'
 import {useFormik} from 'formik'
 import {useNavigate} from 'react-router-dom'
-import { useContext } from 'react'
 import {UserContext} from '../../context/UserContext'
 
 // Material UI

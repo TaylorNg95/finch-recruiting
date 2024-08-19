@@ -1,12 +1,10 @@
-import React from 'react'
-import { useContext } from 'react'
+import React, { useContext } from 'react'
 import { UserContext } from '../../context/UserContext'
 
 // Material UI
 import { Grid, Typography, Button, Divider, Checkbox } from '@mui/material'
 
 function Notifications() {
-
   const {user, editUser} = useContext(UserContext)
 
   async function sendWeeklyEmail(){

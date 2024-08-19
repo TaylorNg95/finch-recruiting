@@ -1,6 +1,5 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
-import { useContext } from 'react'
 import {UserContext} from '../../context/UserContext'
 
 // Material UI
@@ -22,16 +21,16 @@ function NavBar() {
 
   const routes = (
     loggedIn ?
-        <Breadcrumbs aria-label="breadcrumb">
-          <Link to='/recruits'>Recruits</Link>
-          <Link to='/notifications'>Notifications</Link>
-          <Link to='#' onClick={handleLogout}>Logout</Link>
-        </Breadcrumbs> :
-        <Breadcrumbs aria-label="breadcrumb">
-          <Link to='/'>Home</Link>
-          <Link to='/login'>Login</Link>
-          <Link to='/signup'>Signup</Link>
-        </Breadcrumbs>
+      <Breadcrumbs aria-label="breadcrumb">
+        <Link to='/recruits'>Recruits</Link>
+        <Link to='/notifications'>Notifications</Link>
+        <Link to='#' onClick={handleLogout}>Logout</Link>
+      </Breadcrumbs> :
+      <Breadcrumbs aria-label="breadcrumb">
+        <Link to='/'>Home</Link>
+        <Link to='/login'>Login</Link>
+        <Link to='/signup'>Signup</Link>
+      </Breadcrumbs>
   )
 
   return (

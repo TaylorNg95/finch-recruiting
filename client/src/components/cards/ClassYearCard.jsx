@@ -1,5 +1,7 @@
 import React from 'react'
 import RecruitCard from './RecruitCard'
+
+// Material UI
 import { Grid, Typography, Divider } from '@mui/material'
 
 function ClassYearCard({year, recruits}) {
