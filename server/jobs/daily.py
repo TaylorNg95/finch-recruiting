@@ -1,12 +1,9 @@
 from config import app, mail
-from jobs.helpers import generate_message
+from helpers import generate_message, today
 from models.user import User
 from models.recruit import Recruit
 from models.contact import Contact
 from models.meetingType import MeetingType
-import datetime as dt
-
-today = dt.datetime.now().date().isoformat() # current date
 
 def daily_reminder():
     with app.app_context():

@@ -1,13 +1,9 @@
 from config import app, mail
-from jobs.helpers import generate_message
+from helpers import generate_message, today, week_ago
 from models.user import User
 from models.recruit import Recruit
 from models.contact import Contact
 from models.meetingType import MeetingType
-import datetime as dt
-
-today = dt.datetime.now().date().isoformat() # current date
-week_ago = (dt.datetime.now() - dt.timedelta(days=7)).date().isoformat() # date one week ago
 
 def weekly_summary():
     with app.app_context():

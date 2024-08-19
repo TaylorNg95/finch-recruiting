@@ -1,4 +1,8 @@
 from flask_mail import Message
+import datetime as dt
+
+today = dt.datetime.now().date().isoformat() # current date
+week_ago = (dt.datetime.now() - dt.timedelta(days=7)).date().isoformat() # date one week ago
 
 def generate_message(user, subject, template, items=None):
     msg = Message(subject=subject, recipients=[user.email])

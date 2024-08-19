@@ -12,7 +12,7 @@ function ContactReminderForm({recruit}) {
     const {editRecruit} = useContext(UserContext)
 
     const initialValues = {
-        next_contact: recruit.next_contact == null ? '' : recruit.next_contact
+        next_contact: recruit.next_contact == null ? 'yyyy-mm-dd' : recruit.next_contact
     }
     
       const formik = useFormik({
