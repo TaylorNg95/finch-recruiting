@@ -7,7 +7,6 @@ from flask_restful import Api
 from flask_cors import CORS
 from flask_login import LoginManager
 from flask_mail import Mail
-from flask_apscheduler import APScheduler
 from dotenv import load_dotenv
 import os
 
@@ -54,7 +53,6 @@ api = Api(app)
 CORS(app)
 
 mail = Mail(app)
-scheduler = APScheduler()
 
 login_manager = LoginManager()
 login_manager.init_app(app)
