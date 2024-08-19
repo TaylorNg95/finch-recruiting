@@ -50,6 +50,22 @@ function UserProvider({children}) {
     navigate('/login', {replace: true})
   }
 
+  // PATCH - Users
+  async function editUser(user, id){
+    const response = await fetch(`/api/users/${id}`, {
+      method: 'PATCH',
+      headers: {
+          'Content-Type': 'application/json',
+          'Accepts': 'application/json'
+      },
+      body: JSON.stringify(user)
+    })
+    if (response.status == 200){
+      const updatedUser = await response.json()
+      setUser(updatedUser)
+    }
+  }  
+
   // CRUD - Recruits
   async function addRecruit(recruit){
     const response = await fetch('/api/recruits', {
@@ -144,7 +160,7 @@ function UserProvider({children}) {
     return <h1>Loading...</h1>
   } else return (
     <UserContext.Provider value={{
-      loggedIn, user, login, logout,
+      loggedIn, user, login, logout, editUser,
       recruits, addRecruit, editRecruit, deleteRecruit,
       contacts, addContact, editContact, deleteContact
     }}>{children}</UserContext.Provider>

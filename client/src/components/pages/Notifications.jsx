@@ -3,11 +3,11 @@ import { useContext } from 'react'
 import { UserContext } from '../../context/UserContext'
 
 // Material UI
-import { Grid, Typography, Button } from '@mui/material'
+import { Grid, Typography, Button, Divider, Checkbox } from '@mui/material'
 
 function Notifications() {
 
-  const {user} = useContext(UserContext)
+  const {user, editUser} = useContext(UserContext)
 
   async function sendWeeklyEmail(){
     const response = await fetch('/api/send-weekly-summary', {
@@ -47,6 +47,18 @@ function Notifications() {
             <Typography variant='h4' sx={{mt: '2%', fontWeight: 'bold', mb: '1%'}}>Email Notifications</Typography>
         </Grid>
         <Grid item container xs={12} justifyContent='center' alignItems='center'>
+            <Typography variant='p' sx={{mt: '2%'}}>Opt-In to Weekly Activity Summaries?</Typography>
+        </Grid>
+        <Grid item container xs={12} justifyContent='center' alignItems='center'>
+            <Checkbox defaultChecked onClick={() => editUser({notifications: !user.notifications}, user.id)} sx={{mt: '1%'}}/>
+        </Grid>
+        <Grid item container xs={12} justifyContent='center' alignItems='center'>
+            <Typography variant='p' sx={{mt: '1%', fontStyle: 'italic'}}>(by checking this box, you opt-in to weekly recruiting activity summaries)</Typography>
+        </Grid>
+        <Grid item xs={12}>
+            <Divider sx={{backgroundColor: '#555D50', mt: '2%'}}/>
+        </Grid>
+        <Grid item container xs={12} justifyContent='center' alignItems='center'>
             <Typography variant='p' sx={{mt: '2%'}}>Request Weekly Activity Summary</Typography>
         </Grid>
         <Grid item container xs={12} justifyContent='center' alignItems='center'>
@@ -58,7 +70,6 @@ function Notifications() {
         <Grid item container xs={12} justifyContent='center' alignItems='center'>
             <Button onClick={sendReminders} variant='outlined' sx={{mt: '2%', ml: '1%', backgroundColor: '#D3D3D3', color: '#000000'}}>Send</Button>
         </Grid>
-
     </Grid>
   )
 }
