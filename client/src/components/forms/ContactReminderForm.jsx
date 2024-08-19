@@ -5,6 +5,7 @@ import { formatDate } from '../../helpers'
 
 // Material
 import { Box, TextField, Typography, Button } from '@mui/material'
+import AddIcon from '@mui/icons-material/Add';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
 function ContactReminderForm({recruit}) {
@@ -34,8 +35,8 @@ function ContactReminderForm({recruit}) {
           variant="filled"
           value={formik.values.next_contact}
           onChange={formik.handleChange}
-          InputProps={{sx: {fontSize: '0.75em', height: '5vh'}}}/>
-        <input type='submit' value='+'/>
+          InputProps={{sx: {height: '2.5em', fontSize: '0.9em'}}}/>
+        <Button type='submit' variant='outlined' size='small' title='Set Reminder' sx={{minWidth: 'auto', ml: '2%'}}><AddIcon sx={{ fontSize: '1rem' }}/></Button>
     </Box>
   )
 

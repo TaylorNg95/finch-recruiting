@@ -13,8 +13,8 @@ function ContactCard({contact}) {
   const {deleteContact, editContact} = useContext(UserContext)
 
   return (
-    <Grid item container xs={12} justifyContent='center' alignItems='center'sx={{mt: '1%'}}>
-        {`${formatDate(contact.date)} -- ${contact.meetingType.type} -- ${contact.notes}`}
+    <Grid item container xs={12} justifyContent='center' alignItems='center' sx={{mt: '1%'}}>
+        {`${formatDate(contact.date)} (${contact.meetingType.type}): ${contact.notes}`}
         <Popup trigger=
             {<Button variant='outlined' size='small' sx={{mr: '1%', ml: '1%', minWidth: 'auto'}} title='Edit'><EditIcon sx={{ fontSize: '1rem' }}/></Button>}
             modal nested contact={contact}>

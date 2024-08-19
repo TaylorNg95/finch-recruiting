@@ -63,7 +63,7 @@ function RecruitProfile() {
           </Popup>
         </Grid>
       </Grid>
-      <Grid item container xs={12} justifyContent='center' alignItems='center' sx={{mt: '2%'}}>
+      <Grid item container xs={12} justifyContent='center' alignItems='center'>
         <Typography component='h3' variant='h5' sx={{fontWeight: 'bold'}}>Contact Log:</Typography>
       </Grid>
       {sortedRecruitTPs.map(contact => <ContactCard key={contact.id} contact={contact}/>)}
