@@ -33,13 +33,13 @@ with app.app_context():
     db.session.commit()
 
     # Seed meeting types
-    call = MeetingType(type='Call')
     text = MeetingType(type='Text')
+    call = MeetingType(type='Call')
     video = MeetingType(type='Video')
     in_person = MeetingType(type='In-Person')
     other = MeetingType(type='Other')
 
-    db.session.add_all([call, text, video, in_person, other])
+    db.session.add_all([text, call, video, in_person, other])
     db.session.commit()
 
     # Seed contacts

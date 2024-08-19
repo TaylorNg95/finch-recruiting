@@ -5,6 +5,7 @@ from models.recruit import Recruit
 from models.meetingType import MeetingType
 from models.contact import Contact
 from routes.sessions import *
+from routes.users import *
 from routes.recruits import *
 from routes.contacts import *
 from routes.meetingTypes import *
