@@ -21,13 +21,11 @@ metadata = MetaData(naming_convention={
     })
 
 app = Flask(
-    __name__
-    )
-
-""" ,
+    __name__,
     static_url_path='',
     static_folder='../client/dist',
-    template_folder='../client/dist' """
+    template_folder='../client/dist'
+    )
 
 
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('FLASK_DATABASE_URI')
