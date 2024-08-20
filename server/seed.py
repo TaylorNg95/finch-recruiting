@@ -13,26 +13,19 @@ with app.app_context():
     Contact.query.delete()
 
     # Seed users
-    bob = User(first_name='Bob', last_name='Dallis', email='bankingontennis@gmail.com')
-    bob.password_hash = 'pw123'
-    sanela = User(first_name='Sanela', last_name='Kunovac', email='taylormng95@gmail.com')
-    sanela.password_hash = 'pw456'
+    coach = User(first_name='coach_fname', last_name='coach_lname', email='coach@gmail.com')
+    coach.password_hash = 'coach123'
 
-    db.session.add_all([bob, sanela])
+    db.session.add(coach)
     db.session.commit()
 
     # Seed recruits
-    taylor = Recruit(user_id=1, first_name='Taylor', last_name='Ng', location='New Jersey', classYear=2025, email='taylor@gmail.com', cell='1-555-555-5555', next_contact='2024-08-13')
-    kana = Recruit(user_id=2, first_name='Kana', last_name='Daniel', location='Philadelphia', classYear=2026, email='kana@gmail.com', cell='1-444-444-4444', next_contact='2024-08-13')
-    erica = Recruit(user_id=1, first_name='Erica', last_name='Oosterhaut', location='Boston', classYear=2025, email='erica@gmail.com', cell='1-222-222-2222', next_contact='2024-08-14')
-    dayna = Recruit(user_id=1, first_name='Dayna', last_name='Lord', location='Rhode Island', classYear=2026, email='dayna@gmail.com', cell='1-111-111-1111')
-    brittany = Recruit(user_id=2, first_name='Brittany', last_name='Collens', location='Massachusetts', classYear=2027, email='brittany@gmail.com', cell='1-777-777-7777')
-    justina = Recruit(user_id=1, first_name='Justina', last_name='Mikulskyte', location='Lithuania', classYear=2027, email='justina@gmail.com', cell='+91-777-777-7777')
+    recruit = Recruit(user_id=1, first_name='recruit_fname', last_name='recruit_lname', location='New York', classYear=2025, email='recruit@gmail.com', cell='1-555-555-5555')
 
-    db.session.add_all([taylor, kana, erica, dayna, brittany, justina])
+    db.session.add(recruit)
     db.session.commit()
 
-    # Seed meeting types
+    # Seed meeting types -- REQUIRED
     text = MeetingType(type='Text')
     call = MeetingType(type='Call')
     video = MeetingType(type='Video')
@@ -43,14 +36,7 @@ with app.app_context():
     db.session.commit()
 
     # Seed contacts
-    tp1 = Contact(recruit_id=1, meetingType_id=1, date='2024-08-14', notes='Can improve. Well spoken.')
-    tp2 = Contact(recruit_id=2, meetingType_id=1, date='2024-08-18', notes='First outreach.')
-    tp3 = Contact(recruit_id=2, meetingType_id=2, date='2024-08-17', notes='Will not make it to clays.')
-    tp4 = Contact(recruit_id=3, meetingType_id=1, date='2024-08-12', notes='Has younger sister.')
-    tp5 = Contact(recruit_id=3, meetingType_id=4, date='2024-08-16', notes='Forehand is a liability, competes well.')
-    tp6 = Contact(recruit_id=4, meetingType_id=2, date='2024-08-17', notes='Not intersted in Dartmouth.')
-    tp7 = Contact(recruit_id=5, meetingType_id=2, date='2024-08-13', notes='Initial text.')
-    tp8 = Contact(recruit_id=5, meetingType_id=4, date='2024-08-11', notes='Watched her play at hard courts.')
+    contact = Contact(recruit_id=1, meetingType_id=1, date='2024-08-20', notes='Initial outreach')
 
-    db.session.add_all([tp1, tp2, tp3, tp4, tp5, tp6, tp7, tp8])
+    db.session.add(contact)
     db.session.commit()

@@ -51,9 +51,9 @@ function Login() {
   return (
     <Box sx={{textAlign: 'center', minHeight: '90vh', display: 'flex', flexDirection: 'column-reverse', justifyContent: 'center', backgroundColor: '#555D50'}}>
         <Box component="form" onSubmit={formik.handleSubmit} sx={{alignItems: 'center', mb: '1%'}}>
-          <TextField sx={{backgroundColor: '#FFFFFF'}} label="Email" name='email' type='email' variant="filled" value={formik.values.email} onChange={formik.handleChange}/>
+          <TextField sx={{backgroundColor: '#FFFFFF'}} label="Email" name='email' type='email' required variant="filled" value={formik.values.email} onChange={formik.handleChange}/>
           <Typography component='p' sx={{color: '#FFFFFF', mb: '1%'}}>{formik.errors.email}</Typography>
-          <TextField sx={{backgroundColor: '#FFFFFF'}} label="Password" name='password' type='password' variant="filled" value={formik.values.password} onChange={formik.handleChange}/>
+          <TextField sx={{backgroundColor: '#FFFFFF'}} label="Password" name='password' type='password' required variant="filled" value={formik.values.password} onChange={formik.handleChange}/>
           <Typography component='p' sx={{color: '#FFFFFF', mb: '1%'}}>{formik.errors.password}</Typography>
           <Typography component='p' sx={{color: '#FFFFFF', mb: '1%'}}>{loginError}</Typography>
           <Button type='submit' variant='outlined' sx={{border: 'solid 2px', color: '#FFFFFF', fontWeight: 'bold'}}>Log In</Button>

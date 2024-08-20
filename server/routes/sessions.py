@@ -54,7 +54,7 @@ class Logout(Resource):
         logout_user()
         return {}, 204
         
-api.add_resource(Login, '/api/login')
 api.add_resource(Signup, '/api/signup')
+api.add_resource(Login, '/api/login')
 api.add_resource(CheckSession, '/api/check_session')
 api.add_resource(Logout, '/api/logout')
