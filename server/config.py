@@ -26,6 +26,7 @@ app = Flask(
     static_folder='../client/dist',
     template_folder='../client/dist'
     )
+    
 
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('FLASK_DATABASE_URI')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
