@@ -1,10 +1,9 @@
 import React, { useContext, useState } from 'react'
 import { UserContext } from '../../context/UserContext'
-import { useFormik } from 'formik'
 import { formatDate } from '../../helpers'
 
 // Material UI
-import { Box, TextField, Typography, Button } from '@mui/material'
+import { Box, Typography, Button } from '@mui/material'
 import AddIcon from '@mui/icons-material/Add';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
@@ -15,29 +14,20 @@ import dayjs from 'dayjs'
 
 function ContactReminderForm({recruit}) {
     const {editRecruit} = useContext(UserContext)
-    debugger
     const [nextContact, setNextContact] = useState(recruit.next_contact ? dayjs(recruit.next_contact) : null)
 
-    /* const initialValues = {
-        next_contact: recruit.next_contact == null ? '0000-00-00' : recruit.next_contact
-    } */
-    
-    /* const formik = useFormik({
-      initialValues: initialValues,
-      validateOnChange: false,
-      onSubmit: function(values, {resetForm}){
-          editRecruit(values, recruit.id)
-          resetForm()
-      }
-    }) */
-
-    function handleSubmit(e){
+    function handleSetReminder(e){
       e.preventDefault()
       editRecruit({next_contact: nextContact.format('YYYY-MM-DD')}, recruit.id)
     }
 
+    function handleDeleteReminder(){
+      editRecruit({next_contact: null}, recruit.id)
+      setNextContact(null)
+    }
+
     const nextTpForm = (
-      <Box component="form" onSubmit={handleSubmit}>
+      <Box component="form" onSubmit={handleSetReminder}>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DemoContainer components={['DatePicker']}>
               <DatePicker
@@ -62,7 +52,7 @@ function ContactReminderForm({recruit}) {
           <Typography component='p'>Reminder Set:</Typography>
           <Box display={'flex'}>
             <Typography>{formatDate(recruit.next_contact)}</Typography>
-            <Button variant='outlined' size='small' title='Delete' onClick={() => editRecruit({next_contact: null}, recruit.id)} sx={{minWidth: 'auto', ml: '2%'}}><DeleteOutlineIcon sx={{ fontSize: '1rem' }}/></Button>
+            <Button variant='outlined' size='small' title='Delete' onClick={handleDeleteReminder} sx={{minWidth: 'auto', ml: '2%'}}><DeleteOutlineIcon sx={{ fontSize: '1rem' }}/></Button>
           </Box>
         </>    
   )
