@@ -68,6 +68,9 @@ function Notifications() {
         <Grid item container xs={12} justifyContent='center' alignItems='center'>
             <Button onClick={sendReminders} variant='outlined' sx={{mt: '2%', ml: '1%', backgroundColor: '#D3D3D3', color: '#000000'}}>Send</Button>
         </Grid>
+        <Grid item container xs={12} justifyContent='center' alignItems='center'>
+            <Typography variant='p' sx={{mt: '1%', fontStyle: 'italic'}}>(by using this application, you will receive automated notifications for any contact reminders you have set, in addition to weekly emails. if you would like to manually request these, select either of the buttons above.)</Typography>
+        </Grid>
     </Grid>
   )
 }
