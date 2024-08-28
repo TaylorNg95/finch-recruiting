@@ -50,26 +50,26 @@ function Notifications() {
         <Grid item container xs={12} justifyContent='center' alignItems='center'>
             <Checkbox defaultChecked onClick={() => editUser({notifications: !user.notifications}, user.id)} sx={{mt: '1%'}}/>
         </Grid>
-        <Grid item container xs={12} justifyContent='center' alignItems='center'>
-            <Typography variant='p' sx={{mt: '1%', fontStyle: 'italic'}}>(by checking this box, you opt-in to weekly recruiting activity summaries)</Typography>
-        </Grid>
         <Grid item xs={12}>
             <Divider sx={{backgroundColor: '#555D50', mt: '2%'}}/>
         </Grid>
         <Grid item container xs={12} justifyContent='center' alignItems='center'>
-            <Typography variant='p' sx={{mt: '2%'}}>Request Weekly Activity Summary</Typography>
+            <Typography variant='p' sx={{mt: '2%', fontStyle: 'italic'}}>NOTE: by using this application, you will receive automated email notifications for any contact reminders you have set.</Typography>
         </Grid>
         <Grid item container xs={12} justifyContent='center' alignItems='center'>
-            <Button onClick={sendWeeklyEmail} variant='outlined' sx={{mt: '2%', ml: '1%', backgroundColor: '#D3D3D3', color: '#000000'}}>Send</Button>
+            <Typography variant='p' sx={{fontStyle: 'italic'}}>If you would like to manually request these and/or a weekly activity summary, you may do so below.</Typography>
+        </Grid>
+        <Grid item container xs={12} justifyContent='center' alignItems='center'>
+            <Typography variant='p' sx={{mt: '3%'}}>Request Weekly Activity Summary</Typography>
+        </Grid>
+        <Grid item container xs={12} justifyContent='center' alignItems='center'>
+            <Button onClick={sendWeeklyEmail} variant='outlined' sx={{mt: '1%', ml: '1%', backgroundColor: '#D3D3D3', color: '#000000'}}>Send</Button>
         </Grid>
         <Grid item container xs={12} justifyContent='center' alignItems='center'>
             <Typography variant='p' sx={{mt: '2%'}}>Request Today's Contact Reminders</Typography>
         </Grid>
         <Grid item container xs={12} justifyContent='center' alignItems='center'>
-            <Button onClick={sendReminders} variant='outlined' sx={{mt: '2%', ml: '1%', backgroundColor: '#D3D3D3', color: '#000000'}}>Send</Button>
-        </Grid>
-        <Grid item container xs={12} justifyContent='center' alignItems='center'>
-            <Typography variant='p' sx={{mt: '1%', fontStyle: 'italic'}}>(by using this application, you will receive automated notifications for any contact reminders you have set, in addition to weekly emails. if you would like to manually request these, select either of the buttons above.)</Typography>
+            <Button onClick={sendReminders} variant='outlined' sx={{mt: '1%', ml: '1%', backgroundColor: '#D3D3D3', color: '#000000'}}>Send</Button>
         </Grid>
     </Grid>
   )
